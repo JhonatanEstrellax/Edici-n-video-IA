@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Une sin costuras los 4 turnos Multi-Turn (0-10s, 10-20s, 20-30s, 30-36s = 864 fotogramas / 36.00s @ 24fps),
-construye los masters Lip-Sync 100% orgánicos (SIN face_mask ni Frame 0 congelado) para v6A y v6B,
-y renderiza y verifica las 2 versiones finales editadas + los 2 brutos sincronizados.
+Sincronización labial y gestual palabra por palabra (PCHIP exacto por fonema/palabra, CERO deriva)
+para las 6 escenas completas (0.00s -> 33.60s, 96 palabras) de v6A y v6B:
+- Sin face_mask ni Frame 0 congelado (100% fotograma completo con movimiento natural de cuerpo, pelo y manos).
+- En v6A:
+  * Escenas 1 a 4 (0.00s -> 24.00s): v6A_turn2.mp4 [0.00s -> 20.00s] (Frente -> giro 3/4 continuo)
+  * Escena 5 (24.00s -> 29.28s): v6A_turn3.mp4 [10.15s -> 16.85s] (Contando las 4 agendas con los dedos y gestos de cobro)
+  * Escena 6 CTA (29.28s -> 33.60s): v6A_continuous_full.mp4 [10.15s -> 14.85s] (Hablando y gesticulando el CTA completo "¡Escribinos hoy en MascotaMás y te migramos gratis en el día!")
+- En v6B (Veterinaria de Palermo: de la Camilla con el Perro al Mostrador de Entrada):
+  * Escenas 1 y 2 (0.00s -> 11.52s): v6B_turn1.mp4 [0.00s -> 10.02s] (36 palabras 1:1 en camilla con el Golden Retriever y caminando por la clínica)
+  * Escenas 3, 4 y 5 (11.52s -> 29.28s): v6B_mostrador_t2.mp4 [0.00s -> 16.95s] (49 palabras 1:1 llegando y hablando en el mostrador de entrada con su MacBook Pro)
+  * Escena 6 CTA (29.28s -> 33.60s): v6B_mostrador_cta_6s.mp4 [0.00s -> 4.95s] (11 palabras 1:1 en el mostrador de entrada diciendo "¡Escribinos hoy en MascotaMás y te migramos gratis en el día!")
 """
 import os
 import sys
@@ -10,12 +18,10 @@ import json
 import copy
 import shutil
 import subprocess
-import unicodedata
 import cv2
 import numpy as np
-import soundfile as sf
 from scipy.interpolate import PchipInterpolator
-from faster_whisper import WhisperModel
+from scipy.ndimage import gaussian_filter1d
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
@@ -29,20 +35,9 @@ from step3_plan_cuts import load_style, build_subtitle_blocks, is_highlighted_wo
 from step4_render_and_export import render_final_video, FFMPEG_BIN
 
 
-def get_ffmpeg_exe():
-    return FFMPEG_BIN
-
-
-def norm_word(w: str) -> str:
-    s = "".join(
-        c for c in unicodedata.normalize("NFD", w.lower().strip())
-        if unicodedata.category(c) != "Mn"
-    )
-    return "".join(c for c in s if c.isalnum())
-
-
 def load_video_frames_1080p(path: str):
     cap = cv2.VideoCapture(path)
+    fps = cap.get(cv2.CAP_PROP_FPS) or 24.0
     frames = []
     while True:
         ret, f = cap.read()
@@ -52,192 +47,51 @@ def load_video_frames_1080p(path: str):
             f = cv2.resize(f, (1080, 1920), interpolation=cv2.INTER_LANCZOS4)
         frames.append(f)
     cap.release()
-    return frames
+    return frames, fps
 
 
-def extract_16k_audio(video_path: str, ffmpeg_exe: str) -> np.ndarray:
-    tmp_wav = video_path + ".16k.wav"
-    subprocess.run(
-        [ffmpeg_exe, "-y", "-i", video_path, "-vn", "-ac", "1", "-ar", "16000", "-f", "wav", tmp_wav],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-        check=True,
-    )
-    audio_np, _ = sf.read(tmp_wav, dtype="float32")
-    if os.path.exists(tmp_wav):
-        os.remove(tmp_wav)
-    return audio_np
+def sample_subframe(frames: list, src_fps: float, t_sec: float):
+    idx_f = float(np.clip(t_sec * src_fps, 0.0, len(frames) - 1.001))
+    i0 = int(np.floor(idx_f))
+    i1 = min(len(frames) - 1, i0 + 1)
+    alpha = idx_f - i0
+    if alpha < 1e-3 or i0 == i1:
+        return frames[i0]
+    return cv2.addWeighted(frames[i0], 1.0 - alpha, frames[i1], alpha, 0.0)
 
 
-def stitch_multiturn_36s(
-    t2_path: str,
-    t3_path: str,
-    t4_path: str,
-    ffmpeg_exe: str,
-):
+def eval_pchip_segment(t_out_arr: np.ndarray, anchors: list, sigma_frames: float = 2.0) -> np.ndarray:
     """
-    En gemini-omni-1.1-flash:
-    - t2_path (20s, 480 frames @ 24fps) contiene [Turno 1 (0..10s) + Turno 2 (10..20s)] con la transición 1->2 nativa en frame 240.
-    - t3_path (20s, 480 frames @ 24fps) contiene [Turno 2 (10..20s) + Turno 3 (20..30s)] con la transición 2->3 nativa en frame 240.
-    - t4_path (16s, 384 frames @ 24fps) contiene [Turno 3 (20..30s) + Turno 4 (30..36s)] con la transición 3->4 nativa en frame 240.
-    Fundimos en las zonas de solapamiento idéntico (t=15s alrededor de t2[360]/t3[120] y t=25s alrededor de t3[360]/t4[120])
-    para obtener los 864 fotogramas (36.00s @ 24fps) 100% continuos sin ningún corte ni salto.
+    Construye una curva PCHIP estrictamente monotónica a partir de pares (t_tts, t_vid)
+    exactos palabra por palabra, sin acumular deriva.
     """
-    f2 = load_video_frames_1080p(t2_path)
-    f3 = load_video_frames_1080p(t3_path)
-    f4 = load_video_frames_1080p(t4_path)
-
-    # Asegurar longitudes esperadas
-    assert len(f2) >= 480 and len(f3) >= 480 and len(f4) >= 360, f"Longitudes inesperadas: {len(f2)}, {len(f3)}, {len(f4)}"
-
-    stitched = []
-    # 0 .. 348 (0s .. 14.5s) desde t2
-    for i in range(348):
-        stitched.append(f2[i])
-    # 348 .. 372 (14.5s .. 15.5s): cross-blend suave entre f2[348..372] y f3[108..132] (mismo contenido)
-    for k in range(24):
-        alpha = (k + 1) / 25.0
-        blended = cv2.addWeighted(f2[348 + k], 1.0 - alpha, f3[108 + k], alpha, 0.0)
-        stitched.append(blended)
-    # 372 .. 588 (15.5s .. 24.5s) desde f3[132..348] (incluye transición nativa 2->3 en f3[240])
-    for i in range(132, 348):
-        stitched.append(f3[i])
-    # 588 .. 612 (24.5s .. 25.5s): cross-blend suave entre f3[348..372] y f4[108..132] (mismo contenido)
-    for k in range(24):
-        alpha = (k + 1) / 25.0
-        blended = cv2.addWeighted(f3[348 + k], 1.0 - alpha, f4[108 + k], alpha, 0.0)
-        stitched.append(blended)
-    # 612 .. fin (25.5s .. 36.0s) desde f4[132:] (incluye transición nativa 3->4 en f4[240])
-    for i in range(132, len(f4)):
-        stitched.append(f4[i])
-
-    # Audio 16kHz completo (0..20s desde t2 + 20..36s desde t4[10s:])
-    a2 = extract_16k_audio(t2_path, ffmpeg_exe)
-    a4 = extract_16k_audio(t4_path, ffmpeg_exe)
-    sr = 16000
-    a2_20s = a2[: 20 * sr]
-    a4_after_10s = a4[10 * sr :]
-    full_audio_16k = np.concatenate([a2_20s, a4_after_10s], axis=0)
-
-    return stitched, 24.0, full_audio_16k
+    xs = []
+    ys = []
+    for x, y in anchors:
+        x = float(x)
+        y = float(y)
+        if not xs:
+            xs.append(x)
+            ys.append(y)
+        else:
+            if x > xs[-1] + 0.015:
+                xs.append(x)
+                ys.append(max(ys[-1] + 0.004, y))
+    pchip = PchipInterpolator(np.array(xs, dtype=np.float64), np.array(ys, dtype=np.float64))
+    raw_y = pchip(t_out_arr)
+    if len(raw_y) > 8 and sigma_frames > 0:
+        sm_y = gaussian_filter1d(raw_y, sigma=sigma_frames, mode="nearest")
+        sm_y[0] = raw_y[0]
+        sm_y[-1] = raw_y[-1]
+        return np.maximum.accumulate(sm_y)
+    return raw_y
 
 
-def transcribe_audio_array(audio_np: np.ndarray, model: WhisperModel):
-    segments, _ = model.transcribe(audio_np, language="es", word_timestamps=True, vad_filter=False)
-    words = []
-    for seg in segments:
-        for w in (seg.words or []):
-            nw = norm_word(w.word)
-            if nw:
-                words.append({
-                    "word": w.word.strip(),
-                    "norm": nw,
-                    "start": float(w.start),
-                    "end": float(w.end),
-                })
-    return words
-
-
-def build_monotonic_pchip_time_map(tts_words, vid_words, target_dur: float, vid_dur: float):
-    """
-    Empareja palabras ancla entre el TTS maestro (33.60s) y el video continuo (36.00s)
-    garantizando una pendiente mínima y máxima estricta en cada tramo (0.55 <= slope <= 1.55)
-    para que el cuerpo, el pelo, los hombros y las manos se muevan de forma 100% continua y NUNCA se congelen.
-    """
-    anchors = [(0.0, 0.0)]
-    v_idx = 0
-    last_t_tts = 0.0
-    last_t_vid = 0.0
-
-    min_slope = 0.55
-    max_slope = 1.55
-
-    for tw in tts_words:
-        tn = norm_word(tw["word"])
-        if len(tn) < 3:
-            continue
-        t_mid = 0.5 * (float(tw["start"]) + float(tw["end"]))
-        if t_mid - last_t_tts < 0.50:
-            continue
-
-        best_j = None
-        for j in range(v_idx, min(len(vid_words), v_idx + 14)):
-            vn = vid_words[j]["norm"]
-            if vn == tn or (len(tn) >= 4 and (tn[:4] == vn[:4] or tn in vn or vn in tn)):
-                v_mid = 0.5 * (vid_words[j]["start"] + vid_words[j]["end"])
-                dt_tts = t_mid - last_t_tts
-                dt_vid = v_mid - last_t_vid
-                if dt_tts > 0.25 and (min_slope * dt_tts <= dt_vid <= max_slope * dt_tts):
-                    best_j = j
-                    break
-
-        if best_j is not None:
-            v_mid = 0.5 * (vid_words[best_j]["start"] + vid_words[best_j]["end"])
-            anchors.append((t_mid, v_mid))
-            last_t_tts = t_mid
-            last_t_vid = v_mid
-            v_idx = best_j + 1
-
-    rem_tts = target_dur - last_t_tts
-    if rem_tts > 0.25:
-        target_end_vid = min(vid_dur - 0.08, last_t_vid + np.clip(rem_tts * 1.0, rem_tts * min_slope, rem_tts * max_slope))
-        if target_end_vid <= last_t_vid + 0.15:
-            target_end_vid = min(vid_dur - 0.05, last_t_vid + rem_tts * 0.6)
-        anchors.append((target_dur, target_end_vid))
-    else:
-        anchors[-1] = (target_dur, min(vid_dur - 0.05, max(last_t_vid + 0.1, anchors[-1][1])))
-
-    clean_tts = [anchors[0][0]]
-    clean_vid = [anchors[0][1]]
-    for t_val, v_val in anchors[1:]:
-        dt = t_val - clean_tts[-1]
-        if dt <= 0.15:
-            continue
-        dv = v_val - clean_vid[-1]
-        dv_clamped = float(np.clip(dv, dt * min_slope, dt * max_slope))
-        next_v = min(vid_dur - 0.04, clean_vid[-1] + dv_clamped)
-        if next_v <= clean_vid[-1] + 0.02:
-            continue
-        clean_tts.append(t_val)
-        clean_vid.append(next_v)
-
-    if clean_tts[-1] < target_dur:
-        dt = target_dur - clean_tts[-1]
-        clean_tts.append(target_dur)
-        clean_vid.append(min(vid_dur - 0.04, clean_vid[-1] + dt * 0.80))
-
-    print(f"  -> PCHIP nodos ancla: {len(clean_tts)} | fin video={clean_vid[-1]:.2f}s / {vid_dur:.2f}s")
-    return PchipInterpolator(np.array(clean_tts), np.array(clean_vid))
-
-
-def build_pure_unmasked_master_from_turns(
-    tag: str,
-    t2_path: str,
-    t3_path: str,
-    t4_path: str,
-    tts_wav_path: str,
-    tts_words: list,
-    target_dur: float,
-    out_master_path: str,
-    whisper_model: WhisperModel,
-    ffmpeg_exe: str,
-):
-    print(f"\n[{tag}] Uniendo los 4 turnos Multi-Turn (36.00s continuos @ 24fps) y transcribiendo...")
-    frames, src_fps, full_audio_16k = stitch_multiturn_36s(t2_path, t3_path, t4_path, ffmpeg_exe)
-    vid_words = transcribe_audio_array(full_audio_16k, whisper_model)
-    num_src = len(frames)
-    vid_dur = num_src / src_fps
-    print(f"  -> Fotogramas continuos: {num_src} ({vid_dur:.2f}s @ {src_fps:.1f}fps) | Palabras detectadas: {len(vid_words)}")
-
-    pchip = build_monotonic_pchip_time_map(tts_words, vid_words, target_dur, vid_dur)
-
-    out_fps = 30.0
-    total_out_frames = int(round(target_dur * out_fps))
-    tmp_silent_mp4 = out_master_path + ".silent.mp4"
-
+def write_master_from_frames(out_frames: list, tts_wav_path: str, out_master_path: str):
+    tmp_silent = out_master_path + ".silent.mp4"
     proc = subprocess.Popen(
         [
-            ffmpeg_exe,
+            FFMPEG_BIN,
             "-y",
             "-f", "rawvideo",
             "-vcodec", "rawvideo",
@@ -249,37 +103,22 @@ def build_pure_unmasked_master_from_turns(
             "-preset", "fast",
             "-crf", "16",
             "-pix_fmt", "yuv420p",
-            tmp_silent_mp4,
+            tmp_silent,
         ],
         stdin=subprocess.PIPE,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-
-    for out_idx in range(total_out_frames):
-        t_out = out_idx / out_fps
-        t_vid = float(np.clip(pchip(t_out), 0.0, vid_dur - 0.001))
-        f_pos = t_vid * src_fps
-        i0 = int(np.floor(f_pos))
-        i1 = min(num_src - 1, i0 + 1)
-        i0 = min(num_src - 1, max(0, i0))
-        alpha = float(f_pos - i0)
-
-        if alpha <= 0.01 or i0 == i1:
-            out_frame = frames[i0]
-        else:
-            out_frame = cv2.addWeighted(frames[i0], 1.0 - alpha, frames[i1], alpha, 0.0)
-
-        proc.stdin.write(out_frame.tobytes())
-
+    for frm in out_frames:
+        proc.stdin.write(frm.tobytes())
     proc.stdin.close()
     proc.wait()
 
     subprocess.run(
         [
-            ffmpeg_exe,
+            FFMPEG_BIN,
             "-y",
-            "-i", tmp_silent_mp4,
+            "-i", tmp_silent,
             "-i", tts_wav_path,
             "-c:v", "copy",
             "-c:a", "aac",
@@ -291,9 +130,284 @@ def build_pure_unmasked_master_from_turns(
         stderr=subprocess.DEVNULL,
         check=True,
     )
-    if os.path.exists(tmp_silent_mp4):
-        os.remove(tmp_silent_mp4)
-    print(f"  -> Master 100% continuo listo: {out_master_path}")
+    if os.path.exists(tmp_silent):
+        os.remove(tmp_silent)
+
+
+def build_v6A_exact_master(tts_wav_path: str, out_master_path: str):
+    """
+    Construye el master de 1008 fotogramas (33.60s @ 30fps) para v6A con sincronización
+    palabra por palabra exacta en las 6 escenas:
+    - Segmento 1 (0.00s -> 24.00s, Escenas 1, 2, 3 y 4): v6A_turn2.mp4 (0.00s -> 20.00s)
+    - Segmento 2 (24.00s -> 29.28s, Escena 5): v6A_turn3.mp4 (10.15s -> 16.85s, contando las 4 agendas con los dedos)
+    - Segmento 3 (29.28s -> 33.60s, Escena 6 CTA): v6A_continuous_full.mp4 (10.15s -> 14.85s, diciendo y gesticulando el CTA completo)
+    """
+    print("\n[v6A] Cargando clips continuos 1080p (v6A_turn2, v6A_turn3, v6A_continuous_full)...")
+    f_t2, fps_t2 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6A_turn2.mp4"))
+    f_t3, fps_t3 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6A_turn3.mp4"))
+    f_t4, fps_t4 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6A_continuous_full.mp4"))
+
+    fps_out = 30.0
+    total_frames = 1008  # 33.60s @ 30fps
+    t_all = np.arange(total_frames, dtype=np.float64) / fps_out
+    f_cut_s5 = int(round(24.00 * fps_out))  # Frame 720 (24.00s)
+    f_cut_s6 = int(round(29.28 * fps_out))  # Frame 878 (29.28s)
+
+    # Anclas exactas palabra por palabra para Escenas 1, 2, 3 y 4 en v6A_turn2.mp4 (0.00s -> 24.00s)
+    anchors_s1_s4 = [
+        (0.00, 0.72),
+        # Escena 1: "¿Seguís atado a un sistema viejo o al Excel por miedo a perder los datos de tu veterinaria?"
+        (0.08, 1.00), (0.66, 1.44),   # ¿Seguís
+        (0.66, 1.44), (1.08, 1.74),   # atado
+        (1.28, 1.86), (1.58, 2.12),   # sistema
+        (1.58, 2.12), (2.08, 2.52),   # viejo
+        (2.36, 2.76), (2.68, 3.04),   # Excel
+        (2.88, 3.18), (3.16, 3.32),   # miedo
+        (3.28, 3.38), (3.68, 3.60),   # perder los
+        (3.68, 3.60), (4.10, 3.80),   # datos de
+        (4.22, 3.82), (4.86, 4.08),   # veterinaria? (boca articulando hasta 4.86s)
+        # Pausa entre Escena 1 y Escena 2 (4.86s -> 5.50s -> 4.08s -> 4.50s)
+        (5.28, 4.32),
+        # Escena 2: "¡Pasate hoy a MascotaMás! Te hacemos toda la migración gratis y en el día, sin frenar tu consultorio."
+        (5.50, 4.50), (5.94, 4.90),   # ¡Pasate
+        (5.94, 4.90), (6.16, 5.08),   # hoy
+        (6.28, 5.16), (6.80, 5.78),   # MascotaMás!
+        (7.14, 6.04), (7.42, 6.34),   # Te hacemos
+        (7.42, 6.34), (7.76, 6.60),   # toda
+        (7.94, 6.74), (8.30, 7.14),   # migración
+        (8.30, 7.14), (8.80, 7.66),   # gratis
+        (8.96, 7.90), (9.44, 8.22),   # en el día,
+        (9.60, 8.44), (10.00, 8.96),  # sin frenar
+        (10.12, 9.08), (10.72, 9.72), # consultorio.
+        # Pausa entre Escena 2 y Escena 3 (10.72s -> 11.78s -> 9.72s -> 10.28s)
+        (11.52, 10.12),
+        # Escena 3: "Pasamos tus clientes, pacientes, historias clínicas y vacunas para que no pierdas ni una sola ficha."
+        (11.78, 10.28), (12.10, 10.64), # Pasamos
+        (12.28, 10.82), (12.96, 11.30), # clientes,
+        (13.26, 11.50), (13.74, 11.86), # pacientes,
+        (13.92, 12.18), (14.22, 12.54), # historias
+        (14.22, 12.54), (14.72, 12.98), # clínicas
+        (14.90, 13.24), (15.32, 13.74), # vacunas
+        (15.32, 13.74), (15.74, 14.20), # para que no
+        (15.74, 14.20), (16.12, 14.52), # pierdas
+        (16.12, 14.52), (17.02, 15.02), # ni una sola
+        (17.02, 15.02), (17.36, 15.42), # ficha.
+        # Pausa entre Escena 3 y Escena 4 (17.36s -> 18.00s -> 15.42s -> 15.92s)
+        (17.76, 15.72),
+        # Escena 4: "En horas ya tenés recordatorios automáticos por WhatsApp, sala de espera en vivo y todo en la nube."
+        (18.00, 15.92), (18.40, 16.22), # En horas
+        (18.74, 16.28), (19.20, 16.70), # ya tenés
+        (19.20, 16.70), (19.86, 17.30), # recordatorios
+        (19.86, 17.30), (20.42, 17.84), # automáticos
+        (20.62, 18.02), (20.94, 18.32), # WhatsApp,
+        (21.32, 18.64), (21.88, 19.14), # sala de espera
+        (21.88, 19.14), (22.20, 19.50), # en vivo
+        (22.58, 19.56), (23.40, 19.92), # y todo en la nube.
+        (24.00, 20.01),
+    ]
+
+    # Anclas exactas palabra por palabra para Escena 5 en v6A_turn3.mp4 (24.00s -> 29.28s)
+    # En v6A_turn3.mp4 [10.52s - 16.40s] cuenta con los dedos las 4 agendas inteligentes y explica el cobro con Mercado Pago
+    anchors_s5 = [
+        (24.00, 10.22),
+        (24.24, 10.52), (24.50, 11.00), # Además,
+        (24.72, 11.48), (24.94, 11.72), # sumás
+        (25.08, 11.86), (25.30, 12.14), # 4 (empieza a contar con los dedos)
+        (25.30, 12.14), (25.68, 12.58), # agendas
+        (25.68, 12.58), (26.34, 13.40), # inteligentes
+        (26.60, 13.80), (26.96, 14.20), # cobro de
+        (26.96, 14.20), (27.14, 14.42), # seña
+        (27.14, 14.42), (27.62, 14.96), # automático
+        (27.82, 15.74), (28.14, 16.10), # Mercado
+        (28.14, 16.10), (28.46, 16.40), # Pago*.
+        (29.28, 16.85),                 # Cierre suave de frase antes del CTA
+    ]
+
+    # Anclas exactas palabra por palabra para Escena 6 (CTA) en v6A_continuous_full.mp4 (29.28s -> 33.60s)
+    # En v6A_continuous_full.mp4 [10.42s - 14.08s] dice "¡Escribinos hoy en MascotaMás y te migramos gratis en el día!" abriendo las manos
+    anchors_s6 = [
+        (29.28, 10.18),
+        (29.44, 10.42), (30.20, 10.86), # ¡Escribinos
+        (30.20, 10.86), (30.46, 11.08), # hoy
+        (30.56, 11.18), (31.24, 11.90), # MascotaMás
+        (31.24, 11.90), (31.60, 12.66), # y te
+        (31.60, 12.66), (31.98, 13.02), # migramos
+        (31.98, 13.02), (32.46, 13.62), # gratis
+        (32.46, 13.62), (32.70, 13.88), # en el
+        (32.70, 13.88), (32.86, 14.08), # día!
+        (33.60, 14.82),                 # Sonrisa cálida en movimiento al terminar la última palabra
+    ]
+
+    curve_14 = eval_pchip_segment(t_all[:f_cut_s5], anchors_s1_s4, sigma_frames=2.0)
+    curve_5 = eval_pchip_segment(t_all[f_cut_s5:f_cut_s6], anchors_s5, sigma_frames=2.0)
+    curve_6 = eval_pchip_segment(t_all[f_cut_s6:], anchors_s6, sigma_frames=2.0)
+
+    out_frames = []
+    for idx in range(total_frames):
+        if idx < f_cut_s5:
+            frm = sample_subframe(f_t2, fps_t2, float(curve_14[idx]))
+        elif idx < f_cut_s6:
+            frm = sample_subframe(f_t3, fps_t3, float(curve_5[idx - f_cut_s5]))
+        else:
+            frm = sample_subframe(f_t4, fps_t4, float(curve_6[idx - f_cut_s6]))
+
+        # Crossfade suave de 4 cuadros en las 2 transiciones de segmento (24.00s y 29.28s) para continuidad visual absoluta
+        if f_cut_s5 - 2 <= idx < f_cut_s5 + 2:
+            w_b = (idx - (f_cut_s5 - 2)) / 4.0
+            fa = sample_subframe(f_t2, fps_t2, float(curve_14[min(len(curve_14) - 1, idx)]))
+            fb = sample_subframe(f_t3, fps_t3, float(curve_5[max(0, idx - f_cut_s5)]))
+            frm = cv2.addWeighted(fa, 1.0 - w_b, fb, w_b, 0.0)
+        elif f_cut_s6 - 2 <= idx < f_cut_s6 + 2:
+            w_b = (idx - (f_cut_s6 - 2)) / 4.0
+            fa = sample_subframe(f_t3, fps_t3, float(curve_5[min(len(curve_5) - 1, idx - f_cut_s5)]))
+            fb = sample_subframe(f_t4, fps_t4, float(curve_6[max(0, idx - f_cut_s6)]))
+            frm = cv2.addWeighted(fa, 1.0 - w_b, fb, w_b, 0.0)
+
+        out_frames.append(frm)
+
+    write_master_from_frames(out_frames, tts_wav_path, out_master_path)
+    print(f"  -> [v6A Master Exacto 96 palabras] {out_master_path}")
+
+
+def build_v6B_exact_master(tts_wav_path: str, out_master_path: str):
+    """
+    Construye el master de 1008 fotogramas (33.60s @ 30fps) para v6B (Veterinaria de Palermo)
+    con sincronización 1:1 palabra por palabra en las 96 palabras (Escenas 1 a 6):
+    - Segmento 1 (0.00s -> 11.52s, Escenas 1 y 2): v6B_turn1.mp4 (0.00s -> 10.00s)
+      En la camilla de acero inoxidable con el Golden Retriever arriba y saliendo caminando del consultorio.
+    - Segmento 2 (11.52s -> 29.28s, Escenas 3, 4 y 5): v6B_mostrador_t2.mp4 (0.00s -> 16.95s)
+      Caminando y hablando en el mostrador de entrada en Palermo junto a su MacBook Pro.
+    - Segmento 3 (29.28s -> 33.60s, Escena 6 CTA): v6B_mostrador_cta_6s.mp4 (0.00s -> 4.95s)
+      En el mostrador de entrada diciendo y gesticulando "¡Escribinos hoy en MascotaMás y te migramos gratis en el día!".
+    """
+    print("\n[v6B] Cargando clips 1080p de Palermo (v6B_turn1, v6B_mostrador_t2, v6B_mostrador_cta_6s)...")
+    f_b1, fps_b1 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6B_turn1.mp4"))
+    f_b2, fps_b2 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6B_mostrador_t2.mp4"))
+    f_b3, fps_b3 = load_video_frames_1080p(os.path.join(WORK_DIR, "v6B_mostrador_cta_6s.mp4"))
+
+    fps_out = 30.0
+    total_frames = 1008  # 33.60s @ 30fps
+    t_all = np.arange(total_frames, dtype=np.float64) / fps_out
+    f_cut_s3 = int(round(11.52 * fps_out))  # Frame 346 (11.52s)
+    f_cut_s6 = int(round(29.28 * fps_out))  # Frame 878 (29.28s)
+
+    # Anclas 1:1 palabra por palabra para Escenas 1 y 2 en v6B_turn1.mp4 (36 palabras exactas)
+    anchors_b12 = [
+        (0.00, 0.00),
+        # Escena 1 (18 palabras 1:1): "¿Seguís atado a un sistema viejo o al Excel por miedo a perder los datos de tu veterinaria?"
+        (0.08, 0.04), (0.66, 0.48),   # ¿Seguís
+        (0.66, 0.48), (1.08, 0.82),   # atado
+        (1.28, 1.00), (1.58, 1.30),   # sistema
+        (1.58, 1.30), (2.08, 1.84),   # viejo
+        (2.36, 2.12), (2.68, 2.48),   # Excel
+        (2.88, 2.64), (3.16, 2.86),   # miedo
+        (3.28, 3.00), (3.50, 3.24),   # perder
+        (3.68, 3.40), (3.92, 3.64),   # datos
+        (4.22, 3.90), (4.86, 4.56),   # veterinaria?
+        # Pausa entre Escena 1 y Escena 2 (4.86s -> 5.50s -> 4.56s -> 4.80s)
+        (5.28, 4.70),
+        # Escena 2 (18 palabras 1:1): "¡Pasate hoy a MascotaMás! Te hacemos toda la migración gratis y en el día, sin frenar tu consultorio."
+        (5.50, 4.80), (5.94, 5.18),   # ¡Pasate
+        (5.94, 5.18), (6.16, 5.34),   # hoy
+        (6.28, 5.42), (6.80, 6.06),   # MascotaMás!
+        (7.14, 6.26), (7.42, 6.60),   # Te hacemos
+        (7.42, 6.60), (7.76, 6.86),   # toda
+        (7.94, 7.02), (8.30, 7.44),   # migración
+        (8.30, 7.44), (8.80, 7.94),   # gratis
+        (8.96, 8.02), (9.44, 8.44),   # y en el día,
+        (9.60, 8.60), (10.00, 9.12),  # sin frenar
+        (10.12, 9.20), (10.72, 9.82), # consultorio.
+        (11.52, 10.01),
+    ]
+
+    # Anclas 1:1 palabra por palabra para Escenas 3, 4 y 5 en v6B_mostrador_t2.mp4 (49 palabras exactas)
+    anchors_b345 = [
+        (11.52, 0.00),
+        # Escena 3 (16 palabras 1:1): "Pasamos tus clientes, pacientes, historias clínicas y vacunas para que no pierdas ni una sola ficha."
+        (11.78, 0.12), (12.10, 0.98), # Pasamos
+        (12.28, 1.14), (12.96, 1.62), # clientes,
+        (13.26, 1.82), (13.74, 2.10), # pacientes,
+        (13.92, 2.36), (14.22, 2.64), # historias
+        (14.22, 2.64), (14.72, 3.04), # clínicas
+        (14.90, 3.20), (15.32, 3.60), # vacunas
+        (15.32, 3.60), (15.74, 3.98), # para que no
+        (15.74, 3.98), (16.12, 4.28), # pierdas
+        (16.12, 4.28), (17.02, 4.74), # ni una sola
+        (17.02, 4.74), (17.36, 5.10), # ficha.
+        # Pausa entre Escena 3 y Escena 4 (17.36s -> 18.00s -> 5.10s -> 5.44s)
+        (17.76, 5.30),
+        # Escena 4 (18 palabras 1:1): "En horas ya tenés recordatorios automáticos por WhatsApp, sala de espera en vivo y todo en la nube."
+        (18.00, 5.44), (18.40, 5.74), # En horas
+        (18.74, 5.78), (19.20, 6.18), # ya tenés
+        (19.20, 6.18), (19.86, 6.72), # recordatorios
+        (19.86, 6.72), (20.42, 7.22), # automáticos
+        (20.62, 7.42), (20.94, 7.74), # WhatsApp,
+        (21.32, 8.10), (21.88, 8.58), # sala de espera
+        (21.88, 8.58), (22.20, 8.92), # en vivo
+        (22.58, 9.20), (23.16, 9.58), # y todo en la
+        (23.16, 9.58), (23.40, 9.80), # nube.
+        # Pausa entre Escena 4 y Escena 5 (23.40s -> 24.24s -> 9.80s -> 10.62s)
+        (24.00, 10.32),
+        # Escena 5 (15 palabras 1:1): "Además, sumás las 4 agendas inteligentes y el cobro de seña automático con Mercado Pago*."
+        (24.24, 10.62), (24.50, 11.14), # Además,
+        (24.72, 11.52), (24.94, 11.78), # sumás
+        (25.08, 11.94), (25.30, 12.20), # 4
+        (25.30, 12.20), (25.68, 12.56), # agendas
+        (25.68, 12.56), (26.34, 13.34), # inteligentes
+        (26.60, 13.80), (26.96, 14.22), # cobro de
+        (26.96, 14.22), (27.14, 14.78), # seña
+        (27.14, 14.78), (27.62, 15.34), # automático
+        (27.82, 15.62), (28.14, 15.92), # Mercado
+        (28.14, 15.92), (28.46, 16.30), # Pago*.
+        (29.28, 16.95),                 # Cierre suave de Escena 5
+    ]
+
+    # Anclas 1:1 palabra por palabra para Escena 6 (CTA) en v6B_mostrador_cta_6s.mp4 (11 palabras exactas)
+    anchors_b6 = [
+        (29.28, 0.00),
+        (29.44, 0.12), (30.20, 1.14), # ¡Escribinos
+        (30.20, 1.14), (30.46, 1.48), # hoy
+        (30.46, 1.48), (30.56, 1.58), # en
+        (30.56, 1.58), (31.24, 2.28), # MascotaMás
+        (31.24, 2.28), (31.48, 2.52), # y
+        (31.48, 2.52), (31.60, 2.66), # te
+        (31.60, 2.66), (31.98, 3.04), # migramos
+        (31.98, 3.04), (32.46, 3.66), # gratis
+        (32.46, 3.66), (32.58, 3.80), # en
+        (32.58, 3.80), (32.70, 3.94), # el
+        (32.70, 3.94), (32.86, 4.14), # día!
+        (33.60, 4.92),                # Sonrisa cálida en movimiento en el mostrador de entrada
+    ]
+
+    curve_b12 = eval_pchip_segment(t_all[:f_cut_s3], anchors_b12, sigma_frames=2.0)
+    curve_b345 = eval_pchip_segment(t_all[f_cut_s3:f_cut_s6], anchors_b345, sigma_frames=2.0)
+    curve_b6 = eval_pchip_segment(t_all[f_cut_s6:], anchors_b6, sigma_frames=2.0)
+
+    out_frames = []
+    for idx in range(total_frames):
+        if idx < f_cut_s3:
+            frm = sample_subframe(f_b1, fps_b1, float(curve_b12[idx]))
+        elif idx < f_cut_s6:
+            frm = sample_subframe(f_b2, fps_b2, float(curve_b345[idx - f_cut_s3]))
+        else:
+            frm = sample_subframe(f_b3, fps_b3, float(curve_b6[idx - f_cut_s6]))
+
+        # Crossfade suave de 4 cuadros justo en las transiciones (11.52s y 29.28s)
+        if f_cut_s3 - 2 <= idx < f_cut_s3 + 2:
+            w_b = (idx - (f_cut_s3 - 2)) / 4.0
+            fa = sample_subframe(f_b1, fps_b1, float(curve_b12[min(len(curve_b12) - 1, idx)]))
+            fb = sample_subframe(f_b2, fps_b2, float(curve_b345[max(0, idx - f_cut_s3)]))
+            frm = cv2.addWeighted(fa, 1.0 - w_b, fb, w_b, 0.0)
+        elif f_cut_s6 - 2 <= idx < f_cut_s6 + 2:
+            w_b = (idx - (f_cut_s6 - 2)) / 4.0
+            fa = sample_subframe(f_b2, fps_b2, float(curve_b345[min(len(curve_b345) - 1, idx - f_cut_s3)]))
+            fb = sample_subframe(f_b3, fps_b3, float(curve_b6[max(0, idx - f_cut_s6)]))
+            frm = cv2.addWeighted(fa, 1.0 - w_b, fb, w_b, 0.0)
+
+        out_frames.append(frm)
+
+    write_master_from_frames(out_frames, tts_wav_path, out_master_path)
+    print(f"  -> [v6B Master Exacto 96 palabras] {out_master_path}")
 
 
 def render_reel_version(
@@ -633,155 +747,15 @@ def render_reel_version(
     print(f"  -> [{version_tag} COMPLETADO] {out_edited_mp4}")
 
 
-def build_v6B_palermo_master(
-    t1_camilla_path: str,
-    t2_mostrador_20s_path: str,
-    tts_wav_path: str,
-    tts_words: list,
-    transitions: list,
-    target_dur: float,
-    out_master_path: str,
-    whisper_model: WhisperModel,
-    ffmpeg_exe: str,
-):
-    """
-    Construye el master 100% orgánico de v6B (Recorrido Veterinaria de Palermo):
-    - Parte A (0.00s -> 11.52s, Escenas 1 y 2): v6B_turn1.mp4 (10.00s, 240 fotogramas @ 24fps)
-      Atendiendo y acariciando al Golden Retriever sobre la camilla de acero inoxidable del consultorio
-      y empezando a caminar por la clínica.
-    - Parte B (11.52s -> 33.60s, Escenas 3, 4, 5 y 6): v6B_mostrador_t2.mp4 (20.00s, 480 fotogramas @ 24fps)
-      Llegando caminando al mostrador / escritorio de entrada en Palermo junto a su MacBook Pro y hablando
-      de forma continua sin cortes.
-    """
-    print("\n[v6B] Cargando y transcribiendo Parte A (Camilla con perro + caminata) y Parte B (Mostrador de entrada)...")
-    f_part_a = load_video_frames_1080p(t1_camilla_path)
-    f_part_b = load_video_frames_1080p(t2_mostrador_20s_path)
-    src_fps = 24.0
-    dur_a = len(f_part_a) / src_fps
-    dur_b = len(f_part_b) / src_fps
-
-    aud_a = extract_16k_audio(t1_camilla_path, ffmpeg_exe)
-    aud_b = extract_16k_audio(t2_mostrador_20s_path, ffmpeg_exe)
-    words_a = transcribe_audio_array(aud_a, whisper_model)
-    words_b = transcribe_audio_array(aud_b, whisper_model)
-    print(f"  -> Parte A: {len(f_part_a)} frames ({dur_a:.2f}s), {len(words_a)} palabras | Parte B: {len(f_part_b)} frames ({dur_b:.2f}s), {len(words_b)} palabras")
-
-    t_split = float(transitions[2])  # 11.52s (transición exacta Escena 2 -> Escena 3)
-    tts_words_a = [w for w in tts_words if float(w["end"]) <= t_split + 0.05]
-    tts_words_b = []
-    for w in tts_words:
-        if float(w["start"]) >= t_split - 0.05:
-            wc = dict(w)
-            wc["start"] = max(0.0, float(w["start"]) - t_split)
-            wc["end"] = max(0.05, float(w["end"]) - t_split)
-            tts_words_b.append(wc)
-
-    pchip_a = build_monotonic_pchip_time_map(tts_words_a, words_a, t_split, dur_a)
-    pchip_b = build_monotonic_pchip_time_map(tts_words_b, words_b, target_dur - t_split, dur_b)
-
-    out_fps = 30.0
-    total_out_frames = int(round(target_dur * out_fps))
-    split_frame = int(round(t_split * out_fps))
-    tmp_silent_mp4 = out_master_path + ".silent.mp4"
-
-    proc = subprocess.Popen(
-        [
-            ffmpeg_exe,
-            "-y",
-            "-f", "rawvideo",
-            "-vcodec", "rawvideo",
-            "-s", "1080x1920",
-            "-pix_fmt", "bgr24",
-            "-r", "30",
-            "-i", "-",
-            "-c:v", "libx264",
-            "-preset", "fast",
-            "-crf", "16",
-            "-pix_fmt", "yuv420p",
-            tmp_silent_mp4,
-        ],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
-
-    def sample_subframe(flist, dur_s, t_val):
-        t_c = float(np.clip(t_val, 0.0, dur_s - 0.001))
-        f_pos = t_c * src_fps
-        i0 = int(np.floor(f_pos))
-        i1 = min(len(flist) - 1, i0 + 1)
-        i0 = min(len(flist) - 1, max(0, i0))
-        alpha = float(f_pos - i0)
-        if alpha <= 0.01 or i0 == i1:
-            return flist[i0]
-        return cv2.addWeighted(flist[i0], 1.0 - alpha, flist[i1], alpha, 0.0)
-
-    for out_idx in range(total_out_frames):
-        t_out = out_idx / out_fps
-        if out_idx < split_frame - 3:
-            out_frame = sample_subframe(f_part_a, dur_a, float(pchip_a(t_out)))
-        elif out_idx > split_frame + 3:
-            out_frame = sample_subframe(f_part_b, dur_b, float(pchip_b(t_out - t_split)))
-        else:
-            # Crossfade suave de 6 fotogramas justo en la transición de escena (11.52s)
-            blend_w = (out_idx - (split_frame - 3)) / 6.0
-            fa = sample_subframe(f_part_a, dur_a, float(pchip_a(min(t_split, t_out))))
-            fb = sample_subframe(f_part_b, dur_b, float(pchip_b(max(0.0, t_out - t_split))))
-            out_frame = cv2.addWeighted(fa, 1.0 - blend_w, fb, blend_w, 0.0)
-
-        proc.stdin.write(out_frame.tobytes())
-
-    proc.stdin.close()
-    proc.wait()
-
-    subprocess.run(
-        [
-            ffmpeg_exe,
-            "-y",
-            "-i", tmp_silent_mp4,
-            "-i", tts_wav_path,
-            "-c:v", "copy",
-            "-c:a", "aac",
-            "-b:a", "192k",
-            "-shortest",
-            out_master_path,
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-        check=True,
-    )
-    if os.path.exists(tmp_silent_mp4):
-        os.remove(tmp_silent_mp4)
-    print(f"  -> Master v6B 100% continuo listo: {out_master_path}")
-
-
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "all"
-    ffmpeg_exe = get_ffmpeg_exe()
     tts_wav_path = os.path.join(WORK_DIR, "v6_tts_synced.wav")
     with open(os.path.join(WORK_DIR, "v6_words_synced.json"), "r", encoding="utf-8") as f:
         wdata = json.load(f)
 
-    tts_words = wdata["words"]
-    target_dur = float(wdata["duration"])
-
-    print("Cargando modelo faster-whisper (small)...")
-    whisper_model = WhisperModel("small", device="cpu", compute_type="int8")
-
     if mode in ("all", "v6A"):
         v6a_master = os.path.join(WORK_DIR, "v6A_vet_lipsync_master.mp4")
-        build_pure_unmasked_master_from_turns(
-            "v6A",
-            os.path.join(WORK_DIR, "v6A_turn2.mp4"),
-            os.path.join(WORK_DIR, "v6A_turn3.mp4"),
-            os.path.join(WORK_DIR, "v6A_continuous_full.mp4"),
-            tts_wav_path,
-            tts_words,
-            target_dur,
-            v6a_master,
-            whisper_model,
-            ffmpeg_exe,
-        )
+        build_v6A_exact_master(tts_wav_path, v6a_master)
         out_v6a_edit = os.path.join(
             BASE_DIR, "editados",
             "Reel Publicitario - Migracion Gratis en el Dia a MascotaMas (v6A - Avatar 360 Movimiento Continuo Natural + Maquetas Reales MacBook y iPhone + Lyria 3).mp4",
@@ -805,17 +779,7 @@ def main():
 
     if mode in ("all", "v6B"):
         v6b_master = os.path.join(WORK_DIR, "v6B_vet_lipsync_master.mp4")
-        build_v6B_palermo_master(
-            os.path.join(WORK_DIR, "v6B_turn1.mp4"),
-            os.path.join(WORK_DIR, "v6B_mostrador_t2.mp4"),
-            tts_wav_path,
-            tts_words,
-            wdata["transitions"],
-            target_dur,
-            v6b_master,
-            whisper_model,
-            ffmpeg_exe,
-        )
+        build_v6B_exact_master(tts_wav_path, v6b_master)
         out_v6b_edit = os.path.join(
             BASE_DIR, "editados",
             "Reel Publicitario - Migracion Gratis en el Dia a MascotaMas (v6B - Recorrido Veterinaria Palermo Camilla con Perro a Mostrador + Maquetas Reales + Lyria 3).mp4",
