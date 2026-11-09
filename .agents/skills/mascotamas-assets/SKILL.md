@@ -13,6 +13,9 @@ Esta skill documenta de dónde obtener las capturas de pantalla reales en maquet
 ## 1. Ubicación de los Repositorios de Assets
 
 ### A. Copia Curada en el Proyecto de Videos (Uso Directo en `templates/motion_graphics.html`)
+- **90 Paquetes Jerárquicos + Storyboards + MicroVideos Reales de `Manual De Usuario Vete y Marca`:**
+  `c:\IA\Edicion de videos\assets\manual_vete_y_marca\`
+  *(Contiene los 527 archivos oficiales: `*__01_MacBook_Pro_Real.png`, `*__02_iPhone_16_Pro_Max_Real.png`, `*__03_Combo_MacBook_e_iPhone.png`, `*__04_Raw_Desktop.png`, `*__05_Raw_Mobile.png`, `storyboard_01..06.png`, `2026_01..14_*.png` y `MicroVideo_01..05.mp4`).*
 - **Maquetas Fotográficas Reales (MacBook Pro + iPhone 16 Pro Max en PNG transparente RGBA):**
   `c:\IA\Edicion de videos\assets\mascotamas_real_mockups\`
 - **Pack Completo Avatar Veterinaria 360° (11 Poses + Hojas Maestras en `Gemini 3 Pro`):**

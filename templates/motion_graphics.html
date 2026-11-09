@@ -923,6 +923,75 @@
       display: block;
     }
 
+    /* Full-Screen No-Avatar Mode (v8A: 100% Sin Avatar -> Giant 16:9 Live Browser y=192..808px + Giant MacBook & iPhone y=786..1258px) */
+    .screenshot-stage.system-priority.no-avatar-full {
+      top: 192px;
+      height: 1066px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-live-browser {
+      height: 616px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-browser-viewport {
+      height: 570px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-cursor-wrap {
+      top: 335px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-devices-dock {
+      height: 472px;
+      margin-top: -22px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-mac-wrap {
+      width: 785px;
+      height: 472px;
+      margin-left: -16px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-mac-wrap .mac-layer img {
+      max-height: 472px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-phone-wrap {
+      width: 268px;
+      height: 476px;
+      right: 2px;
+    }
+
+    .screenshot-stage.system-priority.no-avatar-full .sys-phone-wrap .phone-layer img {
+      max-height: 476px;
+    }
+
+    .sys-hw-badge {
+      position: absolute;
+      top: 14px;
+      left: 24px;
+      background: rgba(20, 14, 32, 0.94);
+      border: 2px solid #AE4CFC;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 5px 16px;
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(10, 6, 18, 0.78);
+      z-index: 40;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      letter-spacing: 0.3px;
+    }
+
+    .sys-hw-badge.phone-badge {
+      left: auto;
+      right: 8px;
+      top: -12px;
+      border-color: #4ADE80;
+    }
+
     /* ==========================================================================
        LOWER FLOATING SUMMARY CARD ZONE (y = 1265..1495px)
        Styled with Poppins + Open Sans + #AE4CFC Violet Accent from mascotamas.com
@@ -1302,10 +1371,16 @@
         if (topbarEl) topbarEl.classList.add('compact-sys-prio');
         headlineEl.classList.add('compact-sys-prio');
         stageEl.classList.add('system-priority');
+        if (config.full_screen_no_avatar) {
+          stageEl.classList.add('no-avatar-full');
+        } else {
+          stageEl.classList.remove('no-avatar-full');
+        }
       } else {
         if (topbarEl) topbarEl.classList.remove('compact-sys-prio');
         headlineEl.classList.remove('compact-sys-prio');
         stageEl.classList.remove('system-priority');
+        stageEl.classList.remove('no-avatar-full');
       }
 
       if (config.headline_main) {
@@ -1393,6 +1468,7 @@
               </div>
             </div>
             <div class="sys-devices-dock">
+              ${config.full_screen_no_avatar ? `<div class="sys-hw-badge"><span>💻</span><span>MACBOOK PRO 16" REAL · WEB EN VIVO</span></div><div class="sys-hw-badge phone-badge"><span>📱</span><span>IPHONE 16 PRO MAX REAL</span></div>` : ''}
               <div class="sys-mac-wrap anim-laptop">
                 <div class="mac-layer sys-mac-1">
                   <img src="${mac1}" alt="MacBook Pro 16 Paso 1" />
@@ -1633,7 +1709,7 @@
 
       // 2. Render Lower Summary Card (Poppins + Open Sans + #AE4CFC Violet Highlights)
       let html = '';
-      if (tpl === 'none' || config.hide_cards) {
+      if ((tpl === 'none' && !config.force_bottom_items) || config.hide_cards) {
         html = '';
       } else if (tpl === 'before_after') {
         html = `
@@ -1672,7 +1748,7 @@
             </div>
           </div>
         `;
-      } else if (tpl === 'checklist') {
+      } else if (tpl === 'checklist' || (tpl === 'none' && config.force_bottom_items)) {
         const items = config.items || [
           { text: 'Menos tiempo muerto', tag: 'AGENDA' },
           { text: 'Más turnos efectivos', tag: 'TURNOS' },

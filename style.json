@@ -284,7 +284,8 @@
     "mix_modes": "spontaneous,phone_side,phones_duo,notebook_only,combo",
     "commercial_headlines_poppins": true,
     "realistic_iphone16_macbook_m4_mockups": true,
-    "real_photo_mockups_and_avatar_360": true
+    "real_photo_mockups_and_avatar_360": true,
+    "creative_system_modes": "v8A_full_screen_no_avatar_1040x616 + v8B_avatar_showing_macbook_and_iphone_real_mockups"
   },
   "feedback_history": [
     {
@@ -447,6 +448,12 @@
       "date": "2026-11-09",
       "request": "Prioridad pantallas y uso interactivo del sistema (Paso 1 -> Clic con cursor animado -> Paso 2) sobre el avatar en franja superior + Musica House 125 BPM sincronizada bien arriba (-6.8dB / -2.0dB ducking) en versiones v7A y v7B",
       "parameter": "audio.bgm.relative_to_voice_db = -6.8",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-09",
+      "request": "Dos nuevas versiones creativas (v8A 100% Sin Avatar mostrando pantallas reales del sistema desde celular y MacBook Pro; y v8B con el Avatar mostrando las pantallas reales desde su celular y MacBook Pro) utilizando las mejores capturas y maquetas reales de Manual De Usuario Vete y Marca + Musica House 125 BPM sincronizada",
+      "parameter": "motion_graphics.creative_system_modes = \"v8A_full_screen_no_avatar_1040x616 + v8B_avatar_showing_macbook_and_iphone_real_mockups\"",
       "status": "Activo"
     }
   ],

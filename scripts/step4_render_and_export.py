@@ -781,16 +781,19 @@ def render_final_video(output_mp4_path: str = None):
         else:
             min_y1_cfg = float(style["camera"].get("split_graphic_min_y1_ratio", 0.0)) if has_devices else 0.0
             vert_anchor_cfg = float(style["camera"].get("split_graphic_vert_anchor", 0.25)) if has_devices else 0.39
-        canvas = crop_face_region(
-            cached_src_frame,
-            out_w,
-            out_h,
-            face_center,
-            zoom=cur_zoom,
-            pan_x=cur_pan_x,
-            vert_anchor=vert_anchor_cfg,
-            min_y1_ratio=min_y1_cfg
-        )
+        if plan.get("preframed_source", False):
+            canvas = cached_src_frame.copy()
+        else:
+            canvas = crop_face_region(
+                cached_src_frame,
+                out_w,
+                out_h,
+                face_center,
+                zoom=cur_zoom,
+                pan_x=cur_pan_x,
+                vert_anchor=vert_anchor_cfg,
+                min_y1_ratio=min_y1_cfg
+            )
 
         # Soft commercial glow-flash transition at scene cut
         if trans_alpha > 0.005:
