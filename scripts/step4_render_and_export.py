@@ -30,7 +30,7 @@ def hex_to_rgba(hex_str: str, alpha: int = 255):
     return (255, 255, 255, alpha)
 
 
-def render_motion_graphics_scenes(scenes: list, fps: int = 30, width: int = 1080, graphic_h: int = 1920, subtitle_blocks: list = None, top_title: dict = None):
+def render_motion_graphics_scenes(scenes: list, fps: int = 30, width: int = 1080, graphic_h: int = 1920, subtitle_blocks: list = None, top_title: dict = None, reuse_mg_frames: bool = False):
     """
     Renders every scene + subtitle blocks + hook title using HTML + GSAP + Google Fonts Poppins in headless Playwright Chromium
     on a 1080x1920 transparent RGBA canvas (omitBackground: true):
@@ -48,43 +48,46 @@ def render_motion_graphics_scenes(scenes: list, fps: int = 30, width: int = 1080
     os.makedirs(subs_out_dir, exist_ok=True)
     html_uri = "file:///" + os.path.abspath(TEMPLATE_HTML).replace("\\", "/")
 
-    jobs_payload = {
-        "width": width,
-        "height": graphic_h,
-        "fps": fps,
-        "html_url": html_uri,
-        "scenes": [],
-        "subtitle_blocks": subtitle_blocks or [],
-        "top_title": top_title,
-        "subs_out_dir": subs_out_dir
-    }
+    if not reuse_mg_frames:
+        jobs_payload = {
+            "width": width,
+            "height": graphic_h,
+            "fps": fps,
+            "html_url": html_uri,
+            "scenes": [],
+            "subtitle_blocks": subtitle_blocks or [],
+            "top_title": top_title,
+            "subs_out_dir": subs_out_dir
+        }
 
-    for sc in scenes:
-        sid = sc["scene_id"]
-        sc_dir = os.path.join(mg_root, f"scene_{sid}")
-        if os.path.exists(sc_dir):
-            for old_f in glob.glob(os.path.join(sc_dir, "frame_*.png")):
-                try:
-                    os.remove(old_f)
-                except OSError:
-                    pass
-        g_cfg = dict(sc.get("graphic_config", {}) or {})
-        if sc.get("layout_mode") == "full_face" and not g_cfg.get("template"):
-            g_cfg["template"] = "none"
-        jobs_payload["scenes"].append({
-            "scene_id": sid,
-            "edited_duration": sc.get("edited_duration", 2.0),
-            "graphic_config": g_cfg,
-            "out_dir": sc_dir
-        })
+        for sc in scenes:
+            sid = sc["scene_id"]
+            sc_dir = os.path.join(mg_root, f"scene_{sid}")
+            if os.path.exists(sc_dir):
+                for old_f in glob.glob(os.path.join(sc_dir, "frame_*.png")):
+                    try:
+                        os.remove(old_f)
+                    except OSError:
+                        pass
+            g_cfg = dict(sc.get("graphic_config", {}) or {})
+            if sc.get("layout_mode") == "full_face" and not g_cfg.get("template"):
+                g_cfg["template"] = "none"
+            jobs_payload["scenes"].append({
+                "scene_id": sid,
+                "edited_duration": sc.get("edited_duration", 2.0),
+                "graphic_config": g_cfg,
+                "out_dir": sc_dir
+            })
 
-    jobs_json = os.path.join(mg_root, "mg_jobs.json")
-    with open(jobs_json, "w", encoding="utf-8") as f:
-        json.dump(jobs_payload, f, ensure_ascii=False, indent=2)
+        jobs_json = os.path.join(mg_root, "mg_jobs.json")
+        with open(jobs_json, "w", encoding="utf-8") as f:
+            json.dump(jobs_payload, f, ensure_ascii=False, indent=2)
 
-    print(f"[MOTION GRAPHICS] Rendering {len(scenes)} full-screen transparent RGBA overlay scenes via Playwright + GSAP...")
-    node_script = os.path.join(BASE_DIR, "scripts", "render_mg.js")
-    subprocess.run(["node", node_script, jobs_json], check=True, cwd=BASE_DIR)
+        print(f"[MOTION GRAPHICS] Rendering {len(scenes)} full-screen transparent RGBA overlay scenes via Playwright + GSAP...")
+        node_script = os.path.join(BASE_DIR, "scripts", "render_mg.js")
+        subprocess.run(["node", node_script, jobs_json], check=True, cwd=BASE_DIR)
+    else:
+        print(f"[MOTION GRAPHICS] Reusing pre-rendered transparent RGBA overlay scenes from {mg_root}...")
 
     rendered = {}
     for sc in scenes:
@@ -623,7 +626,8 @@ def render_final_video(output_mp4_path: str = None):
         width=out_w,
         graphic_h=out_h,
         subtitle_blocks=plan.get("subtitle_blocks", []),
-        top_title=plan.get("hook_title")
+        top_title=plan.get("hook_title"),
+        reuse_mg_frames=bool(plan.get("reuse_mg_frames", False))
     )
 
     # 2. Denoise, Enhance Voice, Mix BGM/SFX & Normalize Master Audio (-14 LUFS)
@@ -720,6 +724,8 @@ def render_final_video(output_mp4_path: str = None):
             cached_src_frame = np.zeros((out_h, out_w, 3), dtype=np.uint8)
 
         g_cfg = scene.get("graphic_config", {}) if scene else {}
+        if g_cfg.get("face_center"):
+            face_center = g_cfg["face_center"]
         sc_z_start = float(g_cfg.get("camera_zoom_start", zoom_start))
         sc_z_end = float(g_cfg.get("camera_zoom_end", zoom_end))
         sc_pan_start = float(g_cfg.get("camera_pan_start", 0.0))
@@ -735,7 +741,7 @@ def render_final_video(output_mp4_path: str = None):
         cur_pan_x = sc_pan_start + (sc_pan_end - sc_pan_start) * sc_progress
         sub_scale = 1.0
 
-        # Smooth commercial whip-zoom + glow transition on scene cuts (0.18s)
+        # Smooth commercial whip-zoom + glow transition on scene cuts (0.18s) and mid-scene beat switches
         trans_alpha = 0.0
         if scene and scene["edited_start"] > 0.05:
             dt_sc = t - scene["edited_start"]
@@ -743,6 +749,14 @@ def render_final_video(output_mp4_path: str = None):
                 tr_u = 1.0 - (dt_sc / 0.18)
                 cur_zoom += 0.065 * (tr_u * tr_u)
                 trans_alpha = 0.26 * (tr_u * tr_u)
+
+        if scene and g_cfg.get("switch_sec"):
+            sw_abs_t = float(scene["edited_start"]) + float(g_cfg["switch_sec"])
+            dt_sw = t - sw_abs_t
+            if 0.0 <= dt_sw <= 0.16:
+                sw_u = 1.0 - (dt_sw / 0.16)
+                cur_zoom += 0.042 * (sw_u * sw_u)
+                trans_alpha = max(trans_alpha, 0.20 * (sw_u * sw_u))
 
         if sub_block and sub_block.get("has_bounce"):
             bt = sub_block.get("bounce_start", sub_block["start"])
@@ -756,11 +770,17 @@ def render_final_video(output_mp4_path: str = None):
 
         # Always Full-Screen 1080x1920 speaker frame (NO top/bottom division!)
         is_split_graphic = bool(scene and scene.get("layout_mode") == "split_graphic")
-        has_devices = is_split_graphic and (g_cfg.get("device_mode", "none") != "none")
+        is_sys_prio = bool(g_cfg.get("system_priority", False))
+        has_devices = (is_split_graphic or is_sys_prio) and (g_cfg.get("device_mode", "none") != "none")
         if not has_devices:
             cur_zoom = min(cur_zoom, 1.02)
-        min_y1_cfg = float(style["camera"].get("split_graphic_min_y1_ratio", 0.0)) if has_devices else 0.0
-        vert_anchor_cfg = float(style["camera"].get("split_graphic_vert_anchor", 0.25)) if has_devices else 0.39
+        if is_sys_prio:
+            cur_zoom = max(cur_zoom, float(g_cfg.get("system_priority_zoom", 1.14)))
+            vert_anchor_cfg = float(g_cfg.get("system_priority_vert_anchor", 0.19))
+            min_y1_cfg = float(g_cfg.get("system_priority_min_y1_ratio", 0.05))
+        else:
+            min_y1_cfg = float(style["camera"].get("split_graphic_min_y1_ratio", 0.0)) if has_devices else 0.0
+            vert_anchor_cfg = float(style["camera"].get("split_graphic_vert_anchor", 0.25)) if has_devices else 0.39
         canvas = crop_face_region(
             cached_src_frame,
             out_w,

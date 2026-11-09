@@ -53,18 +53,40 @@ async function main() {
     const dur = Math.max(0.3, sc.edited_duration || 2.0);
     cfg.duration = dur;
     const totalFrames = Math.max(1, Math.round(dur * fps));
-    const activeAnimFrames = Math.min(totalFrames, Math.round(1.45 * fps));
 
     await page.evaluate(async (c) => {
       window.renderScene(c);
       await document.fonts.ready;
     }, cfg);
 
-    for (let f = 0; f < activeAnimFrames; f++) {
-      const tSec = f / fps;
-      await page.evaluate((t) => window.seekTo(t), tSec);
-      const filePath = path.join(outDir, `frame_${String(f).padStart(4, '0')}.png`);
-      await page.screenshot({ path: filePath, type: 'png', omitBackground: true });
+    const swSec = Number(cfg.switch_sec || 0);
+    const enterSec = Number(cfg.hook_delayed_enter_sec || 0);
+
+    if (swSec > 0.2 || enterSec > 0.05) {
+      let lastCapturedPath = null;
+      for (let f = 0; f < totalFrames; f++) {
+        const tSec = f / fps;
+        const inIntro = tSec <= 0.65;
+        const inDelayedEnter = enterSec > 0.05 && tSec >= (enterSec - 0.06) && tSec <= (enterSec + 0.45);
+        const inSwitch = swSec > 0.2 && tSec >= (swSec - 0.55) && tSec <= (swSec + 0.45);
+        const filePath = path.join(outDir, `frame_${String(f).padStart(4, '0')}.png`);
+
+        if (f === 0 || inIntro || inDelayedEnter || inSwitch || !lastCapturedPath) {
+          await page.evaluate((t) => window.seekTo(t), tSec);
+          await page.screenshot({ path: filePath, type: 'png', omitBackground: true });
+          lastCapturedPath = filePath;
+        } else {
+          fs.copyFileSync(lastCapturedPath, filePath);
+        }
+      }
+    } else {
+      const activeAnimFrames = Math.min(totalFrames, Math.round(1.45 * fps));
+      for (let f = 0; f < activeAnimFrames; f++) {
+        const tSec = f / fps;
+        await page.evaluate((t) => window.seekTo(t), tSec);
+        const filePath = path.join(outDir, `frame_${String(f).padStart(4, '0')}.png`);
+        await page.screenshot({ path: filePath, type: 'png', omitBackground: true });
+      }
     }
   }
 

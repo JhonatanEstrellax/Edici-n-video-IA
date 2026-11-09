@@ -667,6 +667,263 @@
     }
 
     /* ==========================================================================
+       SYSTEM PRIORITY MODE (v7A & v7B: Giant Live System Browser + 2-Step Workflow + Real Mockups)
+       Avatar sits cleanly in y = 186..484px; Giant System Workspace dominates y = 486..1258px!
+       ========================================================================== */
+    .brand-topbar.compact-sys-prio {
+      top: 32px;
+    }
+
+    .commercial-headline-banner.compact-sys-prio {
+      top: 98px;
+      padding: 8px 22px 10px 22px;
+    }
+
+    .commercial-headline-banner.compact-sys-prio .commercial-title {
+      font-size: 33px;
+    }
+
+    .screenshot-stage.system-priority {
+      top: 486px;
+      left: 20px;
+      right: 20px;
+      height: 772px;
+      justify-content: flex-start;
+    }
+
+    .sys-prio-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .sys-live-browser {
+      width: 100%;
+      height: 436px;
+      background: #140E20;
+      border: 3px solid #AE4CFC;
+      border-radius: 24px;
+      box-shadow:
+        0 24px 56px rgba(10, 6, 18, 0.85),
+        0 0 28px rgba(174, 76, 252, 0.42);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 22;
+    }
+
+    .sys-browser-bar {
+      height: 46px;
+      background: linear-gradient(90deg, #1B1329 0%, #2A1F3D 100%);
+      border-bottom: 2px solid rgba(174, 76, 252, 0.42);
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .sys-browser-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sys-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+    }
+    .sys-dot.r { background: #EF4444; }
+    .sys-dot.y { background: #F59E0B; }
+    .sys-dot.g { background: #10B981; }
+
+    .sys-browser-url {
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(174, 76, 252, 0.45);
+      border-radius: 999px;
+      padding: 4px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #F5F0FF;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sys-browser-step-pill {
+      background: linear-gradient(135deg, #AE4CFC 0%, #7E22CE 100%);
+      color: #FFFFFF;
+      padding: 4px 16px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 0 14px rgba(174, 76, 252, 0.65);
+    }
+
+    .sys-live-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #4ADE80;
+      box-shadow: 0 0 8px #4ADE80;
+    }
+
+    .sys-browser-viewport {
+      position: relative;
+      width: 100%;
+      height: 390px;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+
+    .sys-screen-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+    }
+
+    .sys-screen-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .sys-step-ribbon {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 12px;
+      background: rgba(27, 19, 41, 0.94);
+      border: 2px solid #AE4CFC;
+      border-radius: 16px;
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #FFFFFF;
+      font-size: 20px;
+      font-weight: 800;
+      box-shadow: 0 10px 26px rgba(15, 10, 24, 0.65);
+      z-index: 30;
+    }
+
+    .sys-step-ribbon .step-tag {
+      background: #AE4CFC;
+      color: #FFFFFF;
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 800;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .sys-cursor-wrap {
+      position: absolute;
+      left: 640px;
+      top: 230px;
+      width: 56px;
+      height: 56px;
+      z-index: 35;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 14px rgba(15, 10, 24, 0.75));
+    }
+
+    .sys-click-ring {
+      position: absolute;
+      left: -14px;
+      top: -14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 4px solid #AE4CFC;
+      background: rgba(174, 76, 252, 0.28);
+      opacity: 0;
+      transform: scale(0.4);
+    }
+
+    .sys-devices-dock {
+      position: relative;
+      width: 100%;
+      height: 382px;
+      margin-top: -52px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      z-index: 28;
+    }
+
+    .sys-mac-wrap {
+      position: relative;
+      width: 755px;
+      height: 382px;
+      margin-left: -14px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      filter: drop-shadow(0 24px 48px rgba(10, 6, 18, 0.82));
+    }
+
+    .sys-mac-wrap .mac-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .sys-mac-wrap .mac-layer img {
+      width: 100%;
+      height: auto;
+      max-height: 382px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .sys-phone-wrap {
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      width: 248px;
+      height: 395px;
+      z-index: 32;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      filter: drop-shadow(-16px 22px 44px rgba(10, 6, 18, 0.85));
+    }
+
+    .sys-phone-wrap .phone-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .sys-phone-wrap .phone-layer img {
+      width: 100%;
+      height: auto;
+      max-height: 395px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ==========================================================================
        LOWER FLOATING SUMMARY CARD ZONE (y = 1265..1495px)
        Styled with Poppins + Open Sans + #AE4CFC Violet Accent from mascotamas.com
        ========================================================================== */
@@ -1040,6 +1297,17 @@
       badgeEl.textContent = config.badge || config.pill || 'MASCOTAMÁS · WEB & APP';
 
       // 0. Render Commercial Headline Banner (100% Google Fonts Poppins)
+      const topbarEl = document.querySelector('.brand-topbar');
+      if (config.system_priority) {
+        if (topbarEl) topbarEl.classList.add('compact-sys-prio');
+        headlineEl.classList.add('compact-sys-prio');
+        stageEl.classList.add('system-priority');
+      } else {
+        if (topbarEl) topbarEl.classList.remove('compact-sys-prio');
+        headlineEl.classList.remove('compact-sys-prio');
+        stageEl.classList.remove('system-priority');
+      }
+
       if (config.headline_main) {
         headlineEl.style.display = 'flex';
         const kickerHtml = config.headline_kicker
@@ -1054,7 +1322,7 @@
         headlineEl.innerHTML = '';
       }
 
-      // 1. Render Large Screenshots Stage (Supports MIX modes: spontaneous, phone_side, phone_left, phones_duo, notebook_only, combo, combo_left_phone)
+      // 1. Render Large Screenshots Stage (Supports system_priority 2-Step Live Usage + MIX modes)
       const devMode = config.device_mode || ((config.laptop_screenshot || config.phone_screenshot) ? 'combo' : 'spontaneous');
       const isRealPhoto = Boolean(
         config.real_photo_mockups ||
@@ -1065,6 +1333,85 @@
       if (devMode === 'spontaneous' || devMode === 'none') {
         stageEl.style.display = 'none';
         stageEl.innerHTML = '';
+      } else if (config.system_priority) {
+        stageEl.style.display = 'flex';
+        const ui1 = config.ui_screen_1 || config.laptop_screenshot;
+        const ui2 = config.ui_screen_2 || config.laptop_screenshot_2 || ui1;
+        const mac1 = config.laptop_screenshot;
+        const mac2 = config.laptop_screenshot_2 || mac1;
+        const ph1 = config.phone_screenshot;
+        const ph2 = config.phone_screenshot_2 || ph1;
+        const step1Txt = config.workflow_step_1 || 'USO EN VIVO · GESTIÓN INTEGRAL MASCOTAMÁS';
+        const step2Txt = config.workflow_step_2 || step1Txt;
+        const hasStep2 = Boolean(config.switch_sec && (config.ui_screen_2 || config.laptop_screenshot_2 || config.workflow_step_2));
+
+        stageEl.innerHTML = `
+          <div class="sys-prio-wrap anim-stage">
+            <div class="sys-live-browser">
+              <div class="sys-browser-bar">
+                <div class="sys-browser-dots">
+                  <span class="sys-dot r"></span>
+                  <span class="sys-dot y"></span>
+                  <span class="sys-dot g"></span>
+                </div>
+                <div class="sys-browser-url">
+                  <span>🔒</span>
+                  <span>gestion.mascotamas.com · SISTEMA EN VIVO</span>
+                </div>
+                <div class="sys-browser-step-pill">
+                  <span class="sys-live-dot"></span>
+                  <span id="sys-step-pill-label">${hasStep2 ? 'PASO 1 DE 2 · EN USO' : 'EN VIVO 24/7'}</span>
+                </div>
+              </div>
+              <div class="sys-browser-viewport">
+                <div class="sys-screen-layer sys-screen-1">
+                  <img src="${ui1}" alt="MascotaMás UI Paso 1" />
+                </div>
+                <div class="sys-screen-layer sys-screen-2" style="opacity:0; transform:scale(1.06) translateY(18px);">
+                  <img src="${ui2}" alt="MascotaMás UI Paso 2" />
+                </div>
+                <div class="sys-step-ribbon sys-ribbon-1">
+                  <div style="display:flex;align-items:center;">
+                    <span class="step-tag">PASO 1</span>
+                    <span>${highlightVioletWords(step1Txt)}</span>
+                  </div>
+                  <span style="color:#C06CFC;font-weight:800;">⚡ ACTIVO</span>
+                </div>
+                <div class="sys-step-ribbon sys-ribbon-2" style="opacity:0; transform:translateY(14px);">
+                  <div style="display:flex;align-items:center;">
+                    <span class="step-tag" style="background:#10B981;">PASO 2</span>
+                    <span>${highlightVioletWords(step2Txt)}</span>
+                  </div>
+                  <span style="color:#4ADE80;font-weight:800;">✓ LISTO</span>
+                </div>
+                <div class="sys-cursor-wrap">
+                  <div class="sys-click-ring"></div>
+                  <svg viewBox="0 0 36 36" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 4L29 15.5L18.5 19.5L14.5 30L7 4Z" fill="#FFFFFF" stroke="#AE4CFC" stroke-width="3" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="sys-devices-dock">
+              <div class="sys-mac-wrap anim-laptop">
+                <div class="mac-layer sys-mac-1">
+                  <img src="${mac1}" alt="MacBook Pro 16 Paso 1" />
+                </div>
+                <div class="mac-layer sys-mac-2" style="opacity:0; transform:scale(0.95) translateX(18px);">
+                  <img src="${mac2}" alt="MacBook Pro 16 Paso 2" />
+                </div>
+              </div>
+              <div class="sys-phone-wrap anim-phone">
+                <div class="phone-layer sys-phone-1">
+                  <img src="${ph1}" alt="iPhone 16 Pro Max Paso 1" />
+                </div>
+                <div class="phone-layer sys-phone-2" style="opacity:0; transform:scale(0.92) translateY(18px);">
+                  <img src="${ph2}" alt="iPhone 16 Pro Max Paso 2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
       } else if (isRealPhoto) {
         stageEl.style.display = 'flex';
         if (devMode === 'phone_side') {
@@ -1429,6 +1776,88 @@
           { scale: 1.04, y: -8, duration: 4.8, ease: 'sine.inOut' },
           0.0
         );
+      }
+
+      if (config.system_priority && document.querySelector('.sys-prio-wrap')) {
+        const enterT = Number(config.hook_delayed_enter_sec || 0.0);
+        if (enterT > 0.05) {
+          gsap.set('.sys-prio-wrap', { opacity: 0, y: 36, scale: 0.92 });
+          tl.to('.sys-prio-wrap',
+            { opacity: 1, y: 0, scale: 1.0, duration: 0.28, ease: 'back.out(1.6)' },
+            enterT
+          );
+        }
+
+        if (document.querySelector('.sys-screen-1 img')) {
+          tl.fromTo('.sys-screen-1 img',
+            { scale: 1.0, y: 0 },
+            { scale: 1.045, y: -10, duration: 2.8, ease: 'sine.inOut' },
+            enterT
+          );
+        }
+
+        const swT = Number(config.switch_sec || 0.0);
+        if (swT > 0.2 && document.querySelector('.sys-screen-2')) {
+          const curStart = Math.max(enterT + 0.15, swT - 0.95);
+          tl.fromTo('.sys-cursor-wrap',
+            { x: 140, y: 80, scale: 1.0, opacity: 0 },
+            { x: -120, y: -65, scale: 1.0, opacity: 1, duration: Math.max(0.25, swT - curStart - 0.16), ease: 'power2.inOut' },
+            curStart
+          );
+          tl.to('.sys-cursor-wrap',
+            { scale: 0.80, duration: 0.08, yoyo: true, repeat: 1, ease: 'power2.inOut' },
+            swT - 0.16
+          );
+          tl.fromTo('.sys-click-ring',
+            { scale: 0.35, opacity: 1.0 },
+            { scale: 2.35, opacity: 0.0, duration: 0.28, ease: 'power2.out' },
+            swT - 0.12
+          );
+
+          // Beat-synced switch from Screen 1 -> Screen 2 + MacBook 1 -> 2 + iPhone 1 -> 2
+          tl.to('.sys-screen-1',
+            { opacity: 0, scale: 0.96, duration: 0.22, ease: 'power2.inOut' },
+            swT
+          );
+          tl.fromTo('.sys-screen-2',
+            { opacity: 0, scale: 1.06, y: 16 },
+            { opacity: 1, scale: 1.0, y: 0, duration: 0.26, ease: 'back.out(1.4)' },
+            swT
+          );
+          tl.fromTo('.sys-screen-2 img',
+            { scale: 1.0, y: 0 },
+            { scale: 1.045, y: -10, duration: 2.8, ease: 'sine.inOut' },
+            swT + 0.15
+          );
+          tl.to('.sys-ribbon-1',
+            { opacity: 0, y: -12, duration: 0.18, ease: 'power2.in' },
+            swT
+          );
+          tl.to('.sys-ribbon-2',
+            { opacity: 1, y: 0, duration: 0.24, ease: 'back.out(1.6)' },
+            swT + 0.04
+          );
+          tl.to('.sys-mac-1',
+            { opacity: 0, scale: 0.94, x: -18, duration: 0.22, ease: 'power2.inOut' },
+            swT
+          );
+          tl.to('.sys-mac-2',
+            { opacity: 1, scale: 1.0, x: 0, duration: 0.26, ease: 'back.out(1.5)' },
+            swT + 0.02
+          );
+          tl.to('.sys-phone-1',
+            { opacity: 0, scale: 0.92, y: 18, duration: 0.22, ease: 'power2.inOut' },
+            swT
+          );
+          tl.to('.sys-phone-2',
+            { opacity: 1, scale: 1.0, y: 0, duration: 0.28, ease: 'back.out(1.7)' },
+            swT + 0.04
+          );
+          tl.to('.sys-cursor-wrap',
+            { opacity: 0, y: -95, duration: 0.22, ease: 'power2.out' },
+            swT + 0.16
+          );
+        }
       }
 
       if (document.querySelector('.anim-card')) {
