@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080, initial-scale=1.0" />
+  <title>MascotaMás Transparent Overlay (Google Fonts Poppins + Violet #AE4CFC)</title>
+  <!-- Official Google Fonts Poppins v24 (Base64-embedded + Google Fonts CDN) -->
+  <link rel="stylesheet" href="./google_fonts_poppins.css" />
+  <script src="./gsap.min.js"></script>
+  <style>
+    :root {
+      /* Exact Design Tokens from mascotamas.com/style.css - 100% Google Fonts Poppins */
+      --color-bg-primary: #fbf9ff;
+      --color-bg-secondary: #ffffff;
+      --color-bg-tertiary: #f5f0ff;
+      --color-bg-dark: #1b1329;
+      --color-text-primary: #2a1f3d;
+      --color-text-secondary: #6e5e80;
+      --color-primary: #ae4cfc;
+      --color-primary-light: #be97ff;
+      --color-primary-dark: #8a2be2;
+      --color-primary-glow: rgba(174, 76, 252, 0.14);
+      --color-secondary: #ab5eff;
+      --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+      --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 1080px;
+      height: 1920px;
+      background: transparent !important;
+      font-family: 'Poppins', sans-serif !important;
+      color: var(--color-text-primary);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Native Google Fonts Poppins Subtitle & Hook Title Renderer */
+    .gf-overlay-stage {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent !important;
+      z-index: 99999;
+      pointer-events: none;
+    }
+
+    .gf-sub-line {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      text-align: center;
+      text-shadow:
+        0 4px 18px rgba(15, 10, 24, 0.95),
+        0 2px 6px rgba(15, 10, 24, 0.92),
+        0 0 3px rgba(15, 10, 24, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      white-space: nowrap;
+    }
+
+    .gf-sub-word-hl {
+      color: #AE4CFC;
+      font-weight: 800;
+      text-shadow:
+        0 4px 18px rgba(15, 10, 24, 0.98),
+        0 2px 6px rgba(15, 10, 24, 0.95),
+        0 0 3px rgba(15, 10, 24, 0.98);
+    }
+
+    .gf-title-line {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+      text-align: center;
+      text-shadow:
+        0 6px 22px rgba(15, 10, 24, 0.96),
+        0 3px 8px rgba(15, 10, 24, 0.94),
+        0 0 4px rgba(15, 10, 24, 0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      white-space: nowrap;
+    }
+
+    .gf-title-kw {
+      color: #AE4CFC;
+      font-weight: 800;
+    }
+
+    .hl-violet {
+      color: var(--color-primary);
+      font-weight: 800;
+    }
+
+    /* Top Bar: 100% Original MascotaMás Logo on Clean White Pill */
+    .brand-topbar {
+      position: absolute;
+      top: 56px;
+      left: 44px;
+      right: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 30;
+    }
+
+    .brand-logo-pill {
+      background: rgba(255, 255, 255, 0.97);
+      border: 2px solid rgba(174, 76, 252, 0.22);
+      padding: 12px 26px;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(27, 19, 41, 0.28);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+
+    .header-tag-pill {
+      font-family: var(--font-display);
+      background: rgba(255, 255, 255, 0.96);
+      border: 2px solid rgba(174, 76, 252, 0.25);
+      color: var(--color-text-primary);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 30px rgba(27, 19, 41, 0.25);
+    }
+
+    .header-tag-pill .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 12px rgba(174, 76, 252, 0.85);
+    }
+
+    /* Dynamic Commercial Headline Banner (100% Google Fonts Poppins on every scene) */
+    .commercial-headline-banner {
+      position: absolute;
+      top: 136px;
+      left: 44px;
+      right: 44px;
+      z-index: 34;
+      background: linear-gradient(135deg, rgba(27, 19, 41, 0.92) 0%, rgba(42, 31, 61, 0.90) 100%);
+      border: 2.5px solid rgba(174, 76, 252, 0.62);
+      border-radius: 26px;
+      padding: 14px 28px 16px 28px;
+      box-shadow: 0 16px 38px rgba(15, 10, 24, 0.46);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      text-align: center;
+    }
+
+    .commercial-kicker {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #D8B4FE;
+      background: rgba(174, 76, 252, 0.22);
+      border: 1px solid rgba(174, 76, 252, 0.45);
+      padding: 3px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .commercial-title {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 37px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+    }
+
+    .commercial-title .hl-violet {
+      color: #C06CFC;
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       SCREENSHOT SHOWCASE ZONE (y = 395..1235px)
+       100% Transparent Container — Mockups float directly over the video!
+       ========================================================================== */
+    .screenshot-stage {
+      position: absolute;
+      top: 430px;
+      left: 44px;
+      right: 44px;
+      height: 826px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .showcase-card-backdrop {
+      width: 100%;
+      height: 100%;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: visible;
+    }
+
+    .showcase-devices-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding-bottom: 4px;
+    }
+
+    /* Hyper-Realistic MacBook Pro 16" M4 Space Black Mockup */
+    .laptop-mockup {
+      position: relative;
+      width: 652px;
+      z-index: 5;
+      filter: drop-shadow(0 32px 60px rgba(15, 10, 24, 0.72));
+    }
+
+    .laptop-screen {
+      background: #050507;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      padding: 11px 11px 14px 11px;
+      border: 3px solid #3f3f46;
+      box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.35),
+        inset 0 0 0 2px #141417;
+      border-bottom: none;
+      position: relative;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* MacBook Pro M4 Top Camera Notch + FaceTime Green Lens */
+    .laptop-screen::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 112px;
+      height: 15px;
+      background: #050507;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      z-index: 25;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+    }
+
+    .laptop-screen::after {
+      content: 'MacBook Pro';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: rgba(212, 212, 216, 0.55);
+      z-index: 25;
+    }
+
+    .laptop-screen-content {
+      width: 100%;
+      height: 100%;
+      background-color: #FFFFFF;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Realistic Diagonal Glass Specular Sheen on MacBook Pro Display */
+    .laptop-screen-content::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        118deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 255, 255, 0.04) 34%,
+        rgba(255, 255, 255, 0.0) 38%
+      );
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .laptop-screen-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .laptop-base {
+      height: 20px;
+      background: linear-gradient(
+        90deg,
+        #52525b 0%,
+        #a1a1aa 8%,
+        #e4e4e7 24%,
+        #71717a 50%,
+        #e4e4e7 76%,
+        #a1a1aa 92%,
+        #52525b 100%
+      );
+      border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      position: relative;
+      width: 108%;
+      margin-left: -4%;
+      box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.55),
+        inset 0 -4px 8px rgba(24, 24, 27, 0.65);
+      z-index: 6;
+    }
+
+    .laptop-notch {
+      width: 98px;
+      height: 8px;
+      background: linear-gradient(to bottom, #27272a 0%, #52525b 100%);
+      margin: 0 auto;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Hyper-Realistic iPhone 16 Pro Max Titanium Mockup */
+    .iphone-mockup {
+      position: absolute;
+      right: 4px;
+      bottom: 2px;
+      width: 218px;
+      height: 436px;
+      background: linear-gradient(145deg, #27272a 0%, #09090b 55%, #18181b 100%);
+      padding: 6px;
+      border: 3.5px solid #a1a1aa;
+      border-radius: 44px;
+      box-shadow:
+        -18px 26px 54px rgba(15, 10, 24, 0.68),
+        inset 0 0 0 2px #18181b,
+        inset 0 1px 3px rgba(255, 255, 255, 0.55);
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* iPhone 16 Pro Max Titanium Action & Volume Buttons (Left Edge) + Power/Camera Control (Right Edge) */
+    .iphone-mockup::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 86px;
+      width: 3px;
+      height: 22px;
+      background: linear-gradient(to bottom, #d4d4d8, #71717a);
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      box-shadow: 0 36px 0 0 #a1a1aa, 0 74px 0 0 #a1a1aa;
+    }
+
+    .iphone-mockup::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 128px;
+      width: 3px;
+      height: 46px;
+      background: linear-gradient(to bottom, #d4d4d8, #71717a);
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    .iphone-screen {
+      flex-grow: 1;
+      background: #fff;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      border: 1.5px solid #000;
+    }
+
+    /* Realistic Glass Specular Reflection on iPhone 16 Pro Max Screen */
+    .iphone-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.03) 38%,
+        rgba(255, 255, 255, 0.0) 42%
+      );
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .iphone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .iphone-dynamic-island {
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 21px;
+      background: #050507;
+      border-radius: 999px;
+      z-index: 12;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45), inset 0 0 2px rgba(255, 255, 255, 0.18);
+    }
+
+    /* Realistic Camera Sensor Reflection inside Dynamic Island */
+    .iphone-dynamic-island::after {
+      content: '';
+      position: absolute;
+      right: 7px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #3b82f6 0%, #1e1b4b 55%, #09090b 100%);
+      box-shadow: -14px 0 0 -1px rgba(30, 27, 75, 0.85);
+    }
+
+    .iphone-home-indicator {
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 82px;
+      height: 4.5px;
+      background: rgba(15, 10, 24, 0.45);
+      border-radius: 3px;
+      z-index: 12;
+    }
+
+    /* Dual Phone Free-Floating Image Option (for screenshot_1.png) */
+    .dual-phone-floating {
+      position: absolute;
+      right: -8px;
+      bottom: -6px;
+      width: 410px;
+      height: 670px;
+      z-index: 15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(-14px 22px 40px rgba(27, 19, 41, 0.48));
+    }
+
+    .dual-phone-floating img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* MIX Layout 1: Side Phone (Speaker's face 100% visible on center/left!) */
+    .mix-phone-side-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+    }
+
+    .mix-phone-side- wrap .iphone-mockup,
+    .iphone-mockup.side-tilt-right {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      width: 300px;
+      height: 605px;
+      transform: rotate(-3.5deg);
+      box-shadow: -16px 24px 50px rgba(27, 19, 41, 0.55);
+    }
+
+    .iphone-mockup.side-tilt-left {
+      position: absolute;
+      left: 6px;
+      bottom: 6px;
+      right: auto;
+      width: 285px;
+      height: 575px;
+      transform: rotate(-5.5deg);
+      box-shadow: 16px 24px 50px rgba(27, 19, 41, 0.52);
+    }
+
+    .iphone-mockup.duo-right {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      width: 285px;
+      height: 575px;
+      transform: rotate(5.5deg);
+      box-shadow: -16px 24px 50px rgba(27, 19, 41, 0.52);
+    }
+
+    .mix-floating-chip {
+      position: absolute;
+      left: 8px;
+      bottom: 36px;
+      background: rgba(27, 19, 41, 0.90);
+      border: 2px solid #AE4CFC;
+      color: #FFFFFF;
+      padding: 14px 24px;
+      border-radius: 22px;
+      font-size: 23px;
+      font-weight: 700;
+      box-shadow: 0 14px 34px rgba(27, 19, 41, 0.48);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 18;
+    }
+
+    .mix-floating-chip .chip-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #AE4CFC;
+      box-shadow: 0 0 12px #AE4CFC;
+      flex-shrink: 0;
+    }
+
+    .laptop-mockup.notebook-solo {
+      width: 930px;
+      margin: 0 auto;
+    }
+
+    /* Real Photographic MacBook Pro 16" & iPhone 16 Pro Max Titanium (Transparent RGBA PNGs from mascotamas_real_mockups) */
+    .real-photo-laptop {
+      position: relative;
+      width: 745px;
+      margin-left: -20px;
+      z-index: 5;
+      filter: drop-shadow(0 28px 52px rgba(15, 10, 24, 0.74));
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .real-photo-laptop img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .real-photo-laptop.notebook-solo {
+      width: 920px;
+      margin: 0 auto;
+    }
+
+    .real-photo-laptop.align-right {
+      margin-left: auto;
+      margin-right: -20px;
+    }
+
+    .real-photo-iphone {
+      position: absolute;
+      right: 2px;
+      bottom: 0px;
+      width: 246px;
+      z-index: 16;
+      filter: drop-shadow(-16px 24px 46px rgba(15, 10, 24, 0.74));
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .real-photo-iphone img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .real-photo-iphone.side-tilt-right {
+      right: 8px;
+      bottom: 4px;
+      width: 300px;
+      transform: rotate(-3.2deg);
+    }
+
+    .real-photo-iphone.side-tilt-left {
+      left: 6px;
+      right: auto;
+      bottom: 4px;
+      width: 244px;
+      transform: rotate(-4.2deg);
+      filter: drop-shadow(16px 24px 46px rgba(15, 10, 24, 0.74));
+    }
+
+    .real-photo-iphone.duo-right {
+      right: 8px;
+      bottom: 4px;
+      width: 286px;
+      transform: rotate(4.8deg);
+    }
+
+    /* ==========================================================================
+       LOWER FLOATING SUMMARY CARD ZONE (y = 1265..1495px)
+       Styled with Poppins + Open Sans + #AE4CFC Violet Accent from mascotamas.com
+       ========================================================================== */
+    .floating-zone {
+      position: absolute;
+      top: 1265px;
+      left: 44px;
+      right: 44px;
+      height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 25;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 2px solid rgba(174, 76, 252, 0.24);
+      border-radius: 26px;
+      padding: 22px 28px;
+      box-shadow: 0 16px 40px rgba(27, 19, 41, 0.32);
+      color: var(--color-text-primary);
+    }
+
+    /* 1. BEFORE / AFTER FLOATING CARDS */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+    .ba-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px 24px;
+    }
+    .ba-card.before {
+      border-left: 8px solid #EF4444;
+    }
+    .ba-card.after {
+      border-left: 8px solid var(--color-primary);
+    }
+    .ba-badge {
+      font-family: var(--font-display);
+      align-self: flex-start;
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+    .ba-badge.neg {
+      background: rgba(239, 68, 68, 0.14);
+      color: #DC2626;
+    }
+    .ba-badge.pos {
+      background: var(--color-primary-glow);
+      color: var(--color-primary-dark);
+    }
+    .ba-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--color-text-primary);
+    }
+    .ba-desc {
+      font-family: var(--font-sans);
+      font-size: 21px;
+      color: var(--color-text-secondary);
+      font-weight: 700;
+    }
+
+    /* 2. APP CONNECTION FLOATING BAR */
+    .conn-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+    }
+    .app-node {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 22px;
+    }
+    .app-icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 20px;
+      background: var(--color-bg-tertiary);
+      border: 1px solid rgba(174, 76, 252, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      flex-shrink: 0;
+    }
+    .app-icon img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .app-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      line-height: 1.15;
+    }
+    .app-sub {
+      font-family: var(--font-sans);
+      font-size: 20px;
+      color: var(--color-text-secondary);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .conn-pill {
+      font-family: var(--font-display);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(174, 76, 252, 0.42);
+      white-space: nowrap;
+    }
+
+    /* 3. CHECKLIST FLOATING PILLS */
+    .check-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+    }
+    .check-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 18px 20px;
+    }
+    .check-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .check-box {
+      font-family: var(--font-display);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(174, 76, 252, 0.35);
+    }
+    .check-tag {
+      font-family: var(--font-display);
+      background: var(--color-primary-glow);
+      color: var(--color-primary-dark);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .check-text {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-text-primary);
+    }
+
+    /* 4. CTA / CHAT FLOATING BANNER */
+    .cta-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 30px;
+      border-left: 8px solid var(--color-primary);
+    }
+    .cta-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cta-sub {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .cta-main {
+      font-family: var(--font-display);
+      font-size: 33px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      line-height: 1.15;
+    }
+    .cta-btn {
+      font-family: var(--font-display);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: #FFFFFF;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-size: 24px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(174, 76, 252, 0.45);
+    }
+
+    /* Official MascotaMás Peeking Creature in Bottom-Left Corner (100% faithful to mascotamas.com) */
+    .peeking-creature {
+      position: fixed;
+      bottom: 0;
+      left: 28px;
+      width: 175px;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+    }
+
+    .peeking-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform-origin: bottom center;
+    }
+
+    .peeking-pupil, .peeking-eyebrow {
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    /* Terms & Conditions Italic Footnote at Bottom (* Posible comisión de Mercado Pago) */
+    .legal-disclaimer-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 212px;
+      right: 32px;
+      z-index: 9998;
+      background: rgba(15, 10, 24, 0.84);
+      border: 1.5px solid rgba(174, 76, 252, 0.42);
+      border-radius: 16px;
+      padding: 10px 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .legal-disclaimer-text {
+      font-family: 'Poppins', sans-serif !important;
+      font-style: italic !important;
+      font-size: 18.5px;
+      font-weight: 500;
+      line-height: 1.28;
+      letter-spacing: 0.1px;
+      color: rgba(245, 240, 255, 0.94);
+      text-align: left;
+    }
+
+    .legal-disclaimer-text .legal-asterisk {
+      color: #C06CFC;
+      font-weight: 700;
+      font-style: italic !important;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Brand Bar with 100% Original Unaltered MascotaMás Logo -->
+  <div class="brand-topbar anim-first">
+    <div class="brand-logo-pill">
+      <img src="../assets/mascotamas/logo.png" alt="MascotaMás" class="brand-logo-img" />
+    </div>
+    <div class="header-tag-pill anim-pill">
+      <span class="dot"></span>
+      <span id="badge-text">GESTIÓN WEB & APP</span>
+    </div>
+  </div>
+
+  <!-- Dynamic Commercial Headline Banner (100% Google Fonts Poppins on every scene) -->
+  <div id="commercial-headline-banner" class="commercial-headline-banner anim-headline" style="display: none;"></div>
+
+  <!-- Large Real Screenshots Stage (Laptop + iPhone Mockups floating directly over video) -->
+  <div id="screenshot-stage" class="screenshot-stage" style="display: none;"></div>
+
+  <!-- Compact Floating Cards in Lower Zone -->
+  <div id="root" class="floating-zone"></div>
+
+  <!-- Terms & Conditions Italic Footnote at Bottom (* Posible comisión de Mercado Pago) -->
+  <div id="legal-disclaimer-bar" class="legal-disclaimer-bar">
+    <div id="legal-disclaimer-text" class="legal-disclaimer-text"></div>
+  </div>
+
+  <!-- Hidden Google Fonts Poppins Preloader (forces Chromium to rasterize weights 400..800 immediately) -->
+  <div style="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none;font-family:'Poppins',sans-serif;">
+    <span style="font-weight:400">MascotaMás Poppins 400</span>
+    <span style="font-weight:500">MascotaMás Poppins 500</span>
+    <span style="font-weight:600">MascotaMás Poppins 600</span>
+    <span style="font-weight:700">MascotaMás Poppins 700</span>
+    <span style="font-weight:800">MascotaMás Poppins 800</span>
+  </div>
+
+  <!-- Dedicated Chromium Google Fonts Poppins Subtitle & Title Capture Boxes -->
+  <div id="gf-sub-box" style="position:fixed;left:20px;top:1520px;width:1040px;height:260px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:transparent !important;z-index:999999;pointer-events:none;"></div>
+  <div id="gf-title-box" style="position:fixed;left:20px;top:1185px;width:1040px;height:290px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:transparent !important;z-index:999999;pointer-events:none;"></div>
+
+  <!-- Official Peeking Creature in Bottom-Left Corner (Exact SVG from mascotamas.com) -->
+  <div class="peeking-creature" id="mascot-widget">
+    <svg class="peeking-svg" id="mascot-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694 557" fill="none">
+      <path fill="#232323" stroke="#232323" d="M30.862 439.045.647 555.211l692.161 1.101-11.386-34.499-44.105-144.39-29.864-106.036-46.987-130.337-18.523-43.459-19.954-42.175c-9.987-15.351-34.25-46.03-41.394-49.872-7.145-3.843-22.863-11.514-44.345 7.6-21.477 19.111-47.322 88.018-48.767 91.871l-.001.002c-1.436 3.829-21.534 52.326-37.297 72.734-15.764 20.408-34.347 15.271-47.213 12.696-12.867-2.575-35.72-20.49-49.993-38.392-14.272-17.902-39.424-53.017-47.092-63.929-7.668-10.912-33.365-55.606-54.271-46.061-20.905 9.544-38.695 52.299-44.431 62.506-5.737 10.208-30.197 104.673-30.197 104.673L51.077 316.477 30.862 439.045Z"/>
+      <ellipse cx="46.976" cy="64.673" fill="#fff" rx="46.976" ry="64.673" transform="matrix(.9941 -.10837 .12577 .99206 211.186 390.061)"/>
+      <ellipse cx="46.928" cy="64.75" fill="#fff" rx="46.928" ry="64.75" transform="matrix(.98765 -.15663 .18126 .98344 336.251 366.288)"/>
+      <g transform="matrix(1 0 .00002 1 275.714 404.688)">
+        <ellipse class="peeking-pupil left-pupil" cx="18.661" cy="18.218" fill="#000" rx="18.661" ry="18.218"/>
+      </g>
+      <g transform="matrix(1 0 .00002 1 396.223 368.454)">
+        <ellipse class="peeking-pupil right-pupil" cx="18.661" cy="17.35" fill="#000" rx="18.661" ry="17.35"/>
+      </g>
+      <path class="peeking-eyebrow left-eyebrow" stroke="#fff" stroke-linejoin="round" stroke-width="7" d="M165.646 368.565c22.8-20.072 39.5-23.418 45-22.581"/>
+      <path class="peeking-eyebrow right-eyebrow" fill="#fff" d="M409.704 311.045c14.836-.441 25.782 1.324 33.373 3.63 7.714 2.343 11.695 5.159 12.941 6.556l5.206-4.673c-2.463-2.763-7.836-6.076-16.127-8.594-8.414-2.556-20.125-4.388-35.605-3.928l.212 7.009Z"/>
+    </svg>
+  </div>
+
+  <script>
+    function highlightVioletWords(text) {
+      if (!text) return '';
+      const keywords = [
+        '100%', 'efectivos', 'libres', 'más plata', 'Autogestión', 'WhatsApp',
+        'MascotaMás', 'Llena', 'Online', '24/7', 'Recordatorios', 'Peli',
+        'Agenda Digital', 'Confirma', 'reprograma', 'Cancela', 'Recuerda',
+        'TURNOS', 'HUECO', 'PLATA', 'PILOTO AUTOMÁTICO', 'INTELIGENTE',
+        'TIEMPO MUERTO', 'MASCOTAMAS.COM', 'TUTORES', 'FICHAS CLÍNICAS',
+        'VETERINARIA', 'GUARDERÍA', 'SALA EN VIVO', 'MERCADO PAGO', '$0 COMISIÓN',
+        'HISTORIA CLÍNICA', 'HISTORIAS CLÍNICAS', 'PDF', 'PACIENTES VISTOS', 'CLÍNICA', 'Profesionales',
+        'Estadías', 'en Vivo', 'Foto', '4 CALENDARIOS', '4 AGENDAS', 'CUPOS POR HORARIO',
+        'SERVICIOS', 'SEÑA AUTOMÁTICA', 'COMISIÓN', 'CHECK-IN', 'CHECK-OUT',
+        'SIN HUECOS', '1 A 1', 'MIGRACIÓN', 'GRATIS', 'EN EL DÍA', 'SIN FRENAR',
+        'VACUNAS', 'PACIENTES', 'CLIENTES', 'MIGRAR', 'EXCEL', 'EN LA NUBE'
+      ];
+      let out = text;
+      keywords.forEach((kw) => {
+        const reg = new RegExp(`(${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        out = out.replace(reg, '<span class="hl-violet">$1</span>');
+      });
+      return out;
+    }
+
+    window.renderScene = function(config) {
+      const root = document.getElementById('root');
+      const stageEl = document.getElementById('screenshot-stage');
+      const badgeEl = document.getElementById('badge-text');
+      const headlineEl = document.getElementById('commercial-headline-banner');
+      const tpl = config.template || 'none';
+      badgeEl.textContent = config.badge || config.pill || 'MASCOTAMÁS · WEB & APP';
+
+      // 0. Render Commercial Headline Banner (100% Google Fonts Poppins)
+      if (config.headline_main) {
+        headlineEl.style.display = 'flex';
+        const kickerHtml = config.headline_kicker
+          ? `<div class="commercial-kicker">${config.headline_kicker}</div>`
+          : '';
+        headlineEl.innerHTML = `
+          ${kickerHtml}
+          <div class="commercial-title">${highlightVioletWords(config.headline_main)}</div>
+        `;
+      } else {
+        headlineEl.style.display = 'none';
+        headlineEl.innerHTML = '';
+      }
+
+      // 1. Render Large Screenshots Stage (Supports MIX modes: spontaneous, phone_side, phone_left, phones_duo, notebook_only, combo, combo_left_phone)
+      const devMode = config.device_mode || ((config.laptop_screenshot || config.phone_screenshot) ? 'combo' : 'spontaneous');
+      const isRealPhoto = Boolean(
+        config.real_photo_mockups ||
+        (config.laptop_screenshot && config.laptop_screenshot.includes('mascotamas_real_mockups')) ||
+        (config.phone_screenshot && config.phone_screenshot.includes('mascotamas_real_mockups'))
+      );
+
+      if (devMode === 'spontaneous' || devMode === 'none') {
+        stageEl.style.display = 'none';
+        stageEl.innerHTML = '';
+      } else if (isRealPhoto) {
+        stageEl.style.display = 'flex';
+        if (devMode === 'phone_side') {
+          const chipHtml = config.side_chip
+            ? `<div class="mix-floating-chip anim-pill"><span class="chip-dot"></span><span>${highlightVioletWords(config.side_chip)}</span></div>`
+            : '';
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="mix-phone-side-wrap">
+                ${chipHtml}
+                <div class="real-photo-iphone side-tilt-right anim-phone">
+                  <img src="${config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max Real" />
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (devMode === 'phone_left') {
+          const chipHtml = config.side_chip
+            ? `<div class="mix-floating-chip anim-pill" style="left:auto;right:8px;"><span class="chip-dot"></span><span>${highlightVioletWords(config.side_chip)}</span></div>`
+            : '';
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="mix-phone-side-wrap">
+                <div class="real-photo-iphone side-tilt-left anim-phone">
+                  <img src="${config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max Real" />
+                </div>
+                ${chipHtml}
+              </div>
+            </div>
+          `;
+        } else if (devMode === 'phones_duo') {
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="showcase-devices-area">
+                <div class="real-photo-iphone side-tilt-left anim-laptop" style="width:286px;">
+                  <img src="${config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max 1" />
+                </div>
+                <div class="real-photo-iphone duo-right anim-phone">
+                  <img src="${config.phone_screenshot_2 || config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max 2" />
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (devMode === 'notebook_only') {
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="showcase-devices-area" style="justify-content:center;">
+                <div class="real-photo-laptop notebook-solo anim-laptop">
+                  <img src="${config.laptop_screenshot}" alt="MascotaMás MacBook Pro Real" />
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (devMode === 'combo_left_phone') {
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="showcase-devices-area" style="justify-content:flex-end;">
+                <div class="real-photo-laptop align-right anim-laptop">
+                  <img src="${config.laptop_screenshot}" alt="MascotaMás MacBook Pro Real" />
+                </div>
+                <div class="real-photo-iphone side-tilt-left anim-phone">
+                  <img src="${config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max Real" />
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          stageEl.innerHTML = `
+            <div class="showcase-card-backdrop anim-stage">
+              <div class="showcase-devices-area">
+                <div class="real-photo-laptop anim-laptop">
+                  <img src="${config.laptop_screenshot}" alt="MascotaMás MacBook Pro Real" />
+                </div>
+                <div class="real-photo-iphone anim-phone">
+                  <img src="${config.phone_screenshot}" alt="MascotaMás iPhone 16 Pro Max Real" />
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      } else if (devMode === 'phone_side') {
+        stageEl.style.display = 'flex';
+        const chipHtml = config.side_chip
+          ? `<div class="mix-floating-chip anim-pill"><span class="chip-dot"></span><span>${highlightVioletWords(config.side_chip)}</span></div>`
+          : '';
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="mix-phone-side-wrap">
+              ${chipHtml}
+              <div class="iphone-mockup side-tilt-right anim-phone">
+                <div class="iphone-screen">
+                  <div class="iphone-dynamic-island"></div>
+                  <img src="${config.phone_screenshot}" alt="MascotaMás Mobile" />
+                  <div class="iphone-home-indicator"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (devMode === 'phone_left') {
+        stageEl.style.display = 'flex';
+        const chipHtml = config.side_chip
+          ? `<div class="mix-floating-chip anim-pill" style="left:auto;right:8px;"><span class="chip-dot"></span><span>${highlightVioletWords(config.side_chip)}</span></div>`
+          : '';
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="mix-phone-side-wrap">
+              <div class="iphone-mockup side-tilt-left anim-phone">
+                <div class="iphone-screen">
+                  <div class="iphone-dynamic-island"></div>
+                  <img src="${config.phone_screenshot}" alt="MascotaMás Mobile" />
+                  <div class="iphone-home-indicator"></div>
+                </div>
+              </div>
+              ${chipHtml}
+            </div>
+          </div>
+        `;
+      } else if (devMode === 'phones_duo') {
+        stageEl.style.display = 'flex';
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="showcase-devices-area">
+              <div class="iphone-mockup side-tilt-left anim-laptop">
+                <div class="iphone-screen">
+                  <div class="iphone-dynamic-island"></div>
+                  <img src="${config.phone_screenshot}" alt="MascotaMás Mobile 1" />
+                  <div class="iphone-home-indicator"></div>
+                </div>
+              </div>
+              <div class="iphone-mockup duo-right anim-phone">
+                <div class="iphone-screen">
+                  <div class="iphone-dynamic-island"></div>
+                  <img src="${config.phone_screenshot_2 || config.phone_screenshot}" alt="MascotaMás Mobile 2" />
+                  <div class="iphone-home-indicator"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (devMode === 'notebook_only') {
+        stageEl.style.display = 'flex';
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="showcase-devices-area" style="justify-content:center;">
+              <div class="laptop-mockup notebook-solo anim-laptop">
+                <div class="laptop-screen">
+                  <div class="laptop-screen-content">
+                    <img src="${config.laptop_screenshot}" alt="MascotaMás Web Dashboard" />
+                  </div>
+                </div>
+                <div class="laptop-base">
+                  <div class="laptop-notch"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (devMode === 'combo_left_phone') {
+        stageEl.style.display = 'flex';
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="showcase-devices-area" style="justify-content:flex-end;">
+              <div class="laptop-mockup anim-laptop">
+                <div class="laptop-screen">
+                  <div class="laptop-screen-content">
+                    <img src="${config.laptop_screenshot}" alt="MascotaMás Web Dashboard" />
+                  </div>
+                </div>
+                <div class="laptop-base">
+                  <div class="laptop-notch"></div>
+                </div>
+              </div>
+              <div class="iphone-mockup side-tilt-left anim-phone" style="z-index:18;width:210px;height:425px;">
+                <div class="iphone-screen">
+                  <div class="iphone-dynamic-island"></div>
+                  <img src="${config.phone_screenshot}" alt="MascotaMás Mobile" />
+                  <div class="iphone-home-indicator"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (config.laptop_screenshot || config.phone_screenshot) {
+        stageEl.style.display = 'flex';
+        const phoneHtml = config.use_dual_phone_img
+          ? `<div class="dual-phone-floating anim-phone">
+               <img src="${config.phone_screenshot}" alt="MascotaMás App" />
+             </div>`
+          : `<div class="iphone-mockup anim-phone">
+               <div class="iphone-screen">
+                 <div class="iphone-dynamic-island"></div>
+                 <img src="${config.phone_screenshot}" alt="MascotaMás Mobile" />
+                 <div class="iphone-home-indicator"></div>
+               </div>
+             </div>`;
+
+        stageEl.innerHTML = `
+          <div class="showcase-card-backdrop anim-stage">
+            <div class="showcase-devices-area">
+              <div class="laptop-mockup anim-laptop">
+                <div class="laptop-screen">
+                  <div class="laptop-screen-content">
+                    <img src="${config.laptop_screenshot}" alt="MascotaMás Web Dashboard" />
+                  </div>
+                </div>
+                <div class="laptop-base">
+                  <div class="laptop-notch"></div>
+                </div>
+              </div>
+              ${phoneHtml}
+            </div>
+          </div>
+        `;
+      } else {
+        stageEl.style.display = 'none';
+        stageEl.innerHTML = '';
+      }
+
+      // 2. Render Lower Summary Card (Poppins + Open Sans + #AE4CFC Violet Highlights)
+      let html = '';
+      if (tpl === 'none' || config.hide_cards) {
+        html = '';
+      } else if (tpl === 'before_after') {
+        html = `
+          <div class="ba-grid">
+            <div class="glass-card ba-card before anim-card">
+              <div class="ba-badge neg anim-pill">✕ ${config.before_label || 'SIN SISTEMA'}</div>
+              <div class="ba-value">${config.before_value || config.before_val || 'Huecos en Agenda'}</div>
+              <div class="ba-desc">${config.before_desc || config.before_sub || 'Turnos perdidos y tiempo muerto'}</div>
+            </div>
+            <div class="glass-card ba-card after anim-card">
+              <div class="ba-badge pos anim-pill">✓ ${config.after_label || 'CON MASCOTAMÁS'}</div>
+              <div class="ba-value" style="color: var(--color-primary)">${config.after_value || config.after_val || 'Agenda 100% Llena'}</div>
+              <div class="ba-desc">${config.after_desc || config.after_sub || 'Turnos efectivos confirmados'}</div>
+            </div>
+          </div>
+        `;
+      } else if (tpl === 'app_connection') {
+        html = `
+          <div class="conn-row">
+            <div class="glass-card app-node anim-card">
+              <div class="app-icon anim-pill">${config.icon_a || config.app_a_icon || '📅'}</div>
+              <div>
+                <div class="app-name">${highlightVioletWords(config.app_a || config.app_a_name || 'Autogestión')}</div>
+                <div class="app-sub">${highlightVioletWords(config.sub_a || 'Turnos Online 24/7')}</div>
+              </div>
+            </div>
+            <div class="conn-pill anim-pill">${config.status || '✓ AUTOMÁTICO'}</div>
+            <div class="glass-card app-node anim-card">
+              <div class="app-icon anim-pill">
+                <img src="../assets/mascotamas/whatsapp_icon.png" alt="WhatsApp" />
+              </div>
+              <div>
+                <div class="app-name">${highlightVioletWords(config.app_b || config.app_b_name || 'WhatsApp')}</div>
+                <div class="app-sub">${highlightVioletWords(config.sub_b || 'Recordatorios')}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (tpl === 'checklist') {
+        const items = config.items || [
+          { text: 'Menos tiempo muerto', tag: 'AGENDA' },
+          { text: 'Más turnos efectivos', tag: 'TURNOS' },
+          { text: 'Recaudás más plata', tag: '+INGRESOS' }
+        ];
+        html = `
+          <div class="check-row">
+            ${items.slice(0, 3).map((it) => {
+              const txt = typeof it === 'string' ? it : (it.text || '');
+              const tag = typeof it === 'string' ? 'LISTO' : (it.tag || 'LISTO');
+              return `
+              <div class="glass-card check-card anim-card">
+                <div class="check-top">
+                  <div class="check-box anim-pill">✓</div>
+                  <div class="check-tag">${tag}</div>
+                </div>
+                <div class="check-text">${highlightVioletWords(txt)}</div>
+              </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      } else {
+        html = `
+          <div class="glass-card cta-banner anim-card">
+            <div class="cta-left">
+              <div class="cta-sub">${config.prompt_text || config.badge || 'DEJÁ DE PERDER PLATA POR INASISTENCIAS'}</div>
+              <div class="cta-main">${highlightVioletWords(config.reply_text || config.title || 'Suscribite hoy a MascotaMás')}</div>
+            </div>
+            <div class="cta-btn anim-pill">mascotamas.com →</div>
+          </div>
+        `;
+      }
+
+      root.innerHTML = html;
+
+      // 2.5 Render Terms & Conditions Italic Footnote at Bottom (* Posible comisión de Mercado Pago)
+      const legalBar = document.getElementById('legal-disclaimer-bar');
+      const legalText = document.getElementById('legal-disclaimer-text');
+      if (legalBar && legalText) {
+        if (config.legal_disclaimer) {
+          legalBar.style.display = 'flex';
+          const cleanLegal = String(config.legal_disclaimer).replace(/^\*\s*/, '');
+          legalText.innerHTML = `<span class="legal-asterisk">*</span><em>${cleanLegal}</em>`;
+        } else {
+          legalBar.style.display = 'none';
+          legalText.innerHTML = '';
+        }
+      }
+
+      if (window.tl) window.tl.kill();
+      const tl = gsap.timeline({ paused: true });
+      window.tl = tl;
+
+      tl.fromTo('.anim-first',
+        { y: -12, opacity: 0.85 },
+        { y: 0, opacity: 1, duration: 0.22, ease: 'power2.out' },
+        0.0
+      );
+
+      if (document.querySelector('.anim-headline') && config.headline_main) {
+        tl.fromTo('.anim-headline',
+          { y: -16, scale: 0.95, opacity: 0.96 },
+          { y: 0, scale: 1, opacity: 1, duration: 0.24, ease: 'back.out(1.7)' },
+          0.0
+        );
+      }
+
+      if (document.querySelector('.anim-stage')) {
+        tl.fromTo('.anim-stage',
+          { y: 18, opacity: 1, scale: 0.96 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.26, ease: 'power3.out' },
+          0.0
+        );
+      }
+      if (document.querySelector('.anim-laptop')) {
+        tl.fromTo('.anim-laptop',
+          { x: -18, scale: 0.96, opacity: 1 },
+          { x: 0, scale: 1, opacity: 1, duration: 0.28, ease: 'back.out(1.5)' },
+          0.0
+        );
+      }
+      if (document.querySelector('.anim-phone')) {
+        tl.fromTo('.anim-phone',
+          { y: 24, x: 14, opacity: 1, scale: 0.94 },
+          { y: 0, x: 0, opacity: 1, scale: 1, duration: 0.30, ease: 'back.out(1.7)' },
+          0.02
+        );
+      }
+
+      if (document.querySelector('.laptop-screen-content img')) {
+        tl.fromTo('.laptop-screen-content img',
+          { scale: 1.0, y: 0 },
+          { scale: 1.045, y: -6, duration: 4.8, ease: 'sine.inOut' },
+          0.0
+        );
+      }
+      if (document.querySelector('.iphone-screen img')) {
+        tl.fromTo('.iphone-screen img',
+          { scale: 1.0, y: 0 },
+          { scale: 1.04, y: -8, duration: 4.8, ease: 'sine.inOut' },
+          0.0
+        );
+      }
+
+      if (document.querySelector('.anim-card')) {
+        tl.fromTo('.anim-card',
+          { y: 20, opacity: 0.96, scale: 0.97 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.26, stagger: 0.05, ease: 'power3.out' },
+          0.0
+        );
+      }
+      if (document.querySelector('.anim-pill')) {
+        tl.fromTo('.anim-pill',
+          { scale: 0.88, opacity: 0.96 },
+          { scale: 1, opacity: 1, duration: 0.24, stagger: 0.04, ease: 'back.out(2.0)' },
+          0.02
+        );
+      }
+
+      // Peeking creature bottom-left animation
+      const expr = config.mascot_expression || 'surprised';
+      tl.fromTo('#mascot-svg',
+        { y: 24, rotation: 0 },
+        { y: 0, rotation: 0, duration: 0.28, ease: 'back.out(1.8)' },
+        0.0
+      );
+
+      tl.fromTo('.peeking-pupil',
+        { x: 0, y: 0, scaleX: 1, scaleY: 1 },
+        { x: 14, y: -12, duration: 0.35, ease: 'power2.out' },
+        0.15
+      );
+      tl.fromTo('.peeking-eyebrow',
+        { x: 0, y: 0, rotation: 0 },
+        { x: 4, y: -9, duration: 0.35, ease: 'back.out(2)' },
+        0.15
+      );
+
+      tl.to('#mascot-svg', {
+         keyframes: [
+           { x: -4, y: 2, rotation: -4, duration: 0.06 },
+           { x: 3, y: -2, rotation: 4, duration: 0.06 },
+           { x: -3, y: -1, rotation: -2, duration: 0.06 },
+           { x: 2, y: 2, rotation: 3, duration: 0.06 },
+           { x: 0, y: 0, rotation: 0, duration: 0.08 }
+         ]
+      }, 0.50);
+
+      if (expr === 'happy') {
+        tl.to('.peeking-pupil', { scaleX: 1.6, scaleY: 0.25, y: 10, duration: 0.22, ease: 'back.out(2)' }, 0.52);
+        tl.to('.left-eyebrow', { y: -5, rotation: -10, duration: 0.22 }, 0.52);
+        tl.to('.right-eyebrow', { y: -5, rotation: 10, duration: 0.22 }, 0.52);
+      } else if (expr === 'dizzy') {
+        tl.to('.left-pupil', { scale: 0.45, duration: 0.22 }, 0.52);
+        tl.to('.right-pupil', { scale: 1.75, duration: 0.22 }, 0.52);
+        tl.to('.left-eyebrow', { y: 5, rotation: 15, duration: 0.22 }, 0.52);
+        tl.to('.right-eyebrow', { y: -16, rotation: -15, duration: 0.22 }, 0.52);
+      } else {
+        tl.to('.peeking-pupil', { scale: 1.55, duration: 0.22, ease: 'back.out(2)' }, 0.52);
+        tl.to('.peeking-eyebrow', { y: -15, duration: 0.22, ease: 'back.out(2)' }, 0.52);
+      }
+
+      tl.to('.peeking-pupil', { scaleX: 1, scaleY: 1, scale: 1, x: 10, y: -10, duration: 0.25 }, 1.12);
+      tl.to('.left-eyebrow, .right-eyebrow', { y: -6, rotation: 0, duration: 0.25 }, 1.12);
+    };
+
+    window.seekTo = function(sec) {
+      if (window.tl) {
+        window.tl.seek(sec);
+      }
+    };
+
+    window.enterTextCaptureMode = function() {
+      document.querySelector('.brand-topbar').style.display = 'none';
+      const hl = document.getElementById('commercial-headline-banner');
+      if (hl) hl.style.display = 'none';
+      document.getElementById('screenshot-stage').style.display = 'none';
+      document.getElementById('root').style.display = 'none';
+      document.getElementById('mascot-widget').style.display = 'none';
+      const legalBar = document.getElementById('legal-disclaimer-bar');
+      if (legalBar) legalBar.style.display = 'none';
+    };
+
+    window.renderSubtitleBlockDOM = function(block) {
+      const subBox = document.getElementById('gf-sub-box');
+      const titleBox = document.getElementById('gf-title-box');
+      titleBox.style.display = 'none';
+      subBox.style.display = 'flex';
+      const linesHtml = (block.lines || []).map((ln) => {
+        const wordsHtml = ln.map((w) => {
+          const cls = w.is_yellow ? 'gf-sub-word-hl' : '';
+          return `<span class="${cls}">${w.text}</span>`;
+        }).join(' ');
+        return `<div class="gf-sub-line">${wordsHtml}</div>`;
+      }).join('');
+      subBox.innerHTML = linesHtml;
+    };
+
+    window.renderTopTitleDOM = function(titleCfg) {
+      const subBox = document.getElementById('gf-sub-box');
+      const titleBox = document.getElementById('gf-title-box');
+      subBox.style.display = 'none';
+      titleBox.style.display = 'flex';
+      const kw = (titleCfg.keyword || '').toUpperCase().replace(/[^A-Z0-9ÁÉÍÓÚÜÑ]/g, '');
+      const lines = [titleCfg.line1 || '', titleCfg.line2 || ''].filter(Boolean);
+      titleBox.innerHTML = lines.map((lineStr) => {
+        const tokens = lineStr.split(/\s+/).map((tok) => {
+          const cleanTok = tok.toUpperCase().replace(/[^A-Z0-9ÁÉÍÓÚÜÑ]/g, '');
+          const isKw = kw && (cleanTok === kw || cleanTok.includes(kw));
+          return isKw ? `<span class="gf-title-kw">${tok}</span>` : `<span>${tok}</span>`;
+        }).join(' ');
+        return `<div class="gf-title-line">${tokens}</div>`;
+      }).join('');
+    };
+  </script>
+</body>
+</html>

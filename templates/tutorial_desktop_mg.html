@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>MascotaMás Desktop Tutorial Overlay (1920x1080 Full HD · Google Fonts Poppins)</title>
+  <link rel="stylesheet" href="./google_fonts_poppins.css" />
+  <script src="./gsap.min.js"></script>
+  <style>
+    :root {
+      --color-bg-primary: #fbf9ff;
+      --color-bg-secondary: #ffffff;
+      --color-bg-tertiary: #f5f0ff;
+      --color-bg-dark: #1b1329;
+      --color-text-primary: #2a1f3d;
+      --color-text-secondary: #5a4b6e;
+      --color-primary: #ae4cfc;
+      --color-primary-light: #be97ff;
+      --color-primary-dark: #8a2be2;
+      --color-primary-glow: rgba(174, 76, 252, 0.16);
+      --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+      --font-display: 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html, body {
+      width: 1920px;
+      height: 1080px;
+      background: transparent !important;
+      font-family: 'Poppins', sans-serif !important;
+      color: var(--color-text-primary);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hl-violet {
+      color: var(--color-primary);
+      font-weight: 800;
+    }
+
+    .hl-lavender {
+      color: #c9a7ff;
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       1. TOP CHROME BAR CLEAN-UP PATCHES (Replaces staging URL & Gemini button)
+       ========================================================================== */
+    .chrome-url-patch {
+      position: absolute;
+      left: 125px;
+      top: 72px;
+      width: 560px;
+      height: 36px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      padding-left: 4px;
+      z-index: 40;
+      font-size: 16.5px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #1f1f1f;
+      pointer-events: none;
+    }
+
+    .chrome-url-patch .url-path {
+      color: #5f6368;
+      font-weight: 400;
+    }
+
+    .chrome-gemini-patch {
+      position: absolute;
+      left: 1430px;
+      top: 4px;
+      width: 282px;
+      height: 48px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 14px;
+      z-index: 40;
+      pointer-events: none;
+    }
+
+    .chrome-tutorial-pill {
+      background: rgba(27, 19, 41, 0.90);
+      border: 1.5px solid rgba(174, 76, 252, 0.55);
+      color: #ffffff;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 12px rgba(27, 19, 41, 0.18);
+    }
+
+    .chrome-tutorial-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ae4cfc;
+      box-shadow: 0 0 8px #ae4cfc;
+    }
+
+    /* ==========================================================================
+       2. RIGHT-HAND FLOATING TUTORIAL PANEL (x = 1434..1898, y = 176..944)
+          Sits in the empty right margin next to the centered modal (x=500..1420)
+       ========================================================================== */
+    .side-panel-stage {
+      position: absolute;
+      top: 176px;
+      left: 1434px;
+      width: 462px;
+      height: 768px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      z-index: 35;
+      pointer-events: none;
+    }
+
+    .side-card-shell {
+      background: linear-gradient(165deg, rgba(27, 19, 41, 0.95) 0%, rgba(39, 27, 59, 0.94) 100%);
+      border: 2px solid rgba(174, 76, 252, 0.52);
+      border-radius: 26px;
+      padding: 22px 22px 24px 22px;
+      box-shadow:
+        0 20px 45px rgba(15, 10, 24, 0.52),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .side-kicker {
+      align-self: flex-start;
+      background: rgba(174, 76, 252, 0.22);
+      border: 1px solid rgba(190, 151, 255, 0.45);
+      color: #e2caff;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .side-kicker .k-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #be97ff;
+      box-shadow: 0 0 8px #ae4cfc;
+    }
+
+    .side-headline {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .side-sub {
+      font-size: 14.5px;
+      font-weight: 500;
+      line-height: 1.38;
+      color: #d1c4e9;
+      margin-top: -6px;
+    }
+
+    /* Metric Highlight Box inside Side Panel */
+    .side-metric-box {
+      background: linear-gradient(135deg, rgba(174, 76, 252, 0.24) 0%, rgba(138, 43, 226, 0.16) 100%);
+      border: 1.5px solid rgba(190, 151, 255, 0.45);
+      border-radius: 18px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .side-metric-val {
+      font-size: 34px;
+      font-weight: 800;
+      color: #be97ff;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .side-metric-lbl {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #f3e8ff;
+      line-height: 1.25;
+    }
+
+    /* Checklist items inside Side Panel */
+    .side-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .side-item {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1.5px solid rgba(174, 76, 252, 0.25);
+      border-radius: 18px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--color-text-primary);
+      box-shadow: 0 8px 20px rgba(15, 10, 24, 0.22);
+    }
+
+    .side-item-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      box-shadow: 0 4px 10px rgba(174, 76, 252, 0.35);
+    }
+
+    .side-item-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .side-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .side-item-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #231836;
+      line-height: 1.2;
+    }
+
+    .side-item-tag {
+      background: var(--color-primary-glow);
+      color: var(--color-primary-dark);
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    .side-item-desc {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #5a4b6e;
+      line-height: 1.28;
+    }
+
+    /* Before/After comparison cards inside Side Panel */
+    .side-ba-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .side-ba-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: var(--color-text-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 8px 20px rgba(15, 10, 24, 0.22);
+    }
+
+    .side-ba-card.opt-a {
+      border-left: 6px solid #64748b;
+    }
+
+    .side-ba-card.opt-b {
+      border-left: 6px solid var(--color-primary);
+    }
+
+    .side-ba-badge {
+      align-self: flex-start;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .side-ba-badge.a {
+      background: rgba(100, 116, 139, 0.15);
+      color: #334155;
+    }
+
+    .side-ba-badge.b {
+      background: var(--color-primary-glow);
+      color: var(--color-primary-dark);
+    }
+
+    .side-ba-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #231836;
+      line-height: 1.2;
+    }
+
+    .side-ba-desc {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #5a4b6e;
+      line-height: 1.28;
+    }
+
+    /* Tip Footer inside Side Panel */
+    .side-tip {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.42);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #d1fae5;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    /* ==========================================================================
+       3. DEDICATED BOTTOM TUTORIAL DOCK (y = 964..1080, 1920x116)
+          Covers the raw STAGING footer and houses Mascot, Logo, Subtitles & Steps
+       ========================================================================== */
+    .bottom-dock {
+      position: absolute;
+      left: 0;
+      top: 964px;
+      width: 1920px;
+      height: 116px;
+      background: linear-gradient(90deg, #160f24 0%, #211636 50%, #160f24 100%);
+      border-top: 3px solid #ae4cfc;
+      box-shadow: 0 -10px 30px rgba(15, 10, 24, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px 0 138px;
+      z-index: 50;
+    }
+
+    /* Official MascotaMás Peeking Creature in Bottom-Left Corner */
+    .peeking-creature {
+      position: absolute;
+      bottom: 0;
+      left: 14px;
+      width: 114px;
+      z-index: 60;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+    }
+
+    .peeking-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform-origin: bottom center;
+    }
+
+    .peeking-pupil, .peeking-eyebrow {
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    .dock-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 150px;
+      flex-shrink: 0;
+    }
+
+    .dock-logo-pill {
+      background: #ffffff;
+      border: 2px solid rgba(174, 76, 252, 0.35);
+      padding: 7px 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .dock-logo-pill img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .dock-module-tag {
+      display: none;
+    }
+
+    .dock-module-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      color: #be97ff;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .dock-module-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* Center Subtitle Area (x = 460..1460) */
+    .dock-subtitle-spacer {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Right 4-Step Chapter Progress Indicator */
+    .dock-steps {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .dock-step-pill {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(190, 151, 255, 0.22);
+      color: rgba(255, 255, 255, 0.62);
+      padding: 8px 13px;
+      border-radius: 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .dock-step-pill.done {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(16, 185, 129, 0.45);
+      color: #a7f3d0;
+    }
+
+    .dock-step-pill.active {
+      background: linear-gradient(135deg, #ae4cfc 0%, #7c2ae8 100%);
+      border-color: #e2caff;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(174, 76, 252, 0.48);
+      transform: scale(1.03);
+    }
+
+    .dock-step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.28);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* ==========================================================================
+       4. DEDICATED CHROMIUM GOOGLE FONTS POPPINS SUBTITLE CAPTURE BOX
+       ========================================================================== */
+    #gf-sub-box {
+      position: fixed;
+      left: 295px;
+      top: 966px;
+      width: 1110px;
+      height: 110px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      background: transparent !important;
+      z-index: 999999;
+      pointer-events: none;
+    }
+
+    .gf-sub-line {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      text-align: center;
+      text-shadow:
+        0 3px 12px rgba(10, 6, 18, 0.95),
+        0 1px 4px rgba(10, 6, 18, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .gf-sub-word-hl {
+      color: #c9a7ff;
+      font-weight: 800;
+      text-shadow:
+        0 3px 14px rgba(174, 76, 252, 0.55),
+        0 1px 4px rgba(10, 6, 18, 0.98);
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. Chrome Top Bar Clean-up Patches -->
+  <div id="chrome-url-patch" class="chrome-url-patch">
+    <span>gestion.mascotamas.com</span><span class="url-path">/calendars</span>
+  </div>
+  <div id="chrome-gemini-patch" class="chrome-gemini-patch">
+    <div class="chrome-tutorial-pill">
+      <span class="dot"></span>
+      <span>TUTORIAL OFICIAL · MASCOTAMÁS</span>
+    </div>
+  </div>
+
+  <!-- 2. Right-Hand Floating Tutorial Card (next to modal) -->
+  <div id="side-panel" class="side-panel-stage"></div>
+
+  <!-- 3. Dedicated Bottom Tutorial Dock (y = 964..1080) -->
+  <div id="bottom-dock" class="bottom-dock">
+    <div class="dock-brand-group">
+      <div class="dock-logo-pill">
+        <img src="../assets/mascotamas/logo.png" alt="MascotaMás" />
+      </div>
+      <div class="dock-module-tag">
+        <span class="dock-module-kicker" id="dock-kicker">GUÍA PASO A PASO</span>
+        <span class="dock-module-name" id="dock-chapter-title">4 Tipos de Calendarios</span>
+      </div>
+    </div>
+
+    <div class="dock-subtitle-spacer"></div>
+
+    <div class="dock-steps" id="dock-steps"></div>
+  </div>
+
+  <!-- Animated Peeking Creature in Bottom-Left Corner -->
+  <div class="peeking-creature" id="mascot-widget">
+    <svg class="peeking-svg" id="mascot-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 694 557" fill="none">
+      <path fill="#232323" stroke="#ae4cfc" stroke-width="6" d="M30.862 439.045.647 555.211l692.161 1.101-11.386-34.499-44.105-144.39-29.864-106.036-46.987-130.337-18.523-43.459-19.954-42.175c-9.987-15.351-34.25-46.03-41.394-49.872-7.145-3.843-22.863-11.514-44.345 7.6-21.477 19.111-47.322 88.018-48.767 91.871l-.001.002c-1.436 3.829-21.534 52.326-37.297 72.734-15.764 20.408-34.347 15.271-47.213 12.696-12.867-2.575-35.72-20.49-49.993-38.392-14.272-17.902-39.424-53.017-47.092-63.929-7.668-10.912-33.365-55.606-54.271-46.061-20.905 9.544-38.695 52.299-44.431 62.506-5.737 10.208-30.197 104.673-30.197 104.673L51.077 316.477 30.862 439.045Z"/>
+      <ellipse cx="46.976" cy="64.673" fill="#fff" rx="46.976" ry="64.673" transform="matrix(.9941 -.10837 .12577 .99206 211.186 390.061)"/>
+      <ellipse cx="46.928" cy="64.75" fill="#fff" rx="46.928" ry="64.75" transform="matrix(.98765 -.15663 .18126 .98344 336.251 366.288)"/>
+      <g transform="matrix(1 0 .00002 1 275.714 404.688)">
+        <ellipse class="peeking-pupil left-pupil" cx="18.661" cy="18.218" fill="#000" rx="18.661" ry="18.218"/>
+      </g>
+      <g transform="matrix(1 0 .00002 1 396.223 368.454)">
+        <ellipse class="peeking-pupil right-pupil" cx="18.661" cy="17.35" fill="#000" rx="18.661" ry="17.35"/>
+      </g>
+      <path class="peeking-eyebrow left-eyebrow" stroke="#fff" stroke-linejoin="round" stroke-width="7" d="M165.646 368.565c22.8-20.072 39.5-23.418 45-22.581"/>
+      <path class="peeking-eyebrow right-eyebrow" fill="#fff" d="M409.704 311.045c14.836-.441 25.782 1.324 33.373 3.63 7.714 2.343 11.695 5.159 12.941 6.556l5.206-4.673c-2.463-2.763-7.836-6.076-16.127-8.594-8.414-2.556-20.125-4.388-35.605-3.928l.212 7.009Z"/>
+    </svg>
+  </div>
+
+  <!-- Hidden Google Fonts Poppins Preloader -->
+  <div style="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none;font-family:'Poppins',sans-serif;">
+    <span style="font-weight:400">MascotaMás Poppins 400</span>
+    <span style="font-weight:500">MascotaMás Poppins 500</span>
+    <span style="font-weight:600">MascotaMás Poppins 600</span>
+    <span style="font-weight:700">MascotaMás Poppins 700</span>
+    <span style="font-weight:800">MascotaMás Poppins 800</span>
+  </div>
+
+  <!-- 4. Dedicated Subtitle Capture Box -->
+  <div id="gf-sub-box"></div>
+
+  <script>
+    const CHAPTER_STEPS = [
+      { idx: 1, label: 'Turnos 1 a 1' },
+      { idx: 2, label: 'Cupos' },
+      { idx: 3, label: 'Servicios' },
+      { idx: 4, label: 'Guardería' }
+    ];
+
+    function highlightWords(text) {
+      if (!text) return '';
+      const keywords = [
+        '1 a 1', 'Turnos Simples', 'Cupos por Horario', 'Servicios y Profesionales',
+        'Guardería', 'Mercado Pago', 'Grilla Automática', 'Sin Huecos', '4 Horas',
+        '12 Horas', '90 Días', 'Automático', 'Simultáneamente', 'Múltiples Mascotas',
+        'Link de Turnos', 'Público', 'Interno', 'Estadías', 'Feriados', 'MascotaMás'
+      ];
+      let out = text;
+      keywords.forEach((kw) => {
+        const reg = new RegExp(`(${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        out = out.replace(reg, '<span class="hl-lavender">$1</span>');
+      });
+      return out;
+    }
+
+    window.renderScene = function(config) {
+      const sideEl = document.getElementById('side-panel');
+      const dockKicker = document.getElementById('dock-kicker');
+      const dockTitle = document.getElementById('dock-chapter-title');
+      const dockSteps = document.getElementById('dock-steps');
+
+      const activeChapter = config.chapter_index || 1;
+      const stepsList = config.chapter_steps || CHAPTER_STEPS;
+      dockKicker.textContent = config.dock_kicker || `MÓDULO CALENDARIOS · PASO ${activeChapter} DE ${stepsList.length}`;
+      dockTitle.textContent = config.dock_title || 'Configuración de Agendas';
+
+      const urlPatch = document.getElementById('chrome-url-patch');
+      if (urlPatch) {
+        const dom = config.url_domain || 'gestion.mascotamas.com';
+        const pth = config.url_path !== undefined ? config.url_path : '/calendars';
+        urlPatch.innerHTML = `<span>${dom}</span><span class="url-path">${pth}</span>`;
+      }
+
+      dockSteps.innerHTML = stepsList.map((st) => {
+        let cls = 'dock-step-pill';
+        let icon = st.idx;
+        if (st.idx < activeChapter) {
+          cls += ' done';
+          icon = '✓';
+        } else if (st.idx === activeChapter) {
+          cls += ' active';
+        }
+        return `
+          <div class="${cls}">
+            <span class="dock-step-num">${icon}</span>
+            <span>${st.label}</span>
+          </div>
+        `;
+      }).join('');
+
+      if (config.hide_side_card) {
+        sideEl.style.display = 'none';
+        sideEl.innerHTML = '';
+      } else {
+        sideEl.style.display = 'flex';
+        const metricHtml = config.metric_value
+          ? `
+            <div class="side-metric-box anim-item">
+              <div class="side-metric-val">${config.metric_value}</div>
+              <div class="side-metric-lbl">${config.metric_label || ''}</div>
+            </div>
+          `
+          : '';
+
+        let bodyHtml = '';
+        if (config.template === 'before_after') {
+          bodyHtml = `
+            <div class="side-ba-wrap">
+              <div class="side-ba-card opt-a anim-item">
+                <span class="side-ba-badge a">${config.before_badge || 'OPCIÓN A'}</span>
+                <div class="side-ba-title">${config.before_title || ''}</div>
+                <div class="side-ba-desc">${config.before_desc || ''}</div>
+              </div>
+              <div class="side-ba-card opt-b anim-item">
+                <span class="side-ba-badge b">✓ ${config.after_badge || 'RECOMENDADO'}</span>
+                <div class="side-ba-title" style="color:var(--color-primary-dark)">${config.after_title || ''}</div>
+                <div class="side-ba-desc">${config.after_desc || ''}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          const items = config.items || [];
+          bodyHtml = `
+            <div class="side-list">
+              ${items.map((it, idx) => `
+                <div class="side-item anim-item">
+                  <div class="side-item-icon">${it.icon || (idx + 1)}</div>
+                  <div class="side-item-body">
+                    <div class="side-item-top">
+                      <span class="side-item-title">${it.title || ''}</span>
+                      ${it.tag ? `<span class="side-item-tag">${it.tag}</span>` : ''}
+                    </div>
+                    ${it.desc ? `<div class="side-item-desc">${it.desc}</div>` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        const tipHtml = config.tip_text
+          ? `<div class="side-tip anim-item"><span>💡</span><span>${config.tip_text}</span></div>`
+          : '';
+
+        sideEl.innerHTML = `
+          <div class="side-card-shell anim-card">
+            <div class="side-kicker"><span class="k-dot"></span><span>${config.badge || 'PASO A PASO'}</span></div>
+            <div class="side-headline">${highlightWords(config.title || '')}</div>
+            ${config.subtitle ? `<div class="side-sub">${config.subtitle}</div>` : ''}
+            ${metricHtml}
+            ${bodyHtml}
+            ${tipHtml}
+          </div>
+        `;
+      }
+
+      if (window.tl) window.tl.kill();
+      const tl = gsap.timeline({ paused: true });
+      window.tl = tl;
+
+      if (document.querySelector('.anim-card')) {
+        tl.fromTo('.anim-card',
+          { x: 35, opacity: 0, scale: 0.96 },
+          { x: 0, opacity: 1, scale: 1, duration: 0.30, ease: 'power3.out' },
+          0.02
+        );
+      }
+      if (document.querySelectorAll('.anim-item').length > 0) {
+        tl.fromTo('.anim-item',
+          { y: 18, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.26, stagger: 0.07, ease: 'power2.out' },
+          0.10
+        );
+      }
+
+      // Animate bottom-left peeking mascot
+      tl.fromTo('#mascot-svg',
+        { y: 12, rotation: 0 },
+        { y: 0, rotation: 0, duration: 0.25, ease: 'back.out(1.7)' },
+        0.0
+      );
+      tl.fromTo('.peeking-pupil',
+        { x: 0, y: 0 },
+        { x: 12, y: -10, duration: 0.32, ease: 'power2.out' },
+        0.10
+      );
+      tl.fromTo('.peeking-eyebrow',
+        { y: 0 },
+        { y: -8, duration: 0.32, ease: 'back.out(2)' },
+        0.10
+      );
+      tl.to('#mascot-svg', {
+        keyframes: [
+          { x: -3, rotation: -3, duration: 0.06 },
+          { x: 3, rotation: 3, duration: 0.06 },
+          { x: 0, rotation: 0, duration: 0.08 }
+        ]
+      }, 0.45);
+    };
+
+    window.seekTo = function(sec) {
+      if (window.tl) window.tl.seek(sec);
+    };
+
+    window.enterTextCaptureMode = function() {
+      document.getElementById('chrome-url-patch').style.display = 'none';
+      document.getElementById('chrome-gemini-patch').style.display = 'none';
+      document.getElementById('side-panel').style.display = 'none';
+      document.getElementById('bottom-dock').style.display = 'none';
+      document.getElementById('mascot-widget').style.display = 'none';
+    };
+
+    window.renderSubtitleBlockDOM = function(block) {
+      const subBox = document.getElementById('gf-sub-box');
+      subBox.style.display = 'flex';
+      const linesHtml = (block.lines || []).map((ln) => {
+        const wordsHtml = ln.map((w) => {
+          const cls = w.is_yellow ? 'gf-sub-word-hl' : '';
+          return `<span class="${cls}">${w.text}</span>`;
+        }).join(' ');
+        return `<div class="gf-sub-line">${wordsHtml}</div>`;
+      }).join('');
+      subBox.innerHTML = linesHtml;
+    };
+  </script>
+</body>
+</html>

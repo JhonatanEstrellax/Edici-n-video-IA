@@ -1,0 +1,7530 @@
+{
+  "source_video": "c:\\IA\\Edicion de videos\\reels_work\\source_input.mp4",
+  "source_audio": "c:\\IA\\Edicion de videos\\reels_work\\source_audio.wav",
+  "skip_denoise": true,
+  "bgm_override_path": "c:\\IA\\Edicion de videos\\reels_work\\v6_lyria_synced.wav",
+  "bgm_relative_db": -13.5,
+  "bgm_ducking_db": -6.5,
+  "original_duration_sec": 33.6,
+  "edited_duration_sec": 33.6,
+  "motion_graphics_coverage_ratio": 0.8429,
+  "cta_keyword": "MIGRAR",
+  "hook_title": {
+    "line1": "MIGRACIÓN GRATIS",
+    "line2": "EN EL DÍA 🚀",
+    "keyword": "GRATIS",
+    "emoji": "🚀"
+  },
+  "cta_title": {
+    "line1": "Te migramos gratis en",
+    "line2": "MASCOTAMÁS 🐾",
+    "keyword": "MASCOTAMÁS",
+    "emoji": "🐾"
+  },
+  "face_metadata": {
+    "default_face_center": [
+      0.5,
+      0.22
+    ],
+    "has_face": true
+  },
+  "segments": [
+    {
+      "segment_id": 1,
+      "source_start": 0.0,
+      "source_end": 33.6,
+      "duration": 33.6,
+      "edited_start": 0.0,
+      "edited_end": 33.6,
+      "avg_rms_db": -16.0,
+      "face_center": [
+        0.5,
+        0.36
+      ],
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ]
+    }
+  ],
+  "words": [
+    {
+      "word_id": 1,
+      "word": "Seguís",
+      "subtitle_text": "¿Seguís",
+      "start": 0.08,
+      "real_start": 0.08,
+      "end": 0.66,
+      "edited_start": 0.08,
+      "edited_end": 0.66,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 2,
+      "word": "atado",
+      "subtitle_text": "atado",
+      "start": 0.66,
+      "real_start": 0.66,
+      "end": 1.08,
+      "edited_start": 0.66,
+      "edited_end": 1.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 3,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 1.08,
+      "real_start": 1.08,
+      "end": 1.18,
+      "edited_start": 1.08,
+      "edited_end": 1.18,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 4,
+      "word": "un",
+      "subtitle_text": "un",
+      "start": 1.18,
+      "real_start": 1.18,
+      "end": 1.28,
+      "edited_start": 1.18,
+      "edited_end": 1.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 5,
+      "word": "sistema",
+      "subtitle_text": "sistema",
+      "start": 1.28,
+      "real_start": 1.28,
+      "end": 1.58,
+      "edited_start": 1.28,
+      "edited_end": 1.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 6,
+      "word": "viejo",
+      "subtitle_text": "viejo",
+      "start": 1.58,
+      "real_start": 1.58,
+      "end": 2.08,
+      "edited_start": 1.58,
+      "edited_end": 2.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 7,
+      "word": "o",
+      "subtitle_text": "o",
+      "start": 2.08,
+      "real_start": 2.08,
+      "end": 2.22,
+      "edited_start": 2.08,
+      "edited_end": 2.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 8,
+      "word": "al",
+      "subtitle_text": "al",
+      "start": 2.22,
+      "real_start": 2.22,
+      "end": 2.36,
+      "edited_start": 2.22,
+      "edited_end": 2.36,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 9,
+      "word": "Excel",
+      "subtitle_text": "Excel",
+      "start": 2.36,
+      "real_start": 2.36,
+      "end": 2.68,
+      "edited_start": 2.36,
+      "edited_end": 2.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 10,
+      "word": "por",
+      "subtitle_text": "por",
+      "start": 2.68,
+      "real_start": 2.68,
+      "end": 2.88,
+      "edited_start": 2.68,
+      "edited_end": 2.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 11,
+      "word": "miedo",
+      "subtitle_text": "miedo",
+      "start": 2.88,
+      "real_start": 2.88,
+      "end": 3.16,
+      "edited_start": 2.88,
+      "edited_end": 3.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 12,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 3.16,
+      "real_start": 3.16,
+      "end": 3.28,
+      "edited_start": 3.16,
+      "edited_end": 3.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 13,
+      "word": "perder",
+      "subtitle_text": "perder",
+      "start": 3.28,
+      "real_start": 3.28,
+      "end": 3.5,
+      "edited_start": 3.28,
+      "edited_end": 3.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 14,
+      "word": "los",
+      "subtitle_text": "los",
+      "start": 3.5,
+      "real_start": 3.5,
+      "end": 3.68,
+      "edited_start": 3.5,
+      "edited_end": 3.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 15,
+      "word": "datos",
+      "subtitle_text": "datos",
+      "start": 3.68,
+      "real_start": 3.68,
+      "end": 3.92,
+      "edited_start": 3.68,
+      "edited_end": 3.92,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 16,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 3.92,
+      "real_start": 3.92,
+      "end": 4.1,
+      "edited_start": 3.92,
+      "edited_end": 4.1,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 17,
+      "word": "tu",
+      "subtitle_text": "tu",
+      "start": 4.1,
+      "real_start": 4.1,
+      "end": 4.22,
+      "edited_start": 4.1,
+      "edited_end": 4.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 18,
+      "word": "veterinaria",
+      "subtitle_text": "veterinaria?",
+      "start": 4.22,
+      "real_start": 4.22,
+      "end": 4.86,
+      "edited_start": 4.22,
+      "edited_end": 4.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 19,
+      "word": "Pasate",
+      "subtitle_text": "¡Pasate",
+      "start": 5.5,
+      "real_start": 5.5,
+      "end": 5.94,
+      "edited_start": 5.5,
+      "edited_end": 5.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 20,
+      "word": "hoy",
+      "subtitle_text": "hoy",
+      "start": 5.94,
+      "real_start": 5.94,
+      "end": 6.16,
+      "edited_start": 5.94,
+      "edited_end": 6.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 21,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 6.16,
+      "real_start": 6.16,
+      "end": 6.28,
+      "edited_start": 6.16,
+      "edited_end": 6.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 22,
+      "word": "MascotaMás",
+      "subtitle_text": "MascotaMás!",
+      "start": 6.28,
+      "real_start": 6.28,
+      "end": 6.8,
+      "edited_start": 6.28,
+      "edited_end": 6.8,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 23,
+      "word": "Te",
+      "subtitle_text": "Te",
+      "start": 7.14,
+      "real_start": 7.14,
+      "end": 7.22,
+      "edited_start": 7.14,
+      "edited_end": 7.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 24,
+      "word": "hacemos",
+      "subtitle_text": "hacemos",
+      "start": 7.22,
+      "real_start": 7.22,
+      "end": 7.42,
+      "edited_start": 7.22,
+      "edited_end": 7.42,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 25,
+      "word": "toda",
+      "subtitle_text": "toda",
+      "start": 7.42,
+      "real_start": 7.42,
+      "end": 7.76,
+      "edited_start": 7.42,
+      "edited_end": 7.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 26,
+      "word": "la",
+      "subtitle_text": "la",
+      "start": 7.76,
+      "real_start": 7.76,
+      "end": 7.94,
+      "edited_start": 7.76,
+      "edited_end": 7.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 27,
+      "word": "migración",
+      "subtitle_text": "migración",
+      "start": 7.94,
+      "real_start": 7.94,
+      "end": 8.3,
+      "edited_start": 7.94,
+      "edited_end": 8.3,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 28,
+      "word": "gratis",
+      "subtitle_text": "gratis",
+      "start": 8.3,
+      "real_start": 8.3,
+      "end": 8.8,
+      "edited_start": 8.3,
+      "edited_end": 8.8,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 29,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 8.8,
+      "real_start": 8.8,
+      "end": 8.96,
+      "edited_start": 8.8,
+      "edited_end": 8.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 30,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 8.96,
+      "real_start": 8.96,
+      "end": 9.06,
+      "edited_start": 8.96,
+      "edited_end": 9.06,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 31,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 9.06,
+      "real_start": 9.06,
+      "end": 9.22,
+      "edited_start": 9.06,
+      "edited_end": 9.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 32,
+      "word": "día",
+      "subtitle_text": "día,",
+      "start": 9.22,
+      "real_start": 9.22,
+      "end": 9.44,
+      "edited_start": 9.22,
+      "edited_end": 9.44,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 33,
+      "word": "sin",
+      "subtitle_text": "sin",
+      "start": 9.6,
+      "real_start": 9.6,
+      "end": 9.76,
+      "edited_start": 9.6,
+      "edited_end": 9.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 34,
+      "word": "frenar",
+      "subtitle_text": "frenar",
+      "start": 9.76,
+      "real_start": 9.76,
+      "end": 10.0,
+      "edited_start": 9.76,
+      "edited_end": 10.0,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 35,
+      "word": "tu",
+      "subtitle_text": "tu",
+      "start": 10.0,
+      "real_start": 10.0,
+      "end": 10.12,
+      "edited_start": 10.0,
+      "edited_end": 10.12,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 36,
+      "word": "consultorio",
+      "subtitle_text": "consultorio.",
+      "start": 10.12,
+      "real_start": 10.12,
+      "end": 10.72,
+      "edited_start": 10.12,
+      "edited_end": 10.72,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 37,
+      "word": "Pasamos",
+      "subtitle_text": "Pasamos",
+      "start": 11.78,
+      "real_start": 11.78,
+      "end": 12.1,
+      "edited_start": 11.78,
+      "edited_end": 12.1,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 38,
+      "word": "tus",
+      "subtitle_text": "tus",
+      "start": 12.1,
+      "real_start": 12.1,
+      "end": 12.28,
+      "edited_start": 12.1,
+      "edited_end": 12.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 39,
+      "word": "clientes",
+      "subtitle_text": "clientes,",
+      "start": 12.28,
+      "real_start": 12.28,
+      "end": 12.96,
+      "edited_start": 12.28,
+      "edited_end": 12.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 40,
+      "word": "pacientes",
+      "subtitle_text": "pacientes,",
+      "start": 13.26,
+      "real_start": 13.26,
+      "end": 13.74,
+      "edited_start": 13.26,
+      "edited_end": 13.74,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 41,
+      "word": "historias",
+      "subtitle_text": "historias",
+      "start": 13.92,
+      "real_start": 13.92,
+      "end": 14.22,
+      "edited_start": 13.92,
+      "edited_end": 14.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 42,
+      "word": "clínicas",
+      "subtitle_text": "clínicas",
+      "start": 14.22,
+      "real_start": 14.22,
+      "end": 14.72,
+      "edited_start": 14.22,
+      "edited_end": 14.72,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 43,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 14.72,
+      "real_start": 14.72,
+      "end": 14.9,
+      "edited_start": 14.72,
+      "edited_end": 14.9,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 44,
+      "word": "vacunas",
+      "subtitle_text": "vacunas",
+      "start": 14.9,
+      "real_start": 14.9,
+      "end": 15.32,
+      "edited_start": 14.9,
+      "edited_end": 15.32,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 45,
+      "word": "para",
+      "subtitle_text": "para",
+      "start": 15.32,
+      "real_start": 15.32,
+      "end": 15.5,
+      "edited_start": 15.32,
+      "edited_end": 15.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 46,
+      "word": "que",
+      "subtitle_text": "que",
+      "start": 15.5,
+      "real_start": 15.5,
+      "end": 15.62,
+      "edited_start": 15.5,
+      "edited_end": 15.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 47,
+      "word": "no",
+      "subtitle_text": "no",
+      "start": 15.62,
+      "real_start": 15.62,
+      "end": 15.74,
+      "edited_start": 15.62,
+      "edited_end": 15.74,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 48,
+      "word": "pierdas",
+      "subtitle_text": "pierdas",
+      "start": 15.74,
+      "real_start": 15.74,
+      "end": 16.12,
+      "edited_start": 15.74,
+      "edited_end": 16.12,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 49,
+      "word": "ni",
+      "subtitle_text": "ni",
+      "start": 16.12,
+      "real_start": 16.12,
+      "end": 16.5,
+      "edited_start": 16.12,
+      "edited_end": 16.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 50,
+      "word": "una",
+      "subtitle_text": "una",
+      "start": 16.5,
+      "real_start": 16.5,
+      "end": 16.76,
+      "edited_start": 16.5,
+      "edited_end": 16.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 51,
+      "word": "sola",
+      "subtitle_text": "sola",
+      "start": 16.76,
+      "real_start": 16.76,
+      "end": 17.02,
+      "edited_start": 16.76,
+      "edited_end": 17.02,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 52,
+      "word": "ficha",
+      "subtitle_text": "ficha.",
+      "start": 17.02,
+      "real_start": 17.02,
+      "end": 17.36,
+      "edited_start": 17.02,
+      "edited_end": 17.36,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 53,
+      "word": "En",
+      "subtitle_text": "En",
+      "start": 18.0,
+      "real_start": 18.0,
+      "end": 18.18,
+      "edited_start": 18.0,
+      "edited_end": 18.18,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 54,
+      "word": "horas",
+      "subtitle_text": "horas",
+      "start": 18.18,
+      "real_start": 18.18,
+      "end": 18.4,
+      "edited_start": 18.18,
+      "edited_end": 18.4,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 55,
+      "word": "ya",
+      "subtitle_text": "ya",
+      "start": 18.74,
+      "real_start": 18.74,
+      "end": 18.86,
+      "edited_start": 18.74,
+      "edited_end": 18.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 56,
+      "word": "tenés",
+      "subtitle_text": "tenés",
+      "start": 18.86,
+      "real_start": 18.86,
+      "end": 19.2,
+      "edited_start": 18.86,
+      "edited_end": 19.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 57,
+      "word": "recordatorios",
+      "subtitle_text": "recordatorios",
+      "start": 19.2,
+      "real_start": 19.2,
+      "end": 19.86,
+      "edited_start": 19.2,
+      "edited_end": 19.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 58,
+      "word": "automáticos",
+      "subtitle_text": "automáticos",
+      "start": 19.86,
+      "real_start": 19.86,
+      "end": 20.42,
+      "edited_start": 19.86,
+      "edited_end": 20.42,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 59,
+      "word": "por",
+      "subtitle_text": "por",
+      "start": 20.42,
+      "real_start": 20.42,
+      "end": 20.62,
+      "edited_start": 20.42,
+      "edited_end": 20.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 60,
+      "word": "WhatsApp",
+      "subtitle_text": "WhatsApp,",
+      "start": 20.62,
+      "real_start": 20.62,
+      "end": 20.94,
+      "edited_start": 20.62,
+      "edited_end": 20.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 61,
+      "word": "sala",
+      "subtitle_text": "sala",
+      "start": 21.32,
+      "real_start": 21.32,
+      "end": 21.52,
+      "edited_start": 21.32,
+      "edited_end": 21.52,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 62,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 21.52,
+      "real_start": 21.52,
+      "end": 21.68,
+      "edited_start": 21.52,
+      "edited_end": 21.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 63,
+      "word": "espera",
+      "subtitle_text": "espera",
+      "start": 21.68,
+      "real_start": 21.68,
+      "end": 21.88,
+      "edited_start": 21.68,
+      "edited_end": 21.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 64,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 21.88,
+      "real_start": 21.88,
+      "end": 22.02,
+      "edited_start": 21.88,
+      "edited_end": 22.02,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 65,
+      "word": "vivo",
+      "subtitle_text": "vivo",
+      "start": 22.02,
+      "real_start": 22.02,
+      "end": 22.2,
+      "edited_start": 22.02,
+      "edited_end": 22.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 66,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 22.2,
+      "real_start": 22.2,
+      "end": 22.58,
+      "edited_start": 22.2,
+      "edited_end": 22.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 67,
+      "word": "todo",
+      "subtitle_text": "todo",
+      "start": 22.58,
+      "real_start": 22.58,
+      "end": 22.88,
+      "edited_start": 22.58,
+      "edited_end": 22.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 68,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 22.88,
+      "real_start": 22.88,
+      "end": 23.06,
+      "edited_start": 22.88,
+      "edited_end": 23.06,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 69,
+      "word": "la",
+      "subtitle_text": "la",
+      "start": 23.06,
+      "real_start": 23.06,
+      "end": 23.16,
+      "edited_start": 23.06,
+      "edited_end": 23.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 70,
+      "word": "nube",
+      "subtitle_text": "nube.",
+      "start": 23.16,
+      "real_start": 23.16,
+      "end": 23.4,
+      "edited_start": 23.16,
+      "edited_end": 23.4,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 71,
+      "word": "Además",
+      "subtitle_text": "Además,",
+      "start": 24.24,
+      "real_start": 24.24,
+      "end": 24.5,
+      "edited_start": 24.24,
+      "edited_end": 24.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 72,
+      "word": "sumás",
+      "subtitle_text": "sumás",
+      "start": 24.72,
+      "real_start": 24.72,
+      "end": 24.94,
+      "edited_start": 24.72,
+      "edited_end": 24.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 73,
+      "word": "las",
+      "subtitle_text": "las",
+      "start": 24.94,
+      "real_start": 24.94,
+      "end": 25.08,
+      "edited_start": 24.94,
+      "edited_end": 25.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 74,
+      "word": "4",
+      "subtitle_text": "4",
+      "start": 25.08,
+      "real_start": 25.08,
+      "end": 25.3,
+      "edited_start": 25.08,
+      "edited_end": 25.3,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 75,
+      "word": "agendas",
+      "subtitle_text": "agendas",
+      "start": 25.3,
+      "real_start": 25.3,
+      "end": 25.68,
+      "edited_start": 25.3,
+      "edited_end": 25.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 76,
+      "word": "inteligentes",
+      "subtitle_text": "inteligentes",
+      "start": 25.68,
+      "real_start": 25.68,
+      "end": 26.34,
+      "edited_start": 25.68,
+      "edited_end": 26.34,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 77,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 26.34,
+      "real_start": 26.34,
+      "end": 26.5,
+      "edited_start": 26.34,
+      "edited_end": 26.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 78,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 26.5,
+      "real_start": 26.5,
+      "end": 26.6,
+      "edited_start": 26.5,
+      "edited_end": 26.6,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 79,
+      "word": "cobro",
+      "subtitle_text": "cobro",
+      "start": 26.6,
+      "real_start": 26.6,
+      "end": 26.78,
+      "edited_start": 26.6,
+      "edited_end": 26.78,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 80,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 26.78,
+      "real_start": 26.78,
+      "end": 26.96,
+      "edited_start": 26.78,
+      "edited_end": 26.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 81,
+      "word": "seña",
+      "subtitle_text": "seña",
+      "start": 26.96,
+      "real_start": 26.96,
+      "end": 27.14,
+      "edited_start": 26.96,
+      "edited_end": 27.14,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 82,
+      "word": "automático",
+      "subtitle_text": "automático",
+      "start": 27.14,
+      "real_start": 27.14,
+      "end": 27.62,
+      "edited_start": 27.14,
+      "edited_end": 27.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 83,
+      "word": "con",
+      "subtitle_text": "con",
+      "start": 27.62,
+      "real_start": 27.62,
+      "end": 27.82,
+      "edited_start": 27.62,
+      "edited_end": 27.82,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 84,
+      "word": "Mercado",
+      "subtitle_text": "Mercado",
+      "start": 27.82,
+      "real_start": 27.82,
+      "end": 28.14,
+      "edited_start": 27.82,
+      "edited_end": 28.14,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 85,
+      "word": "Pago",
+      "subtitle_text": "Pago*.",
+      "start": 28.14,
+      "real_start": 28.14,
+      "end": 28.46,
+      "edited_start": 28.14,
+      "edited_end": 28.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 86,
+      "word": "Escribinos",
+      "subtitle_text": "¡Escribinos",
+      "start": 29.44,
+      "real_start": 29.44,
+      "end": 30.2,
+      "edited_start": 29.44,
+      "edited_end": 30.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 87,
+      "word": "hoy",
+      "subtitle_text": "hoy",
+      "start": 30.2,
+      "real_start": 30.2,
+      "end": 30.46,
+      "edited_start": 30.2,
+      "edited_end": 30.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 88,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 30.46,
+      "real_start": 30.46,
+      "end": 30.56,
+      "edited_start": 30.46,
+      "edited_end": 30.56,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 89,
+      "word": "MascotaMás",
+      "subtitle_text": "MascotaMás",
+      "start": 30.56,
+      "real_start": 30.56,
+      "end": 31.24,
+      "edited_start": 30.56,
+      "edited_end": 31.24,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 90,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 31.24,
+      "real_start": 31.24,
+      "end": 31.48,
+      "edited_start": 31.24,
+      "edited_end": 31.48,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 91,
+      "word": "te",
+      "subtitle_text": "te",
+      "start": 31.48,
+      "real_start": 31.48,
+      "end": 31.6,
+      "edited_start": 31.48,
+      "edited_end": 31.6,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 92,
+      "word": "migramos",
+      "subtitle_text": "migramos",
+      "start": 31.6,
+      "real_start": 31.6,
+      "end": 31.98,
+      "edited_start": 31.6,
+      "edited_end": 31.98,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 93,
+      "word": "gratis",
+      "subtitle_text": "gratis",
+      "start": 31.98,
+      "real_start": 31.98,
+      "end": 32.46,
+      "edited_start": 31.98,
+      "edited_end": 32.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 94,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 32.46,
+      "real_start": 32.46,
+      "end": 32.58,
+      "edited_start": 32.46,
+      "edited_end": 32.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 95,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 32.58,
+      "real_start": 32.58,
+      "end": 32.7,
+      "edited_start": 32.58,
+      "edited_end": 32.7,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 96,
+      "word": "día",
+      "subtitle_text": "día!",
+      "start": 32.7,
+      "real_start": 32.7,
+      "end": 32.86,
+      "edited_start": 32.7,
+      "edited_end": 32.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    }
+  ],
+  "edited_words": [
+    {
+      "word_id": 1,
+      "word": "Seguís",
+      "subtitle_text": "¿Seguís",
+      "start": 0.08,
+      "real_start": 0.08,
+      "end": 0.66,
+      "edited_start": 0.08,
+      "edited_end": 0.66,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 2,
+      "word": "atado",
+      "subtitle_text": "atado",
+      "start": 0.66,
+      "real_start": 0.66,
+      "end": 1.08,
+      "edited_start": 0.66,
+      "edited_end": 1.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 3,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 1.08,
+      "real_start": 1.08,
+      "end": 1.18,
+      "edited_start": 1.08,
+      "edited_end": 1.18,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 4,
+      "word": "un",
+      "subtitle_text": "un",
+      "start": 1.18,
+      "real_start": 1.18,
+      "end": 1.28,
+      "edited_start": 1.18,
+      "edited_end": 1.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 5,
+      "word": "sistema",
+      "subtitle_text": "sistema",
+      "start": 1.28,
+      "real_start": 1.28,
+      "end": 1.58,
+      "edited_start": 1.28,
+      "edited_end": 1.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 6,
+      "word": "viejo",
+      "subtitle_text": "viejo",
+      "start": 1.58,
+      "real_start": 1.58,
+      "end": 2.08,
+      "edited_start": 1.58,
+      "edited_end": 2.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 7,
+      "word": "o",
+      "subtitle_text": "o",
+      "start": 2.08,
+      "real_start": 2.08,
+      "end": 2.22,
+      "edited_start": 2.08,
+      "edited_end": 2.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 8,
+      "word": "al",
+      "subtitle_text": "al",
+      "start": 2.22,
+      "real_start": 2.22,
+      "end": 2.36,
+      "edited_start": 2.22,
+      "edited_end": 2.36,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 9,
+      "word": "Excel",
+      "subtitle_text": "Excel",
+      "start": 2.36,
+      "real_start": 2.36,
+      "end": 2.68,
+      "edited_start": 2.36,
+      "edited_end": 2.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 10,
+      "word": "por",
+      "subtitle_text": "por",
+      "start": 2.68,
+      "real_start": 2.68,
+      "end": 2.88,
+      "edited_start": 2.68,
+      "edited_end": 2.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 11,
+      "word": "miedo",
+      "subtitle_text": "miedo",
+      "start": 2.88,
+      "real_start": 2.88,
+      "end": 3.16,
+      "edited_start": 2.88,
+      "edited_end": 3.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 12,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 3.16,
+      "real_start": 3.16,
+      "end": 3.28,
+      "edited_start": 3.16,
+      "edited_end": 3.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 13,
+      "word": "perder",
+      "subtitle_text": "perder",
+      "start": 3.28,
+      "real_start": 3.28,
+      "end": 3.5,
+      "edited_start": 3.28,
+      "edited_end": 3.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 14,
+      "word": "los",
+      "subtitle_text": "los",
+      "start": 3.5,
+      "real_start": 3.5,
+      "end": 3.68,
+      "edited_start": 3.5,
+      "edited_end": 3.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 15,
+      "word": "datos",
+      "subtitle_text": "datos",
+      "start": 3.68,
+      "real_start": 3.68,
+      "end": 3.92,
+      "edited_start": 3.68,
+      "edited_end": 3.92,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 16,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 3.92,
+      "real_start": 3.92,
+      "end": 4.1,
+      "edited_start": 3.92,
+      "edited_end": 4.1,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 17,
+      "word": "tu",
+      "subtitle_text": "tu",
+      "start": 4.1,
+      "real_start": 4.1,
+      "end": 4.22,
+      "edited_start": 4.1,
+      "edited_end": 4.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 18,
+      "word": "veterinaria",
+      "subtitle_text": "veterinaria?",
+      "start": 4.22,
+      "real_start": 4.22,
+      "end": 4.86,
+      "edited_start": 4.22,
+      "edited_end": 4.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 1,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 19,
+      "word": "Pasate",
+      "subtitle_text": "¡Pasate",
+      "start": 5.5,
+      "real_start": 5.5,
+      "end": 5.94,
+      "edited_start": 5.5,
+      "edited_end": 5.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 20,
+      "word": "hoy",
+      "subtitle_text": "hoy",
+      "start": 5.94,
+      "real_start": 5.94,
+      "end": 6.16,
+      "edited_start": 5.94,
+      "edited_end": 6.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 21,
+      "word": "a",
+      "subtitle_text": "a",
+      "start": 6.16,
+      "real_start": 6.16,
+      "end": 6.28,
+      "edited_start": 6.16,
+      "edited_end": 6.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 22,
+      "word": "MascotaMás",
+      "subtitle_text": "MascotaMás!",
+      "start": 6.28,
+      "real_start": 6.28,
+      "end": 6.8,
+      "edited_start": 6.28,
+      "edited_end": 6.8,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 23,
+      "word": "Te",
+      "subtitle_text": "Te",
+      "start": 7.14,
+      "real_start": 7.14,
+      "end": 7.22,
+      "edited_start": 7.14,
+      "edited_end": 7.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 24,
+      "word": "hacemos",
+      "subtitle_text": "hacemos",
+      "start": 7.22,
+      "real_start": 7.22,
+      "end": 7.42,
+      "edited_start": 7.22,
+      "edited_end": 7.42,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 25,
+      "word": "toda",
+      "subtitle_text": "toda",
+      "start": 7.42,
+      "real_start": 7.42,
+      "end": 7.76,
+      "edited_start": 7.42,
+      "edited_end": 7.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 26,
+      "word": "la",
+      "subtitle_text": "la",
+      "start": 7.76,
+      "real_start": 7.76,
+      "end": 7.94,
+      "edited_start": 7.76,
+      "edited_end": 7.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 27,
+      "word": "migración",
+      "subtitle_text": "migración",
+      "start": 7.94,
+      "real_start": 7.94,
+      "end": 8.3,
+      "edited_start": 7.94,
+      "edited_end": 8.3,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 28,
+      "word": "gratis",
+      "subtitle_text": "gratis",
+      "start": 8.3,
+      "real_start": 8.3,
+      "end": 8.8,
+      "edited_start": 8.3,
+      "edited_end": 8.8,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 29,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 8.8,
+      "real_start": 8.8,
+      "end": 8.96,
+      "edited_start": 8.8,
+      "edited_end": 8.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 30,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 8.96,
+      "real_start": 8.96,
+      "end": 9.06,
+      "edited_start": 8.96,
+      "edited_end": 9.06,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 31,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 9.06,
+      "real_start": 9.06,
+      "end": 9.22,
+      "edited_start": 9.06,
+      "edited_end": 9.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 32,
+      "word": "día",
+      "subtitle_text": "día,",
+      "start": 9.22,
+      "real_start": 9.22,
+      "end": 9.44,
+      "edited_start": 9.22,
+      "edited_end": 9.44,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 33,
+      "word": "sin",
+      "subtitle_text": "sin",
+      "start": 9.6,
+      "real_start": 9.6,
+      "end": 9.76,
+      "edited_start": 9.6,
+      "edited_end": 9.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 34,
+      "word": "frenar",
+      "subtitle_text": "frenar",
+      "start": 9.76,
+      "real_start": 9.76,
+      "end": 10.0,
+      "edited_start": 9.76,
+      "edited_end": 10.0,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 35,
+      "word": "tu",
+      "subtitle_text": "tu",
+      "start": 10.0,
+      "real_start": 10.0,
+      "end": 10.12,
+      "edited_start": 10.0,
+      "edited_end": 10.12,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 36,
+      "word": "consultorio",
+      "subtitle_text": "consultorio.",
+      "start": 10.12,
+      "real_start": 10.12,
+      "end": 10.72,
+      "edited_start": 10.12,
+      "edited_end": 10.72,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 2,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 37,
+      "word": "Pasamos",
+      "subtitle_text": "Pasamos",
+      "start": 11.78,
+      "real_start": 11.78,
+      "end": 12.1,
+      "edited_start": 11.78,
+      "edited_end": 12.1,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 38,
+      "word": "tus",
+      "subtitle_text": "tus",
+      "start": 12.1,
+      "real_start": 12.1,
+      "end": 12.28,
+      "edited_start": 12.1,
+      "edited_end": 12.28,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 39,
+      "word": "clientes",
+      "subtitle_text": "clientes,",
+      "start": 12.28,
+      "real_start": 12.28,
+      "end": 12.96,
+      "edited_start": 12.28,
+      "edited_end": 12.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 40,
+      "word": "pacientes",
+      "subtitle_text": "pacientes,",
+      "start": 13.26,
+      "real_start": 13.26,
+      "end": 13.74,
+      "edited_start": 13.26,
+      "edited_end": 13.74,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 41,
+      "word": "historias",
+      "subtitle_text": "historias",
+      "start": 13.92,
+      "real_start": 13.92,
+      "end": 14.22,
+      "edited_start": 13.92,
+      "edited_end": 14.22,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 42,
+      "word": "clínicas",
+      "subtitle_text": "clínicas",
+      "start": 14.22,
+      "real_start": 14.22,
+      "end": 14.72,
+      "edited_start": 14.22,
+      "edited_end": 14.72,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 43,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 14.72,
+      "real_start": 14.72,
+      "end": 14.9,
+      "edited_start": 14.72,
+      "edited_end": 14.9,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 44,
+      "word": "vacunas",
+      "subtitle_text": "vacunas",
+      "start": 14.9,
+      "real_start": 14.9,
+      "end": 15.32,
+      "edited_start": 14.9,
+      "edited_end": 15.32,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 45,
+      "word": "para",
+      "subtitle_text": "para",
+      "start": 15.32,
+      "real_start": 15.32,
+      "end": 15.5,
+      "edited_start": 15.32,
+      "edited_end": 15.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 46,
+      "word": "que",
+      "subtitle_text": "que",
+      "start": 15.5,
+      "real_start": 15.5,
+      "end": 15.62,
+      "edited_start": 15.5,
+      "edited_end": 15.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 47,
+      "word": "no",
+      "subtitle_text": "no",
+      "start": 15.62,
+      "real_start": 15.62,
+      "end": 15.74,
+      "edited_start": 15.62,
+      "edited_end": 15.74,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 48,
+      "word": "pierdas",
+      "subtitle_text": "pierdas",
+      "start": 15.74,
+      "real_start": 15.74,
+      "end": 16.12,
+      "edited_start": 15.74,
+      "edited_end": 16.12,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 49,
+      "word": "ni",
+      "subtitle_text": "ni",
+      "start": 16.12,
+      "real_start": 16.12,
+      "end": 16.5,
+      "edited_start": 16.12,
+      "edited_end": 16.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 50,
+      "word": "una",
+      "subtitle_text": "una",
+      "start": 16.5,
+      "real_start": 16.5,
+      "end": 16.76,
+      "edited_start": 16.5,
+      "edited_end": 16.76,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 51,
+      "word": "sola",
+      "subtitle_text": "sola",
+      "start": 16.76,
+      "real_start": 16.76,
+      "end": 17.02,
+      "edited_start": 16.76,
+      "edited_end": 17.02,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 52,
+      "word": "ficha",
+      "subtitle_text": "ficha.",
+      "start": 17.02,
+      "real_start": 17.02,
+      "end": 17.36,
+      "edited_start": 17.02,
+      "edited_end": 17.36,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 3,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 53,
+      "word": "En",
+      "subtitle_text": "En",
+      "start": 18.0,
+      "real_start": 18.0,
+      "end": 18.18,
+      "edited_start": 18.0,
+      "edited_end": 18.18,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 54,
+      "word": "horas",
+      "subtitle_text": "horas",
+      "start": 18.18,
+      "real_start": 18.18,
+      "end": 18.4,
+      "edited_start": 18.18,
+      "edited_end": 18.4,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 55,
+      "word": "ya",
+      "subtitle_text": "ya",
+      "start": 18.74,
+      "real_start": 18.74,
+      "end": 18.86,
+      "edited_start": 18.74,
+      "edited_end": 18.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 56,
+      "word": "tenés",
+      "subtitle_text": "tenés",
+      "start": 18.86,
+      "real_start": 18.86,
+      "end": 19.2,
+      "edited_start": 18.86,
+      "edited_end": 19.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 57,
+      "word": "recordatorios",
+      "subtitle_text": "recordatorios",
+      "start": 19.2,
+      "real_start": 19.2,
+      "end": 19.86,
+      "edited_start": 19.2,
+      "edited_end": 19.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 58,
+      "word": "automáticos",
+      "subtitle_text": "automáticos",
+      "start": 19.86,
+      "real_start": 19.86,
+      "end": 20.42,
+      "edited_start": 19.86,
+      "edited_end": 20.42,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 59,
+      "word": "por",
+      "subtitle_text": "por",
+      "start": 20.42,
+      "real_start": 20.42,
+      "end": 20.62,
+      "edited_start": 20.42,
+      "edited_end": 20.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 60,
+      "word": "WhatsApp",
+      "subtitle_text": "WhatsApp,",
+      "start": 20.62,
+      "real_start": 20.62,
+      "end": 20.94,
+      "edited_start": 20.62,
+      "edited_end": 20.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 61,
+      "word": "sala",
+      "subtitle_text": "sala",
+      "start": 21.32,
+      "real_start": 21.32,
+      "end": 21.52,
+      "edited_start": 21.32,
+      "edited_end": 21.52,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 62,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 21.52,
+      "real_start": 21.52,
+      "end": 21.68,
+      "edited_start": 21.52,
+      "edited_end": 21.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 63,
+      "word": "espera",
+      "subtitle_text": "espera",
+      "start": 21.68,
+      "real_start": 21.68,
+      "end": 21.88,
+      "edited_start": 21.68,
+      "edited_end": 21.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 64,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 21.88,
+      "real_start": 21.88,
+      "end": 22.02,
+      "edited_start": 21.88,
+      "edited_end": 22.02,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 65,
+      "word": "vivo",
+      "subtitle_text": "vivo",
+      "start": 22.02,
+      "real_start": 22.02,
+      "end": 22.2,
+      "edited_start": 22.02,
+      "edited_end": 22.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 66,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 22.2,
+      "real_start": 22.2,
+      "end": 22.58,
+      "edited_start": 22.2,
+      "edited_end": 22.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 67,
+      "word": "todo",
+      "subtitle_text": "todo",
+      "start": 22.58,
+      "real_start": 22.58,
+      "end": 22.88,
+      "edited_start": 22.58,
+      "edited_end": 22.88,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 68,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 22.88,
+      "real_start": 22.88,
+      "end": 23.06,
+      "edited_start": 22.88,
+      "edited_end": 23.06,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 69,
+      "word": "la",
+      "subtitle_text": "la",
+      "start": 23.06,
+      "real_start": 23.06,
+      "end": 23.16,
+      "edited_start": 23.06,
+      "edited_end": 23.16,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 70,
+      "word": "nube",
+      "subtitle_text": "nube.",
+      "start": 23.16,
+      "real_start": 23.16,
+      "end": 23.4,
+      "edited_start": 23.16,
+      "edited_end": 23.4,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 4,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 71,
+      "word": "Además",
+      "subtitle_text": "Además,",
+      "start": 24.24,
+      "real_start": 24.24,
+      "end": 24.5,
+      "edited_start": 24.24,
+      "edited_end": 24.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 72,
+      "word": "sumás",
+      "subtitle_text": "sumás",
+      "start": 24.72,
+      "real_start": 24.72,
+      "end": 24.94,
+      "edited_start": 24.72,
+      "edited_end": 24.94,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 73,
+      "word": "las",
+      "subtitle_text": "las",
+      "start": 24.94,
+      "real_start": 24.94,
+      "end": 25.08,
+      "edited_start": 24.94,
+      "edited_end": 25.08,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 74,
+      "word": "4",
+      "subtitle_text": "4",
+      "start": 25.08,
+      "real_start": 25.08,
+      "end": 25.3,
+      "edited_start": 25.08,
+      "edited_end": 25.3,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 75,
+      "word": "agendas",
+      "subtitle_text": "agendas",
+      "start": 25.3,
+      "real_start": 25.3,
+      "end": 25.68,
+      "edited_start": 25.3,
+      "edited_end": 25.68,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 76,
+      "word": "inteligentes",
+      "subtitle_text": "inteligentes",
+      "start": 25.68,
+      "real_start": 25.68,
+      "end": 26.34,
+      "edited_start": 25.68,
+      "edited_end": 26.34,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 77,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 26.34,
+      "real_start": 26.34,
+      "end": 26.5,
+      "edited_start": 26.34,
+      "edited_end": 26.5,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 78,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 26.5,
+      "real_start": 26.5,
+      "end": 26.6,
+      "edited_start": 26.5,
+      "edited_end": 26.6,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 79,
+      "word": "cobro",
+      "subtitle_text": "cobro",
+      "start": 26.6,
+      "real_start": 26.6,
+      "end": 26.78,
+      "edited_start": 26.6,
+      "edited_end": 26.78,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 80,
+      "word": "de",
+      "subtitle_text": "de",
+      "start": 26.78,
+      "real_start": 26.78,
+      "end": 26.96,
+      "edited_start": 26.78,
+      "edited_end": 26.96,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 81,
+      "word": "seña",
+      "subtitle_text": "seña",
+      "start": 26.96,
+      "real_start": 26.96,
+      "end": 27.14,
+      "edited_start": 26.96,
+      "edited_end": 27.14,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 82,
+      "word": "automático",
+      "subtitle_text": "automático",
+      "start": 27.14,
+      "real_start": 27.14,
+      "end": 27.62,
+      "edited_start": 27.14,
+      "edited_end": 27.62,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 83,
+      "word": "con",
+      "subtitle_text": "con",
+      "start": 27.62,
+      "real_start": 27.62,
+      "end": 27.82,
+      "edited_start": 27.62,
+      "edited_end": 27.82,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 84,
+      "word": "Mercado",
+      "subtitle_text": "Mercado",
+      "start": 27.82,
+      "real_start": 27.82,
+      "end": 28.14,
+      "edited_start": 27.82,
+      "edited_end": 28.14,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 85,
+      "word": "Pago",
+      "subtitle_text": "Pago*.",
+      "start": 28.14,
+      "real_start": 28.14,
+      "end": 28.46,
+      "edited_start": 28.14,
+      "edited_end": 28.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 5,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 86,
+      "word": "Escribinos",
+      "subtitle_text": "¡Escribinos",
+      "start": 29.44,
+      "real_start": 29.44,
+      "end": 30.2,
+      "edited_start": 29.44,
+      "edited_end": 30.2,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 87,
+      "word": "hoy",
+      "subtitle_text": "hoy",
+      "start": 30.2,
+      "real_start": 30.2,
+      "end": 30.46,
+      "edited_start": 30.2,
+      "edited_end": 30.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 88,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 30.46,
+      "real_start": 30.46,
+      "end": 30.56,
+      "edited_start": 30.46,
+      "edited_end": 30.56,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 89,
+      "word": "MascotaMás",
+      "subtitle_text": "MascotaMás",
+      "start": 30.56,
+      "real_start": 30.56,
+      "end": 31.24,
+      "edited_start": 30.56,
+      "edited_end": 31.24,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 90,
+      "word": "y",
+      "subtitle_text": "y",
+      "start": 31.24,
+      "real_start": 31.24,
+      "end": 31.48,
+      "edited_start": 31.24,
+      "edited_end": 31.48,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 91,
+      "word": "te",
+      "subtitle_text": "te",
+      "start": 31.48,
+      "real_start": 31.48,
+      "end": 31.6,
+      "edited_start": 31.48,
+      "edited_end": 31.6,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 92,
+      "word": "migramos",
+      "subtitle_text": "migramos",
+      "start": 31.6,
+      "real_start": 31.6,
+      "end": 31.98,
+      "edited_start": 31.6,
+      "edited_end": 31.98,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": true
+    },
+    {
+      "word_id": 93,
+      "word": "gratis",
+      "subtitle_text": "gratis",
+      "start": 31.98,
+      "real_start": 31.98,
+      "end": 32.46,
+      "edited_start": 31.98,
+      "edited_end": 32.46,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 94,
+      "word": "en",
+      "subtitle_text": "en",
+      "start": 32.46,
+      "real_start": 32.46,
+      "end": 32.58,
+      "edited_start": 32.46,
+      "edited_end": 32.58,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 95,
+      "word": "el",
+      "subtitle_text": "el",
+      "start": 32.58,
+      "real_start": 32.58,
+      "end": 32.7,
+      "edited_start": 32.58,
+      "edited_end": 32.7,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": false,
+      "trigger_bounce": false
+    },
+    {
+      "word_id": 96,
+      "word": "día",
+      "subtitle_text": "día!",
+      "start": 32.7,
+      "real_start": 32.7,
+      "end": 32.86,
+      "edited_start": 32.7,
+      "edited_end": 32.86,
+      "rms_db": -16.0,
+      "keep": true,
+      "delete_reason": "",
+      "scene_id": 6,
+      "face_center": [
+        0.5,
+        0.22
+      ],
+      "is_yellow": true,
+      "trigger_bounce": false
+    }
+  ],
+  "subtitle_blocks": [
+    {
+      "block_id": 1,
+      "scene_id": 1,
+      "start": 0.08,
+      "end": 1.28,
+      "words": [
+        {
+          "word_id": 1,
+          "word": "Seguís",
+          "subtitle_text": "¿Seguís",
+          "start": 0.08,
+          "real_start": 0.08,
+          "end": 0.66,
+          "edited_start": 0.08,
+          "edited_end": 0.66,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "¿Seguís"
+        },
+        {
+          "word_id": 2,
+          "word": "atado",
+          "subtitle_text": "atado",
+          "start": 0.66,
+          "real_start": 0.66,
+          "end": 1.08,
+          "edited_start": 0.66,
+          "edited_end": 1.08,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "atado"
+        },
+        {
+          "word_id": 3,
+          "word": "a",
+          "subtitle_text": "a",
+          "start": 1.08,
+          "real_start": 1.08,
+          "end": 1.18,
+          "edited_start": 1.08,
+          "edited_end": 1.18,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "a"
+        },
+        {
+          "word_id": 4,
+          "word": "un",
+          "subtitle_text": "un",
+          "start": 1.18,
+          "real_start": 1.18,
+          "end": 1.28,
+          "edited_start": 1.18,
+          "edited_end": 1.28,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "un"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 1,
+            "text": "¿Seguís",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 0.08,
+            "end": 0.66
+          },
+          {
+            "word_id": 2,
+            "text": "atado",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 0.66,
+            "end": 1.08
+          },
+          {
+            "word_id": 3,
+            "text": "a",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 1.08,
+            "end": 1.18
+          }
+        ],
+        [
+          {
+            "word_id": 4,
+            "text": "un",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 1.18,
+            "end": 1.28
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 0.08
+    },
+    {
+      "block_id": 2,
+      "scene_id": 1,
+      "start": 1.28,
+      "end": 2.36,
+      "words": [
+        {
+          "word_id": 5,
+          "word": "sistema",
+          "subtitle_text": "sistema",
+          "start": 1.28,
+          "real_start": 1.28,
+          "end": 1.58,
+          "edited_start": 1.28,
+          "edited_end": 1.58,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "sistema"
+        },
+        {
+          "word_id": 6,
+          "word": "viejo",
+          "subtitle_text": "viejo",
+          "start": 1.58,
+          "real_start": 1.58,
+          "end": 2.08,
+          "edited_start": 1.58,
+          "edited_end": 2.08,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "viejo"
+        },
+        {
+          "word_id": 7,
+          "word": "o",
+          "subtitle_text": "o",
+          "start": 2.08,
+          "real_start": 2.08,
+          "end": 2.22,
+          "edited_start": 2.08,
+          "edited_end": 2.22,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "o"
+        },
+        {
+          "word_id": 8,
+          "word": "al",
+          "subtitle_text": "al",
+          "start": 2.22,
+          "real_start": 2.22,
+          "end": 2.36,
+          "edited_start": 2.22,
+          "edited_end": 2.36,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "al"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 5,
+            "text": "sistema",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 1.28,
+            "end": 1.58
+          },
+          {
+            "word_id": 6,
+            "text": "viejo",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 1.58,
+            "end": 2.08
+          },
+          {
+            "word_id": 7,
+            "text": "o",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 2.08,
+            "end": 2.22
+          }
+        ],
+        [
+          {
+            "word_id": 8,
+            "text": "al",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 2.22,
+            "end": 2.36
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 1.28
+    },
+    {
+      "block_id": 3,
+      "scene_id": 1,
+      "start": 2.36,
+      "end": 3.28,
+      "words": [
+        {
+          "word_id": 9,
+          "word": "Excel",
+          "subtitle_text": "Excel",
+          "start": 2.36,
+          "real_start": 2.36,
+          "end": 2.68,
+          "edited_start": 2.36,
+          "edited_end": 2.68,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "Excel"
+        },
+        {
+          "word_id": 10,
+          "word": "por",
+          "subtitle_text": "por",
+          "start": 2.68,
+          "real_start": 2.68,
+          "end": 2.88,
+          "edited_start": 2.68,
+          "edited_end": 2.88,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "por"
+        },
+        {
+          "word_id": 11,
+          "word": "miedo",
+          "subtitle_text": "miedo",
+          "start": 2.88,
+          "real_start": 2.88,
+          "end": 3.16,
+          "edited_start": 2.88,
+          "edited_end": 3.16,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "miedo"
+        },
+        {
+          "word_id": 12,
+          "word": "a",
+          "subtitle_text": "a",
+          "start": 3.16,
+          "real_start": 3.16,
+          "end": 3.28,
+          "edited_start": 3.16,
+          "edited_end": 3.28,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "a"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 9,
+            "text": "Excel",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 2.36,
+            "end": 2.68
+          },
+          {
+            "word_id": 10,
+            "text": "por",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 2.68,
+            "end": 2.88
+          },
+          {
+            "word_id": 11,
+            "text": "miedo",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 2.88,
+            "end": 3.16
+          }
+        ],
+        [
+          {
+            "word_id": 12,
+            "text": "a",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 3.16,
+            "end": 3.28
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 2.36
+    },
+    {
+      "block_id": 4,
+      "scene_id": 1,
+      "start": 3.28,
+      "end": 4.1,
+      "words": [
+        {
+          "word_id": 13,
+          "word": "perder",
+          "subtitle_text": "perder",
+          "start": 3.28,
+          "real_start": 3.28,
+          "end": 3.5,
+          "edited_start": 3.28,
+          "edited_end": 3.5,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "perder"
+        },
+        {
+          "word_id": 14,
+          "word": "los",
+          "subtitle_text": "los",
+          "start": 3.5,
+          "real_start": 3.5,
+          "end": 3.68,
+          "edited_start": 3.5,
+          "edited_end": 3.68,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "los"
+        },
+        {
+          "word_id": 15,
+          "word": "datos",
+          "subtitle_text": "datos",
+          "start": 3.68,
+          "real_start": 3.68,
+          "end": 3.92,
+          "edited_start": 3.68,
+          "edited_end": 3.92,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "datos"
+        },
+        {
+          "word_id": 16,
+          "word": "de",
+          "subtitle_text": "de",
+          "start": 3.92,
+          "real_start": 3.92,
+          "end": 4.1,
+          "edited_start": 3.92,
+          "edited_end": 4.1,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "de"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 13,
+            "text": "perder",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 3.28,
+            "end": 3.5
+          },
+          {
+            "word_id": 14,
+            "text": "los",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 3.5,
+            "end": 3.68
+          },
+          {
+            "word_id": 15,
+            "text": "datos",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 3.68,
+            "end": 3.92
+          }
+        ],
+        [
+          {
+            "word_id": 16,
+            "text": "de",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 3.92,
+            "end": 4.1
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 3.28
+    },
+    {
+      "block_id": 5,
+      "scene_id": 1,
+      "start": 4.1,
+      "end": 4.86,
+      "words": [
+        {
+          "word_id": 17,
+          "word": "tu",
+          "subtitle_text": "tu",
+          "start": 4.1,
+          "real_start": 4.1,
+          "end": 4.22,
+          "edited_start": 4.1,
+          "edited_end": 4.22,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "tu"
+        },
+        {
+          "word_id": 18,
+          "word": "veterinaria",
+          "subtitle_text": "veterinaria?",
+          "start": 4.22,
+          "real_start": 4.22,
+          "end": 4.86,
+          "edited_start": 4.22,
+          "edited_end": 4.86,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 1,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "veterinaria?"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 17,
+            "text": "tu",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 4.1,
+            "end": 4.22
+          },
+          {
+            "word_id": 18,
+            "text": "veterinaria?",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 4.22,
+            "end": 4.86
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 4.1
+    },
+    {
+      "block_id": 6,
+      "scene_id": 2,
+      "start": 5.5,
+      "end": 6.8,
+      "words": [
+        {
+          "word_id": 19,
+          "word": "Pasate",
+          "subtitle_text": "¡Pasate",
+          "start": 5.5,
+          "real_start": 5.5,
+          "end": 5.94,
+          "edited_start": 5.5,
+          "edited_end": 5.94,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "¡Pasate"
+        },
+        {
+          "word_id": 20,
+          "word": "hoy",
+          "subtitle_text": "hoy",
+          "start": 5.94,
+          "real_start": 5.94,
+          "end": 6.16,
+          "edited_start": 5.94,
+          "edited_end": 6.16,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "hoy"
+        },
+        {
+          "word_id": 21,
+          "word": "a",
+          "subtitle_text": "a",
+          "start": 6.16,
+          "real_start": 6.16,
+          "end": 6.28,
+          "edited_start": 6.16,
+          "edited_end": 6.28,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "a"
+        },
+        {
+          "word_id": 22,
+          "word": "MascotaMás",
+          "subtitle_text": "MascotaMás!",
+          "start": 6.28,
+          "real_start": 6.28,
+          "end": 6.8,
+          "edited_start": 6.28,
+          "edited_end": 6.8,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "MascotaMás!"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 19,
+            "text": "¡Pasate",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 5.5,
+            "end": 5.94
+          },
+          {
+            "word_id": 20,
+            "text": "hoy",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 5.94,
+            "end": 6.16
+          },
+          {
+            "word_id": 21,
+            "text": "a",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 6.16,
+            "end": 6.28
+          }
+        ],
+        [
+          {
+            "word_id": 22,
+            "text": "MascotaMás!",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 6.28,
+            "end": 6.8
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 5.5
+    },
+    {
+      "block_id": 7,
+      "scene_id": 2,
+      "start": 7.14,
+      "end": 7.94,
+      "words": [
+        {
+          "word_id": 23,
+          "word": "Te",
+          "subtitle_text": "Te",
+          "start": 7.14,
+          "real_start": 7.14,
+          "end": 7.22,
+          "edited_start": 7.14,
+          "edited_end": 7.22,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "Te"
+        },
+        {
+          "word_id": 24,
+          "word": "hacemos",
+          "subtitle_text": "hacemos",
+          "start": 7.22,
+          "real_start": 7.22,
+          "end": 7.42,
+          "edited_start": 7.22,
+          "edited_end": 7.42,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "hacemos"
+        },
+        {
+          "word_id": 25,
+          "word": "toda",
+          "subtitle_text": "toda",
+          "start": 7.42,
+          "real_start": 7.42,
+          "end": 7.76,
+          "edited_start": 7.42,
+          "edited_end": 7.76,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "toda"
+        },
+        {
+          "word_id": 26,
+          "word": "la",
+          "subtitle_text": "la",
+          "start": 7.76,
+          "real_start": 7.76,
+          "end": 7.94,
+          "edited_start": 7.76,
+          "edited_end": 7.94,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "la"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 23,
+            "text": "Te",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 7.14,
+            "end": 7.22
+          },
+          {
+            "word_id": 24,
+            "text": "hacemos",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 7.22,
+            "end": 7.42
+          },
+          {
+            "word_id": 25,
+            "text": "toda",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 7.42,
+            "end": 7.76
+          }
+        ],
+        [
+          {
+            "word_id": 26,
+            "text": "la",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 7.76,
+            "end": 7.94
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 7.42
+    },
+    {
+      "block_id": 8,
+      "scene_id": 2,
+      "start": 7.94,
+      "end": 9.06,
+      "words": [
+        {
+          "word_id": 27,
+          "word": "migración",
+          "subtitle_text": "migración",
+          "start": 7.94,
+          "real_start": 7.94,
+          "end": 8.3,
+          "edited_start": 7.94,
+          "edited_end": 8.3,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "migración"
+        },
+        {
+          "word_id": 28,
+          "word": "gratis",
+          "subtitle_text": "gratis",
+          "start": 8.3,
+          "real_start": 8.3,
+          "end": 8.8,
+          "edited_start": 8.3,
+          "edited_end": 8.8,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "gratis"
+        },
+        {
+          "word_id": 29,
+          "word": "y",
+          "subtitle_text": "y",
+          "start": 8.8,
+          "real_start": 8.8,
+          "end": 8.96,
+          "edited_start": 8.8,
+          "edited_end": 8.96,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "y"
+        },
+        {
+          "word_id": 30,
+          "word": "en",
+          "subtitle_text": "en",
+          "start": 8.96,
+          "real_start": 8.96,
+          "end": 9.06,
+          "edited_start": 8.96,
+          "edited_end": 9.06,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "en"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 27,
+            "text": "migración",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 7.94,
+            "end": 8.3
+          },
+          {
+            "word_id": 28,
+            "text": "gratis",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 8.3,
+            "end": 8.8
+          }
+        ],
+        [
+          {
+            "word_id": 29,
+            "text": "y",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 8.8,
+            "end": 8.96
+          },
+          {
+            "word_id": 30,
+            "text": "en",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 8.96,
+            "end": 9.06
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 7.94
+    },
+    {
+      "block_id": 9,
+      "scene_id": 2,
+      "start": 9.06,
+      "end": 9.44,
+      "words": [
+        {
+          "word_id": 31,
+          "word": "el",
+          "subtitle_text": "el",
+          "start": 9.06,
+          "real_start": 9.06,
+          "end": 9.22,
+          "edited_start": 9.06,
+          "edited_end": 9.22,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "el"
+        },
+        {
+          "word_id": 32,
+          "word": "día",
+          "subtitle_text": "día,",
+          "start": 9.22,
+          "real_start": 9.22,
+          "end": 9.44,
+          "edited_start": 9.22,
+          "edited_end": 9.44,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "día"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 31,
+            "text": "el",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 9.06,
+            "end": 9.22
+          },
+          {
+            "word_id": 32,
+            "text": "día",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 9.22,
+            "end": 9.44
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 9.06
+    },
+    {
+      "block_id": 10,
+      "scene_id": 2,
+      "start": 9.6,
+      "end": 10.72,
+      "words": [
+        {
+          "word_id": 33,
+          "word": "sin",
+          "subtitle_text": "sin",
+          "start": 9.6,
+          "real_start": 9.6,
+          "end": 9.76,
+          "edited_start": 9.6,
+          "edited_end": 9.76,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "sin"
+        },
+        {
+          "word_id": 34,
+          "word": "frenar",
+          "subtitle_text": "frenar",
+          "start": 9.76,
+          "real_start": 9.76,
+          "end": 10.0,
+          "edited_start": 9.76,
+          "edited_end": 10.0,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "frenar"
+        },
+        {
+          "word_id": 35,
+          "word": "tu",
+          "subtitle_text": "tu",
+          "start": 10.0,
+          "real_start": 10.0,
+          "end": 10.12,
+          "edited_start": 10.0,
+          "edited_end": 10.12,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "tu"
+        },
+        {
+          "word_id": 36,
+          "word": "consultorio",
+          "subtitle_text": "consultorio.",
+          "start": 10.12,
+          "real_start": 10.12,
+          "end": 10.72,
+          "edited_start": 10.12,
+          "edited_end": 10.72,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 2,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "consultorio"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 33,
+            "text": "sin",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 9.6,
+            "end": 9.76
+          },
+          {
+            "word_id": 34,
+            "text": "frenar",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 9.76,
+            "end": 10.0
+          },
+          {
+            "word_id": 35,
+            "text": "tu",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 10.0,
+            "end": 10.12
+          }
+        ],
+        [
+          {
+            "word_id": 36,
+            "text": "consultorio",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 10.12,
+            "end": 10.72
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 9.6
+    },
+    {
+      "block_id": 11,
+      "scene_id": 3,
+      "start": 11.78,
+      "end": 12.96,
+      "words": [
+        {
+          "word_id": 37,
+          "word": "Pasamos",
+          "subtitle_text": "Pasamos",
+          "start": 11.78,
+          "real_start": 11.78,
+          "end": 12.1,
+          "edited_start": 11.78,
+          "edited_end": 12.1,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "Pasamos"
+        },
+        {
+          "word_id": 38,
+          "word": "tus",
+          "subtitle_text": "tus",
+          "start": 12.1,
+          "real_start": 12.1,
+          "end": 12.28,
+          "edited_start": 12.1,
+          "edited_end": 12.28,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "tus"
+        },
+        {
+          "word_id": 39,
+          "word": "clientes",
+          "subtitle_text": "clientes,",
+          "start": 12.28,
+          "real_start": 12.28,
+          "end": 12.96,
+          "edited_start": 12.28,
+          "edited_end": 12.96,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "clientes"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 37,
+            "text": "Pasamos",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 11.78,
+            "end": 12.1
+          },
+          {
+            "word_id": 38,
+            "text": "tus",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 12.1,
+            "end": 12.28
+          }
+        ],
+        [
+          {
+            "word_id": 39,
+            "text": "clientes",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 12.28,
+            "end": 12.96
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 12.28
+    },
+    {
+      "block_id": 12,
+      "scene_id": 3,
+      "start": 13.26,
+      "end": 14.72,
+      "words": [
+        {
+          "word_id": 40,
+          "word": "pacientes",
+          "subtitle_text": "pacientes,",
+          "start": 13.26,
+          "real_start": 13.26,
+          "end": 13.74,
+          "edited_start": 13.26,
+          "edited_end": 13.74,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "pacientes"
+        },
+        {
+          "word_id": 41,
+          "word": "historias",
+          "subtitle_text": "historias",
+          "start": 13.92,
+          "real_start": 13.92,
+          "end": 14.22,
+          "edited_start": 13.92,
+          "edited_end": 14.22,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "historias"
+        },
+        {
+          "word_id": 42,
+          "word": "clínicas",
+          "subtitle_text": "clínicas",
+          "start": 14.22,
+          "real_start": 14.22,
+          "end": 14.72,
+          "edited_start": 14.22,
+          "edited_end": 14.72,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "clínicas"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 40,
+            "text": "pacientes",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 13.26,
+            "end": 13.74
+          }
+        ],
+        [
+          {
+            "word_id": 41,
+            "text": "historias",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 13.92,
+            "end": 14.22
+          },
+          {
+            "word_id": 42,
+            "text": "clínicas",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 14.22,
+            "end": 14.72
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 13.26
+    },
+    {
+      "block_id": 13,
+      "scene_id": 3,
+      "start": 14.72,
+      "end": 15.62,
+      "words": [
+        {
+          "word_id": 43,
+          "word": "y",
+          "subtitle_text": "y",
+          "start": 14.72,
+          "real_start": 14.72,
+          "end": 14.9,
+          "edited_start": 14.72,
+          "edited_end": 14.9,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "y"
+        },
+        {
+          "word_id": 44,
+          "word": "vacunas",
+          "subtitle_text": "vacunas",
+          "start": 14.9,
+          "real_start": 14.9,
+          "end": 15.32,
+          "edited_start": 14.9,
+          "edited_end": 15.32,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "vacunas"
+        },
+        {
+          "word_id": 45,
+          "word": "para",
+          "subtitle_text": "para",
+          "start": 15.32,
+          "real_start": 15.32,
+          "end": 15.5,
+          "edited_start": 15.32,
+          "edited_end": 15.5,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "para"
+        },
+        {
+          "word_id": 46,
+          "word": "que",
+          "subtitle_text": "que",
+          "start": 15.5,
+          "real_start": 15.5,
+          "end": 15.62,
+          "edited_start": 15.5,
+          "edited_end": 15.62,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "que"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 43,
+            "text": "y",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 14.72,
+            "end": 14.9
+          },
+          {
+            "word_id": 44,
+            "text": "vacunas",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 14.9,
+            "end": 15.32
+          },
+          {
+            "word_id": 45,
+            "text": "para",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 15.32,
+            "end": 15.5
+          }
+        ],
+        [
+          {
+            "word_id": 46,
+            "text": "que",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 15.5,
+            "end": 15.62
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 14.72
+    },
+    {
+      "block_id": 14,
+      "scene_id": 3,
+      "start": 15.62,
+      "end": 16.76,
+      "words": [
+        {
+          "word_id": 47,
+          "word": "no",
+          "subtitle_text": "no",
+          "start": 15.62,
+          "real_start": 15.62,
+          "end": 15.74,
+          "edited_start": 15.62,
+          "edited_end": 15.74,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "no"
+        },
+        {
+          "word_id": 48,
+          "word": "pierdas",
+          "subtitle_text": "pierdas",
+          "start": 15.74,
+          "real_start": 15.74,
+          "end": 16.12,
+          "edited_start": 15.74,
+          "edited_end": 16.12,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "pierdas"
+        },
+        {
+          "word_id": 49,
+          "word": "ni",
+          "subtitle_text": "ni",
+          "start": 16.12,
+          "real_start": 16.12,
+          "end": 16.5,
+          "edited_start": 16.12,
+          "edited_end": 16.5,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "ni"
+        },
+        {
+          "word_id": 50,
+          "word": "una",
+          "subtitle_text": "una",
+          "start": 16.5,
+          "real_start": 16.5,
+          "end": 16.76,
+          "edited_start": 16.5,
+          "edited_end": 16.76,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "una"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 47,
+            "text": "no",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 15.62,
+            "end": 15.74
+          },
+          {
+            "word_id": 48,
+            "text": "pierdas",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 15.74,
+            "end": 16.12
+          },
+          {
+            "word_id": 49,
+            "text": "ni",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 16.12,
+            "end": 16.5
+          }
+        ],
+        [
+          {
+            "word_id": 50,
+            "text": "una",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 16.5,
+            "end": 16.76
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 15.62
+    },
+    {
+      "block_id": 15,
+      "scene_id": 3,
+      "start": 16.76,
+      "end": 17.36,
+      "words": [
+        {
+          "word_id": 51,
+          "word": "sola",
+          "subtitle_text": "sola",
+          "start": 16.76,
+          "real_start": 16.76,
+          "end": 17.02,
+          "edited_start": 16.76,
+          "edited_end": 17.02,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "sola"
+        },
+        {
+          "word_id": 52,
+          "word": "ficha",
+          "subtitle_text": "ficha.",
+          "start": 17.02,
+          "real_start": 17.02,
+          "end": 17.36,
+          "edited_start": 17.02,
+          "edited_end": 17.36,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 3,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "ficha"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 51,
+            "text": "sola",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 16.76,
+            "end": 17.02
+          },
+          {
+            "word_id": 52,
+            "text": "ficha",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 17.02,
+            "end": 17.36
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 17.02
+    },
+    {
+      "block_id": 16,
+      "scene_id": 4,
+      "start": 18.0,
+      "end": 18.4,
+      "words": [
+        {
+          "word_id": 53,
+          "word": "En",
+          "subtitle_text": "En",
+          "start": 18.0,
+          "real_start": 18.0,
+          "end": 18.18,
+          "edited_start": 18.0,
+          "edited_end": 18.18,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "En"
+        },
+        {
+          "word_id": 54,
+          "word": "horas",
+          "subtitle_text": "horas",
+          "start": 18.18,
+          "real_start": 18.18,
+          "end": 18.4,
+          "edited_start": 18.18,
+          "edited_end": 18.4,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "horas"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 53,
+            "text": "En",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 18.0,
+            "end": 18.18
+          },
+          {
+            "word_id": 54,
+            "text": "horas",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 18.18,
+            "end": 18.4
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 18.0
+    },
+    {
+      "block_id": 17,
+      "scene_id": 4,
+      "start": 18.74,
+      "end": 20.42,
+      "words": [
+        {
+          "word_id": 55,
+          "word": "ya",
+          "subtitle_text": "ya",
+          "start": 18.74,
+          "real_start": 18.74,
+          "end": 18.86,
+          "edited_start": 18.74,
+          "edited_end": 18.86,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "ya"
+        },
+        {
+          "word_id": 56,
+          "word": "tenés",
+          "subtitle_text": "tenés",
+          "start": 18.86,
+          "real_start": 18.86,
+          "end": 19.2,
+          "edited_start": 18.86,
+          "edited_end": 19.2,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "tenés"
+        },
+        {
+          "word_id": 57,
+          "word": "recordatorios",
+          "subtitle_text": "recordatorios",
+          "start": 19.2,
+          "real_start": 19.2,
+          "end": 19.86,
+          "edited_start": 19.2,
+          "edited_end": 19.86,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "recordatorios"
+        },
+        {
+          "word_id": 58,
+          "word": "automáticos",
+          "subtitle_text": "automáticos",
+          "start": 19.86,
+          "real_start": 19.86,
+          "end": 20.42,
+          "edited_start": 19.86,
+          "edited_end": 20.42,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "automáticos"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 55,
+            "text": "ya",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 18.74,
+            "end": 18.86
+          },
+          {
+            "word_id": 56,
+            "text": "tenés",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 18.86,
+            "end": 19.2
+          }
+        ],
+        [
+          {
+            "word_id": 57,
+            "text": "recordatorios",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 19.2,
+            "end": 19.86
+          },
+          {
+            "word_id": 58,
+            "text": "automáticos",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 19.86,
+            "end": 20.42
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 18.74
+    },
+    {
+      "block_id": 18,
+      "scene_id": 4,
+      "start": 20.42,
+      "end": 20.94,
+      "words": [
+        {
+          "word_id": 59,
+          "word": "por",
+          "subtitle_text": "por",
+          "start": 20.42,
+          "real_start": 20.42,
+          "end": 20.62,
+          "edited_start": 20.42,
+          "edited_end": 20.62,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "por"
+        },
+        {
+          "word_id": 60,
+          "word": "WhatsApp",
+          "subtitle_text": "WhatsApp,",
+          "start": 20.62,
+          "real_start": 20.62,
+          "end": 20.94,
+          "edited_start": 20.62,
+          "edited_end": 20.94,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "WhatsApp"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 59,
+            "text": "por",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 20.42,
+            "end": 20.62
+          },
+          {
+            "word_id": 60,
+            "text": "WhatsApp",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 20.62,
+            "end": 20.94
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 20.42
+    },
+    {
+      "block_id": 19,
+      "scene_id": 4,
+      "start": 21.32,
+      "end": 22.02,
+      "words": [
+        {
+          "word_id": 61,
+          "word": "sala",
+          "subtitle_text": "sala",
+          "start": 21.32,
+          "real_start": 21.32,
+          "end": 21.52,
+          "edited_start": 21.32,
+          "edited_end": 21.52,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "sala"
+        },
+        {
+          "word_id": 62,
+          "word": "de",
+          "subtitle_text": "de",
+          "start": 21.52,
+          "real_start": 21.52,
+          "end": 21.68,
+          "edited_start": 21.52,
+          "edited_end": 21.68,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "de"
+        },
+        {
+          "word_id": 63,
+          "word": "espera",
+          "subtitle_text": "espera",
+          "start": 21.68,
+          "real_start": 21.68,
+          "end": 21.88,
+          "edited_start": 21.68,
+          "edited_end": 21.88,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "espera"
+        },
+        {
+          "word_id": 64,
+          "word": "en",
+          "subtitle_text": "en",
+          "start": 21.88,
+          "real_start": 21.88,
+          "end": 22.02,
+          "edited_start": 21.88,
+          "edited_end": 22.02,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "en"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 61,
+            "text": "sala",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 21.32,
+            "end": 21.52
+          },
+          {
+            "word_id": 62,
+            "text": "de",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 21.52,
+            "end": 21.68
+          },
+          {
+            "word_id": 63,
+            "text": "espera",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 21.68,
+            "end": 21.88
+          }
+        ],
+        [
+          {
+            "word_id": 64,
+            "text": "en",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 21.88,
+            "end": 22.02
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 21.32
+    },
+    {
+      "block_id": 20,
+      "scene_id": 4,
+      "start": 22.02,
+      "end": 23.06,
+      "words": [
+        {
+          "word_id": 65,
+          "word": "vivo",
+          "subtitle_text": "vivo",
+          "start": 22.02,
+          "real_start": 22.02,
+          "end": 22.2,
+          "edited_start": 22.02,
+          "edited_end": 22.2,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "vivo"
+        },
+        {
+          "word_id": 66,
+          "word": "y",
+          "subtitle_text": "y",
+          "start": 22.2,
+          "real_start": 22.2,
+          "end": 22.58,
+          "edited_start": 22.2,
+          "edited_end": 22.58,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "y"
+        },
+        {
+          "word_id": 67,
+          "word": "todo",
+          "subtitle_text": "todo",
+          "start": 22.58,
+          "real_start": 22.58,
+          "end": 22.88,
+          "edited_start": 22.58,
+          "edited_end": 22.88,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "todo"
+        },
+        {
+          "word_id": 68,
+          "word": "en",
+          "subtitle_text": "en",
+          "start": 22.88,
+          "real_start": 22.88,
+          "end": 23.06,
+          "edited_start": 22.88,
+          "edited_end": 23.06,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "en"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 65,
+            "text": "vivo",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 22.02,
+            "end": 22.2
+          },
+          {
+            "word_id": 66,
+            "text": "y",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 22.2,
+            "end": 22.58
+          },
+          {
+            "word_id": 67,
+            "text": "todo",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 22.58,
+            "end": 22.88
+          },
+          {
+            "word_id": 68,
+            "text": "en",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 22.88,
+            "end": 23.06
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 22.02
+    },
+    {
+      "block_id": 21,
+      "scene_id": 4,
+      "start": 23.06,
+      "end": 23.4,
+      "words": [
+        {
+          "word_id": 69,
+          "word": "la",
+          "subtitle_text": "la",
+          "start": 23.06,
+          "real_start": 23.06,
+          "end": 23.16,
+          "edited_start": 23.06,
+          "edited_end": 23.16,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "la"
+        },
+        {
+          "word_id": 70,
+          "word": "nube",
+          "subtitle_text": "nube.",
+          "start": 23.16,
+          "real_start": 23.16,
+          "end": 23.4,
+          "edited_start": 23.16,
+          "edited_end": 23.4,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 4,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "nube"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 69,
+            "text": "la",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 23.06,
+            "end": 23.16
+          },
+          {
+            "word_id": 70,
+            "text": "nube",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 23.16,
+            "end": 23.4
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 23.06
+    },
+    {
+      "block_id": 22,
+      "scene_id": 5,
+      "start": 24.24,
+      "end": 25.3,
+      "words": [
+        {
+          "word_id": 71,
+          "word": "Además",
+          "subtitle_text": "Además,",
+          "start": 24.24,
+          "real_start": 24.24,
+          "end": 24.5,
+          "edited_start": 24.24,
+          "edited_end": 24.5,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "Además"
+        },
+        {
+          "word_id": 72,
+          "word": "sumás",
+          "subtitle_text": "sumás",
+          "start": 24.72,
+          "real_start": 24.72,
+          "end": 24.94,
+          "edited_start": 24.72,
+          "edited_end": 24.94,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "sumás"
+        },
+        {
+          "word_id": 73,
+          "word": "las",
+          "subtitle_text": "las",
+          "start": 24.94,
+          "real_start": 24.94,
+          "end": 25.08,
+          "edited_start": 24.94,
+          "edited_end": 25.08,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "las"
+        },
+        {
+          "word_id": 74,
+          "word": "4",
+          "subtitle_text": "4",
+          "start": 25.08,
+          "real_start": 25.08,
+          "end": 25.3,
+          "edited_start": 25.08,
+          "edited_end": 25.3,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "4"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 71,
+            "text": "Además",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 24.24,
+            "end": 24.5
+          },
+          {
+            "word_id": 72,
+            "text": "sumás",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 24.72,
+            "end": 24.94
+          },
+          {
+            "word_id": 73,
+            "text": "las",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 24.94,
+            "end": 25.08
+          }
+        ],
+        [
+          {
+            "word_id": 74,
+            "text": "4",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 25.08,
+            "end": 25.3
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 24.24
+    },
+    {
+      "block_id": 23,
+      "scene_id": 5,
+      "start": 25.3,
+      "end": 26.6,
+      "words": [
+        {
+          "word_id": 75,
+          "word": "agendas",
+          "subtitle_text": "agendas",
+          "start": 25.3,
+          "real_start": 25.3,
+          "end": 25.68,
+          "edited_start": 25.3,
+          "edited_end": 25.68,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "agendas"
+        },
+        {
+          "word_id": 76,
+          "word": "inteligentes",
+          "subtitle_text": "inteligentes",
+          "start": 25.68,
+          "real_start": 25.68,
+          "end": 26.34,
+          "edited_start": 25.68,
+          "edited_end": 26.34,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "inteligentes"
+        },
+        {
+          "word_id": 77,
+          "word": "y",
+          "subtitle_text": "y",
+          "start": 26.34,
+          "real_start": 26.34,
+          "end": 26.5,
+          "edited_start": 26.34,
+          "edited_end": 26.5,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "y"
+        },
+        {
+          "word_id": 78,
+          "word": "el",
+          "subtitle_text": "el",
+          "start": 26.5,
+          "real_start": 26.5,
+          "end": 26.6,
+          "edited_start": 26.5,
+          "edited_end": 26.6,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "el"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 75,
+            "text": "agendas",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 25.3,
+            "end": 25.68
+          },
+          {
+            "word_id": 76,
+            "text": "inteligentes",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 25.68,
+            "end": 26.34
+          }
+        ],
+        [
+          {
+            "word_id": 77,
+            "text": "y",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 26.34,
+            "end": 26.5
+          },
+          {
+            "word_id": 78,
+            "text": "el",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 26.5,
+            "end": 26.6
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 25.3
+    },
+    {
+      "block_id": 24,
+      "scene_id": 5,
+      "start": 26.6,
+      "end": 27.62,
+      "words": [
+        {
+          "word_id": 79,
+          "word": "cobro",
+          "subtitle_text": "cobro",
+          "start": 26.6,
+          "real_start": 26.6,
+          "end": 26.78,
+          "edited_start": 26.6,
+          "edited_end": 26.78,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "cobro"
+        },
+        {
+          "word_id": 80,
+          "word": "de",
+          "subtitle_text": "de",
+          "start": 26.78,
+          "real_start": 26.78,
+          "end": 26.96,
+          "edited_start": 26.78,
+          "edited_end": 26.96,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "de"
+        },
+        {
+          "word_id": 81,
+          "word": "seña",
+          "subtitle_text": "seña",
+          "start": 26.96,
+          "real_start": 26.96,
+          "end": 27.14,
+          "edited_start": 26.96,
+          "edited_end": 27.14,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "seña"
+        },
+        {
+          "word_id": 82,
+          "word": "automático",
+          "subtitle_text": "automático",
+          "start": 27.14,
+          "real_start": 27.14,
+          "end": 27.62,
+          "edited_start": 27.14,
+          "edited_end": 27.62,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "automático"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 79,
+            "text": "cobro",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 26.6,
+            "end": 26.78
+          },
+          {
+            "word_id": 80,
+            "text": "de",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 26.78,
+            "end": 26.96
+          },
+          {
+            "word_id": 81,
+            "text": "seña",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 26.96,
+            "end": 27.14
+          }
+        ],
+        [
+          {
+            "word_id": 82,
+            "text": "automático",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 27.14,
+            "end": 27.62
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 26.96
+    },
+    {
+      "block_id": 25,
+      "scene_id": 5,
+      "start": 27.62,
+      "end": 28.46,
+      "words": [
+        {
+          "word_id": 83,
+          "word": "con",
+          "subtitle_text": "con",
+          "start": 27.62,
+          "real_start": 27.62,
+          "end": 27.82,
+          "edited_start": 27.62,
+          "edited_end": 27.82,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "con"
+        },
+        {
+          "word_id": 84,
+          "word": "Mercado",
+          "subtitle_text": "Mercado",
+          "start": 27.82,
+          "real_start": 27.82,
+          "end": 28.14,
+          "edited_start": 27.82,
+          "edited_end": 28.14,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "Mercado"
+        },
+        {
+          "word_id": 85,
+          "word": "Pago",
+          "subtitle_text": "Pago*.",
+          "start": 28.14,
+          "real_start": 28.14,
+          "end": 28.46,
+          "edited_start": 28.14,
+          "edited_end": 28.46,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 5,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "Pago*"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 83,
+            "text": "con",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 27.62,
+            "end": 27.82
+          },
+          {
+            "word_id": 84,
+            "text": "Mercado",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 27.82,
+            "end": 28.14
+          }
+        ],
+        [
+          {
+            "word_id": 85,
+            "text": "Pago*",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 28.14,
+            "end": 28.46
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 27.62
+    },
+    {
+      "block_id": 26,
+      "scene_id": 6,
+      "start": 29.44,
+      "end": 31.24,
+      "words": [
+        {
+          "word_id": 86,
+          "word": "Escribinos",
+          "subtitle_text": "¡Escribinos",
+          "start": 29.44,
+          "real_start": 29.44,
+          "end": 30.2,
+          "edited_start": 29.44,
+          "edited_end": 30.2,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "¡Escribinos"
+        },
+        {
+          "word_id": 87,
+          "word": "hoy",
+          "subtitle_text": "hoy",
+          "start": 30.2,
+          "real_start": 30.2,
+          "end": 30.46,
+          "edited_start": 30.2,
+          "edited_end": 30.46,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "hoy"
+        },
+        {
+          "word_id": 88,
+          "word": "en",
+          "subtitle_text": "en",
+          "start": 30.46,
+          "real_start": 30.46,
+          "end": 30.56,
+          "edited_start": 30.46,
+          "edited_end": 30.56,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "en"
+        },
+        {
+          "word_id": 89,
+          "word": "MascotaMás",
+          "subtitle_text": "MascotaMás",
+          "start": 30.56,
+          "real_start": 30.56,
+          "end": 31.24,
+          "edited_start": 30.56,
+          "edited_end": 31.24,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "MascotaMás"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 86,
+            "text": "¡Escribinos",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 29.44,
+            "end": 30.2
+          },
+          {
+            "word_id": 87,
+            "text": "hoy",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 30.2,
+            "end": 30.46
+          }
+        ],
+        [
+          {
+            "word_id": 88,
+            "text": "en",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 30.46,
+            "end": 30.56
+          },
+          {
+            "word_id": 89,
+            "text": "MascotaMás",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 30.56,
+            "end": 31.24
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 29.44
+    },
+    {
+      "block_id": 27,
+      "scene_id": 6,
+      "start": 31.24,
+      "end": 32.46,
+      "words": [
+        {
+          "word_id": 90,
+          "word": "y",
+          "subtitle_text": "y",
+          "start": 31.24,
+          "real_start": 31.24,
+          "end": 31.48,
+          "edited_start": 31.24,
+          "edited_end": 31.48,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "y"
+        },
+        {
+          "word_id": 91,
+          "word": "te",
+          "subtitle_text": "te",
+          "start": 31.48,
+          "real_start": 31.48,
+          "end": 31.6,
+          "edited_start": 31.48,
+          "edited_end": 31.6,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "te"
+        },
+        {
+          "word_id": 92,
+          "word": "migramos",
+          "subtitle_text": "migramos",
+          "start": 31.6,
+          "real_start": 31.6,
+          "end": 31.98,
+          "edited_start": 31.6,
+          "edited_end": 31.98,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": true,
+          "display": "migramos"
+        },
+        {
+          "word_id": 93,
+          "word": "gratis",
+          "subtitle_text": "gratis",
+          "start": 31.98,
+          "real_start": 31.98,
+          "end": 32.46,
+          "edited_start": 31.98,
+          "edited_end": 32.46,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "gratis"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 90,
+            "text": "y",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 31.24,
+            "end": 31.48
+          },
+          {
+            "word_id": 91,
+            "text": "te",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 31.48,
+            "end": 31.6
+          },
+          {
+            "word_id": 92,
+            "text": "migramos",
+            "is_yellow": true,
+            "trigger_bounce": true,
+            "start": 31.6,
+            "end": 31.98
+          }
+        ],
+        [
+          {
+            "word_id": 93,
+            "text": "gratis",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 31.98,
+            "end": 32.46
+          }
+        ]
+      ],
+      "has_bounce": true,
+      "bounce_start": 31.6
+    },
+    {
+      "block_id": 28,
+      "scene_id": 6,
+      "start": 32.46,
+      "end": 32.86,
+      "words": [
+        {
+          "word_id": 94,
+          "word": "en",
+          "subtitle_text": "en",
+          "start": 32.46,
+          "real_start": 32.46,
+          "end": 32.58,
+          "edited_start": 32.46,
+          "edited_end": 32.58,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "en"
+        },
+        {
+          "word_id": 95,
+          "word": "el",
+          "subtitle_text": "el",
+          "start": 32.58,
+          "real_start": 32.58,
+          "end": 32.7,
+          "edited_start": 32.58,
+          "edited_end": 32.7,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": false,
+          "trigger_bounce": false,
+          "display": "el"
+        },
+        {
+          "word_id": 96,
+          "word": "día",
+          "subtitle_text": "día!",
+          "start": 32.7,
+          "real_start": 32.7,
+          "end": 32.86,
+          "edited_start": 32.7,
+          "edited_end": 32.86,
+          "rms_db": -16.0,
+          "keep": true,
+          "delete_reason": "",
+          "scene_id": 6,
+          "face_center": [
+            0.5,
+            0.22
+          ],
+          "is_yellow": true,
+          "trigger_bounce": false,
+          "display": "día!"
+        }
+      ],
+      "lines": [
+        [
+          {
+            "word_id": 94,
+            "text": "en",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 32.46,
+            "end": 32.58
+          },
+          {
+            "word_id": 95,
+            "text": "el",
+            "is_yellow": false,
+            "trigger_bounce": false,
+            "start": 32.58,
+            "end": 32.7
+          },
+          {
+            "word_id": 96,
+            "text": "día!",
+            "is_yellow": true,
+            "trigger_bounce": false,
+            "start": 32.7,
+            "end": 32.86
+          }
+        ]
+      ],
+      "has_bounce": false,
+      "bounce_start": 32.46
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": 1,
+      "sentence_id": 1,
+      "word_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "text": "¿Seguís atado a un sistema viejo o al Excel por miedo a perder los datos de tu veterinaria?",
+      "layout_mode": "full_face",
+      "is_hook": true,
+      "is_cta": false,
+      "top_title": {
+        "line1": "MIGRACIÓN GRATIS",
+        "line2": "EN EL DÍA 🚀",
+        "keyword": "GRATIS",
+        "emoji": "🚀"
+      },
+      "edited_start": 0.0,
+      "edited_end": 5.28,
+      "edited_duration": 5.28,
+      "graphic_config": {
+        "template": "none",
+        "device_mode": "none",
+        "pill": "MASCOTAMÁS · MIGRACIÓN GRATIS",
+        "headline_kicker": "✨ PASATE SIN MIEDO · GESTIÓN INTEGRAL PET",
+        "headline_main": "🚀 MIGRACIÓN 100% GRATIS Y EN EL DÍA",
+        "mascot_expression": "surprised"
+      }
+    },
+    {
+      "scene_id": 2,
+      "sentence_id": 2,
+      "word_ids": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "text": "¡Pasate hoy a MascotaMás! Te hacemos toda la migración gratis y en el día, sin frenar tu consultorio.",
+      "layout_mode": "split_graphic",
+      "is_hook": false,
+      "is_cta": false,
+      "top_title": null,
+      "edited_start": 5.28,
+      "edited_end": 11.52,
+      "edited_duration": 6.24,
+      "graphic_config": {
+        "template": "before_after",
+        "device_mode": "combo",
+        "real_photo_mockups": true,
+        "pill": "MIGRACIÓN EN EL DÍA · $0",
+        "headline_kicker": "⚡ SIN FRENAR TU CONSULTORIO · MACBOOK PRO & IPHONE",
+        "headline_main": "🐾 TE MIGRAMOS GRATIS Y EN EL DÍA",
+        "laptop_screenshot": "../assets/mascotamas_real_mockups/mac_dashboard_tutores_pacientes.png",
+        "phone_screenshot": "../assets/mascotamas_real_mockups/iphone_dashboard_tutores_pacientes.png",
+        "before_label": "SISTEMA VIEJO / EXCEL",
+        "before_value": "Miedo a Perder Datos",
+        "before_desc": "Planillas sueltas y tiempo perdido",
+        "after_label": "CON MASCOTAMÁS",
+        "after_value": "Migración en el Día",
+        "after_desc": "100% Gratis y sin frenar tu clínica",
+        "mascot_expression": "happy"
+      }
+    },
+    {
+      "scene_id": 3,
+      "sentence_id": 3,
+      "word_ids": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "text": "Pasamos tus clientes, pacientes, historias clínicas y vacunas para que no pierdas ni una sola ficha.",
+      "layout_mode": "split_graphic",
+      "is_hook": false,
+      "is_cta": false,
+      "top_title": null,
+      "edited_start": 11.52,
+      "edited_end": 17.76,
+      "edited_duration": 6.24,
+      "graphic_config": {
+        "template": "checklist",
+        "device_mode": "combo_left_phone",
+        "real_photo_mockups": true,
+        "pill": "HISTORIAS CLÍNICAS Y VACUNAS",
+        "headline_kicker": "📋 CERO PÉRDIDA DE INFORMACIÓN · LEGAJO DIGITAL",
+        "headline_main": "🩺 CLIENTES, PACIENTES, HISTORIAS Y VACUNAS",
+        "laptop_screenshot": "../assets/mascotamas_real_mockups/mac_historias_clinicas_legajo_pdf.png",
+        "phone_screenshot": "../assets/mascotamas_real_mockups/iphone_evolucion_y_vacunas.png",
+        "items": [
+          {
+            "text": "Clientes y Pacientes",
+            "tag": "100% MIGRADO"
+          },
+          {
+            "text": "Historias Clínicas PDF",
+            "tag": "SIN PERDER FICHAS"
+          },
+          {
+            "text": "Historial de Vacunas",
+            "tag": "COMPLETO"
+          }
+        ],
+        "mascot_expression": "happy"
+      }
+    },
+    {
+      "scene_id": 4,
+      "sentence_id": 4,
+      "word_ids": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "text": "En horas ya tenés recordatorios automáticos por WhatsApp, sala de espera en vivo y todo en la nube.",
+      "layout_mode": "split_graphic",
+      "is_hook": false,
+      "is_cta": false,
+      "top_title": null,
+      "edited_start": 17.76,
+      "edited_end": 24.0,
+      "edited_duration": 6.24,
+      "graphic_config": {
+        "template": "app_connection",
+        "device_mode": "combo",
+        "real_photo_mockups": true,
+        "pill": "WHATSAPP + SALA DE ESPERA",
+        "headline_kicker": "💬 AUTOMATIZACIÓN EN HORAS · WEB & APP",
+        "headline_main": "📲 RECORDATORIOS WHATSAPP Y SALA EN VIVO",
+        "laptop_screenshot": "../assets/mascotamas_real_mockups/mac_directorio_tutores_whatsapp.png",
+        "phone_screenshot": "../assets/mascotamas_real_mockups/real_iphone_05_sala_espera.png",
+        "icon_a": "🏥",
+        "app_a": "Sala en Vivo",
+        "sub_a": "Fichas en la Nube 24/7",
+        "status": "✓ EN EL DÍA",
+        "app_b": "WhatsApp",
+        "sub_b": "Recordatorios Automáticos",
+        "mascot_expression": "surprised"
+      }
+    },
+    {
+      "scene_id": 5,
+      "sentence_id": 5,
+      "word_ids": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "text": "Además, sumás las 4 agendas inteligentes y el cobro de seña automático con Mercado Pago*.",
+      "layout_mode": "split_graphic",
+      "is_hook": false,
+      "is_cta": false,
+      "top_title": null,
+      "edited_start": 24.0,
+      "edited_end": 29.28,
+      "edited_duration": 5.28,
+      "graphic_config": {
+        "template": "checklist",
+        "device_mode": "combo_left_phone",
+        "real_photo_mockups": true,
+        "pill": "4 AGENDAS + MERCADO PAGO*",
+        "headline_kicker": "💳 4 CALENDARIOS + COBRO AUTOMATIZADO ONLINE*",
+        "headline_main": "⚡ 4 AGENDAS Y SEÑA CON MERCADO PAGO*",
+        "laptop_screenshot": "../assets/mascotamas_real_mockups/real_macbook_cobro_sena_mp.png",
+        "phone_screenshot": "../assets/mascotamas_real_mockups/iphone_4_tipos_agenda.png",
+        "items": [
+          {
+            "text": "4 Agendas Inteligentes",
+            "tag": "SIN HUECOS"
+          },
+          {
+            "text": "Seña Mercado Pago*",
+            "tag": "TURNOS SEGUROS"
+          },
+          {
+            "text": "Cero Inasistencias",
+            "tag": "24/7 ONLINE"
+          }
+        ],
+        "legal_disclaimer": "* Aplican posibles comisiones de Mercado Pago según las condiciones y plazos de acreditación de tu cuenta.",
+        "mascot_expression": "happy"
+      }
+    },
+    {
+      "scene_id": 6,
+      "sentence_id": 6,
+      "word_ids": [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ],
+      "text": "¡Escribinos hoy en MascotaMás y te migramos gratis en el día!",
+      "layout_mode": "split_graphic",
+      "is_hook": false,
+      "is_cta": true,
+      "top_title": null,
+      "edited_start": 29.28,
+      "edited_end": 33.6,
+      "edited_duration": 4.32,
+      "graphic_config": {
+        "template": "chat_input",
+        "device_mode": "none",
+        "pill": "MASCOTAMAS.COM · MIGRÁ HOY",
+        "headline_kicker": "🐾 CAMBIATE HOY SIN FRENAR TU VETERINARIA",
+        "headline_main": "💻 ESCRIBINOS HOY EN MASCOTAMAS.COM",
+        "prompt_text": "MIGRACIÓN 100% GRATIS Y EN EL DÍA",
+        "reply_text": "Entrá en mascotamas.com o comentá MIGRAR",
+        "badge": "MASCOTAMAS.COM · MIGRACIÓN GRATIS",
+        "legal_disclaimer": "* Aplican posibles comisiones de Mercado Pago según las condiciones y plazos de acreditación de tu cuenta.",
+        "mascot_expression": "happy"
+      }
+    }
+  ],
+  "sfx_events": [
+    {
+      "type": "whoosh",
+      "time": 5.24,
+      "reason": "Beat-synced transition @ 5.28s (125 BPM Lyria 3 House)"
+    },
+    {
+      "type": "whoosh",
+      "time": 11.48,
+      "reason": "Beat-synced transition @ 11.52s (125 BPM Lyria 3 House)"
+    },
+    {
+      "type": "whoosh",
+      "time": 17.72,
+      "reason": "Beat-synced transition @ 17.76s (125 BPM Lyria 3 House)"
+    },
+    {
+      "type": "whoosh",
+      "time": 23.96,
+      "reason": "Beat-synced transition @ 24.00s (125 BPM Lyria 3 House)"
+    },
+    {
+      "type": "whoosh",
+      "time": 29.24,
+      "reason": "Beat-synced transition @ 29.28s (125 BPM Lyria 3 House)"
+    },
+    {
+      "type": "ding",
+      "time": 29.26,
+      "reason": "CTA final"
+    }
+  ]
+}

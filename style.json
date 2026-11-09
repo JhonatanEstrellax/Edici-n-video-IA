@@ -1,0 +1,440 @@
+{
+  "version": "2.1.0-mascotamas-fullscreen",
+  "brand": {
+    "name": "MascotaMás",
+    "domain": "mascotamas.com",
+    "app_url": "https://gestion.mascotamas.com",
+    "whatsapp": "5491157729059",
+    "tagline": "Tu Sistema de Gestión Web y PWA para Negocios Pet",
+    "assets_dir": "assets/mascotamas",
+    "logo_original": "assets/mascotamas/logo.png",
+    "peeking_creature_bottom_left": true
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "libx264",
+    "crf": 18,
+    "preset": "medium",
+    "pixel_format": "yuv420p",
+    "desktop_tutorial_mode": "1920x1080_fullscreen_dock"
+  },
+  "cuts": {
+    "keep_only_corrected_script_words": true,
+    "max_sentence_pause_sec": 0.15,
+    "word_padding_before_sec": 0.05,
+    "word_padding_after_sec": 0.05,
+    "audio_crossfade_ms": 10,
+    "min_segment_duration_sec": 0.12,
+    "discard_non_speech_under_sec": 0.6,
+    "voice_onset_trim_threshold_db": -38.0,
+    "retake_policy": {
+      "prefer_later_takes": true,
+      "require_looking_at_camera": true,
+      "prefer_higher_volume": true,
+      "reject_whispering": true
+    },
+    "intro_start_at_first_word": true,
+    "outro_tail_after_last_word_sec": 0.3
+  },
+  "audio": {
+    "target_lufs": -14.0,
+    "true_peak_dbtp": -1.0,
+    "denoise_and_enhance_voice": {
+      "enabled": true,
+      "highpass_hz": 90,
+      "afftdn_nr_db": 20,
+      "afftdn_nf_db": -28,
+      "presence_boost_db": 5.0,
+      "air_boost_db": 3.5,
+      "compressor_ratio": 3.2,
+      "compressor_makeup_db": 5.0
+    },
+    "voice_leveling": {
+      "enabled": true,
+      "max_boost_db": 6.0,
+      "max_cut_db": -3.0
+    },
+    "bgm": {
+      "enabled": true,
+      "folder": "bgm",
+      "relative_to_voice_db": -13.5,
+      "ducking_extra_db": -6.0,
+      "fade_in_sec": 0.3,
+      "fade_out_sec": 0.8
+    },
+    "sfx": {
+      "enabled": true,
+      "folder": "sfx",
+      "lead_time_sec": 0.05,
+      "min_interval_sec": 1.2,
+      "volume_db": -12.0,
+      "types": {
+        "scene_change": "whoosh.wav",
+        "emphasis_bounce": "pop.wav",
+        "cta_title": "ding.wav"
+      }
+    },
+    "voice_mode": "studio_clean_v2_and_argentine_neural_v3"
+  },
+  "camera": {
+    "full_screen_only": true,
+    "center_face": true,
+    "cut_zoom_start": 1.0,
+    "cut_zoom_end": 1.02,
+    "emphasis_zoom": 1.1,
+    "split_graphic_vert_anchor": 0.255,
+    "split_graphic_min_y1_ratio": 0.0
+  },
+  "subtitles": {
+    "font_family": "Google Fonts Poppins",
+    "font_path": "fonts/Poppins-Bold.ttf",
+    "font_bold_path": "fonts/Poppins-Bold.ttf",
+    "font_body_path": "fonts/OpenSans-Bold.ttf",
+    "font_size_px": 68,
+    "base_width": 1080,
+    "color_default": "#FFFFFF",
+    "color_highlight": "#AE4CFC",
+    "stroke_color": "#000000",
+    "stroke_width_px": 2,
+    "shadow": {
+      "enabled": true,
+      "color": "rgba(0, 0, 0, 0.85)",
+      "blur_px": 10,
+      "offset_x_px": 0,
+      "offset_y_px": 5
+    },
+    "max_chars_per_line": 16,
+    "words_per_block_min": 2,
+    "words_per_block_max": 4,
+    "sync_exact_with_voice": true,
+    "remove_punctuation": [
+      ",",
+      "."
+    ],
+    "preserve_punctuation": [
+      "?",
+      "!",
+      "¿",
+      "¡"
+    ],
+    "position_y_full_face": 1650,
+    "position_y_with_floating_card": 1650,
+    "highlight_rules": {
+      "highlight_numbers": true,
+      "emphatic_adverbs": [
+        "de verdad",
+        "sin falta",
+        "ahora mismo",
+        "todo",
+        "todos",
+        "toda",
+        "todas",
+        "nunca",
+        "siempre",
+        "jamás",
+        "literalmente",
+        "exactamente",
+        "realmente",
+        "totalmente",
+        "solo",
+        "únicamente",
+        "ilimitado",
+        "ilimitados",
+        "obvio"
+      ],
+      "benefit_words": [
+        "agenda",
+        "agendas",
+        "ahorra",
+        "autogestión",
+        "automática",
+        "automático",
+        "automáticos",
+        "calendario",
+        "calendarios",
+        "calidad",
+        "cancela",
+        "caros",
+        "clínica",
+        "comisión",
+        "confirma",
+        "cuatro",
+        "cupos",
+        "digital",
+        "disfrutas",
+        "disfrutás",
+        "efectivos",
+        "egreso",
+        "fechas",
+        "fácil",
+        "gratis",
+        "grilla",
+        "groomers",
+        "guardería",
+        "horario",
+        "huecos",
+        "ingreso",
+        "internación",
+        "listo",
+        "mascotamas",
+        "mascotamás",
+        "mascotas",
+        "mejor",
+        "mejora",
+        "mercado",
+        "muerto",
+        "nada",
+        "pago",
+        "paseando",
+        "paseos",
+        "peli",
+        "peluquería",
+        "plata",
+        "profesionales",
+        "recaudas",
+        "recaudás",
+        "recordatorios",
+        "recuerda",
+        "reprograma",
+        "rápido",
+        "sectores",
+        "servicios",
+        "seña",
+        "suscribite",
+        "suscríbete",
+        "todo",
+        "turnos",
+        "tutores",
+        "uno",
+        "veterinaria",
+        "veterinarios",
+        "vida",
+        "whatsapp"
+      ],
+      "cta_keywords": [
+        "mascotamas",
+        "demo",
+        "turnos",
+        "agenda",
+        "info",
+        "veterinaria",
+        "peluqueria"
+      ]
+    },
+    "bounce_emphasis": {
+      "enabled": true,
+      "cooldown_min_sec": 4.0,
+      "cooldown_max_sec": 6.0,
+      "scale_keyframes": [
+        1.0,
+        1.18,
+        1.0
+      ],
+      "duration_sec": 0.28,
+      "trigger_sfx": "pop",
+      "trigger_camera_zoom": 1.1
+    }
+  },
+  "top_title": {
+    "enabled": true,
+    "font_family": "Poppins ExtraBold",
+    "font_path": "fonts/Poppins-ExtraBold.ttf",
+    "font_size_px": 88,
+    "lines": 2,
+    "target_chars_per_line": 12,
+    "color_default": "#FFFFFF",
+    "color_keyword": "#AE4CFC",
+    "include_emotive_emoji": true,
+    "show_only_on_full_face": true,
+    "show_on_first_sentence": true,
+    "cta_template": "Sigue y comenta '{KEYWORD}'",
+    "position_y": 1330
+  },
+  "motion_graphics": {
+    "enabled": true,
+    "mandatory": true,
+    "mode": "fullscreen_transparent_overlay",
+    "target_coverage_min": 0.7,
+    "target_coverage_max": 0.85,
+    "first_element_visible_within_sec": 0.3,
+    "censor_unknown_commands_or_paths": true,
+    "theme": {
+      "name": "MascotaMás Clean Transparent Overlay (No Split, No Purple BG)",
+      "background": "transparent",
+      "card_background": "rgba(255, 255, 255, 0.94)",
+      "card_border": "2px solid rgba(255, 255, 255, 0.95)",
+      "accent": "#10B981",
+      "positive": "#10B981",
+      "negative": "#EF4444",
+      "text_primary": "#232323",
+      "text_secondary": "#4B5563"
+    },
+    "templates": [
+      "before_after",
+      "app_connection",
+      "counter",
+      "checklist",
+      "chat_input",
+      "comment_to_dm"
+    ],
+    "show_large_screenshots": true,
+    "mockup_container_background": "transparent",
+    "mix_modes": "spontaneous,phone_side,phones_duo,notebook_only,combo",
+    "commercial_headlines_poppins": true,
+    "realistic_iphone16_macbook_m4_mockups": true,
+    "real_photo_mockups_and_avatar_360": true
+  },
+  "feedback_history": [
+    {
+      "date": "2026-11-04",
+      "request": "Configura el estilo de la web de mascotamas.com, fonts, assets, estilo, todo",
+      "parameter": "brand=MascotaMás, fonts=Poppins+OpenSans, assets=76 archivos de mascotamas.com + criatura animada",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "No hacer división arriba/abajo, que no se tape la cara, quitar ruido de fondo y realzar la voz, sin fondo violeta, respetar 100% el logo original y animar criatura desde mascotamas.com en esquina inferior izquierda, orden 1-2-3",
+      "parameter": "camera.full_screen_only=true, motion_graphics.mode=fullscreen_transparent_overlay, audio.denoise_and_enhance_voice=true, brand.logo_original=logo.png, brand.peeking_creature_bottom_left=true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Nueva versión v2 añadiendo capturas de pantalla reales de mascotamas.com (laptop + iPhone mockups) en grande sin importar tapar la cara",
+      "parameter": "motion_graphics.show_large_screenshots = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Versión v3 sacando el fondo blanco del recuadro que tiene los mockups del sistema (mockups flotando directo sobre el video)",
+      "parameter": "motion_graphics.mockup_container_background = \"transparent\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Nueva versión v4 usando la tipografía de mascotamas.com (Poppins + Open Sans) y resaltando las palabras clave con el tono violeta de la web (#AE4CFC)",
+      "parameter": "subtitles.color_highlight = \"#AE4CFC\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Resaltar palabras clave de títulos y tarjetas con el tono violeta de mascotamas.com (#AE4CFC)",
+      "parameter": "top_title.color_keyword = \"#AE4CFC\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Nueva versión v5 usando 100% la fuente Poppins limpia en todo el video (subtítulos, títulos y tarjetas) sin trazo grueso que deforme la tipografía",
+      "parameter": "subtitles.font_family = \"Poppins Bold\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Subtítulos en Poppins-Bold.ttf con contorno fino de 2px y sombra suave para preservar la geometría pura de Poppins",
+      "parameter": "subtitles.font_path = \"fonts/Poppins-Bold.ttf\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Contorno de subtítulos reducido a 2px para no deformar la fuente Poppins",
+      "parameter": "subtitles.stroke_width_px = 2",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Utilizar la fuente oficial Poppins directamente desde Google Fonts (renderizada en Chromium sin trazo negro) para subtítulos, títulos y tarjetas",
+      "parameter": "subtitles.font_family = \"Google Fonts Poppins\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Versión creativa MIX alternando planos espontáneos de quien habla, celulares individuales/dúo y notebooks manteniendo línea de tiempo y guion",
+      "parameter": "motion_graphics.mix_modes = \"spontaneous,phone_side,phones_duo,notebook_only,combo\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-04",
+      "request": "Usar 100% Google Fonts Poppins en todo, nuevo guion comercial re-secuenciado, titulos comerciales por escena, multicamara, transiciones y muestra completa de celulares y notebooks (Propuesta Comercial Creativa v1)",
+      "parameter": "motion_graphics.commercial_headlines_poppins = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Edición de videos instructivos en formato horizontal de pantalla completa de computadora (1920x1080 16:9) con barra inferior dedicada y tarjetas guía laterales",
+      "parameter": "video.desktop_tutorial_mode = \"1920x1080_fullscreen_dock\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Mejorar locucion (resaltar voz, cancelar ruido y eco sin ruidos molestos, quitar alargamientos y espacios vacios, coherencia del speak) y generar version con voz argentina premium sincronizada palabra por palabra, versionando cada resultado (v1, v2, v3)",
+      "parameter": "audio.voice_mode = \"studio_clean_v2_and_argentine_neural_v3\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Ajustar storytelling de instructivos 100% fiel a lo visual y relato inicial sin inventar nada, y generar spots de 30s por cada funcionalidad principal con voz argentina premium sincronizada palabra por palabra",
+      "parameter": "tutorial_desktop.storytelling_and_spots_30s = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Corregir parte inicial de la URL en barra de direccion https://mmas-staging-1a3e2.web.app/ por https://gestion.mascotamas.com/ conservando la ruta nativa en todos los videos",
+      "parameter": "tutorial_desktop.production_url_prefix = \"https://gestion.mascotamas.com/\"",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Dejar siempre una copia versionada en las carpetas locales del proyecto /brutos y /editados",
+      "parameter": "tutorial_desktop.local_folders_brutos_editados = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Reel publicitario 9:16 hiperrealista de lo nuevo de MascotaMas (4 tipos de calendario + seña automatica Mercado Pago con aclaracion de posible comision + mockups realistas iPhone 16 Pro Max y MacBook Pro M4 + subtitulos Poppins + voz real argentina con lip-sync IA)",
+      "parameter": "motion_graphics.realistic_iphone16_macbook_m4_mockups = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Comisión de Mercado Pago abajo con * en cursiva tipo TyC sin decirla en voz, locución Gemini TTS acento argentino a ritmo natural, música House Lyria 3 sincronizada con transiciones y cero aspecto IA",
+      "parameter": "audio.bgm.relative_to_voice_db = -13.5",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "La voz un 10, pero perdimos a la veterinaria que nos vendía el sistema: añadirla sincronizando los labios con la voz argentina y la música House con las transiciones y muestras de pantalla",
+      "parameter": "camera.split_graphic_vert_anchor = 0.255",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Quitar lo de paseos, veterinaria más sexy con mejor boca y mejor sincro de boca, y generar las dos versiones de videos en distintos archivos (v4A y v4B)",
+      "parameter": "camera.split_graphic_min_y1_ratio = 0.086",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-08",
+      "request": "Torso 38D y silueta reloj de arena mas llamativa con plano medio estabilizado en v5A y v5B",
+      "parameter": "camera.cut_zoom_end = 1.02",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-09",
+      "request": "Storytelling argentino de Migracion Gratis en el Dia a MascotaMas con nuevo Avatar 360 (Gemini 3 Pro), lip-sync natural sin cortar frases, maquetas reales de MacBook Pro y iPhone 16 Pro Max desde Manual De Usuario Vete y Marca, skill de assets y versionado en GitHub y Drive",
+      "parameter": "motion_graphics.real_photo_mockups_and_avatar_360 = true",
+      "status": "Activo"
+    },
+    {
+      "date": "2026-11-09",
+      "request": "Encuadre nativo de cuerpo completo en Avatar 360 Gemini 3 Pro sin recorte superior en split_graphic",
+      "parameter": "camera.split_graphic_min_y1_ratio = 0.0",
+      "status": "Activo"
+    }
+  ],
+  "tutorial_desktop": {
+    "storytelling_and_spots_30s": true,
+    "production_url_prefix": "https://gestion.mascotamas.com/",
+    "local_folders_brutos_editados": true
+  }
+}

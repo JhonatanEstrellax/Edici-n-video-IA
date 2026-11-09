@@ -1,0 +1,21 @@
+# Entornos virtuales, binarios pesados y secretos
+.venv/
+node_modules/
+bin/
+models/
+__pycache__/
+*.pyc
+.env
+
+# Archivos de video y audio pesados (respaldados en Google Drive EDITADOS)
+*.mp4
+*.wav
+*.mp3
+instructivos_work/
+reels_work/*
+!reels_work/*.py
+!reels_work/verification_grid_v6_migracion.jpg
+!reels_work/verification_grid_v5A.jpg
+!reels_work/verification_grid_v5B.jpg
+!reels_work/edit_plan_v6_migracion.json
+!reels_work/guion_corregido.json
