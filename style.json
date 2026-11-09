@@ -430,11 +430,20 @@
       "request": "Encuadre nativo de cuerpo completo en Avatar 360 Gemini 3 Pro sin recorte superior en split_graphic",
       "parameter": "camera.split_graphic_min_y1_ratio = 0.0",
       "status": "Activo"
+    },
+    {
+      "date": "2026-11-09",
+      "request": "Prohibido congelar cuerpo o pelo con face_mask/Frame 0: movimiento 100% natural y continuo de cuerpo, pelo, hombros y manos entre todas las tomas (Multi-Turn 36s continuo + PCHIP monotónico sin pausas estáticas) y versión en Veterinaria de Palermo caminando de la camilla con perro al mostrador de entrada",
+      "parameter": "avatar.continuous_full_body_motion_no_face_mask = true",
+      "status": "Activo"
     }
   ],
   "tutorial_desktop": {
     "storytelling_and_spots_30s": true,
     "production_url_prefix": "https://gestion.mascotamas.com/",
     "local_folders_brutos_editados": true
+  },
+  "avatar": {
+    "continuous_full_body_motion_no_face_mask": true
   }
 }
