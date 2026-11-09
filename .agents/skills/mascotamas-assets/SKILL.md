@@ -78,6 +78,11 @@ Ubicación: `c:\IA\Edicion de videos\assets\avatar_veterinaria_360\`
 | **10** | `avatar_360_10_cuclillas_frente.png` | **En Cuclillas de Frente** | A la altura de un cachorro en el piso mirando a cámara. |
 | **11** | `avatar_360_11_cuclillas_espalda.png` | **En Cuclillas de Espalda** | Revisando una mascota en el piso con giro de rostro sobre el hombro. |
 
+### Videos Maestros 360° + 11 Poses en Movimiento Natural (`gemini-omni-1.2-flash`, `1080p` `9:16`):
+- **`Avatar_Veterinaria_360_y_11_Poses_Movimiento_Natural_IA_Omni_1080p.mp4` (`39.0s`, `1080x1920 @ 30fps`):** Giro 360° continuo completo + las **11 poses completas sin omitir ningún movimiento** (`Poses 1 a 11`) con transiciones lentas, pausadas y naturales. (Google Drive ID: `1gnt6q1SJV_3fzdXRc-b0YfjD86yhhX6T`).
+- **`Avatar_Veterinaria_360_y_11_Poses_Completo_IA_Omni_30s_1080p.mp4` (`30.0s`, `1080x1920 @ 24fps`):** Salida directa encadenada de `30.0s` de `gemini-omni-1.2-flash` con el giro 360° y todas las poses dinámicas. (Google Drive ID: `1uID9S9QYF4NQXW_WKCZNg0YMkyx81lt9`).
+- **`Avatar_Veterinaria_360_IA_Omni_Giro_Continuo_15s_1080p.mp4` (`15.0s`, `1080x1920 @ 24fps`):** Giro 360° continuo puro de cuerpo entero. (Google Drive ID: `11F2RKARB1I4ifZG4CtCR_NQaFG3eMF4_`).
+
 ### Reglas de Locución, Lip-Sync y Ritmo Natural con el Avatar:
 1. **Voz Oficial Argentina (`es-AR`):** Usar `gemini-3.8-flash-tts` con `voice_7j8i5jtcagb0` (femenina rioplatense cálida, natural y enérgica).
 2. **Cero Frases Cortadas (`sin que se corten frases, pausado natural`):**
