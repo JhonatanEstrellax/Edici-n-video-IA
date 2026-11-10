@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
 r"""
-Ensambla y masteriza el Spot Publicitario Profesional de MascotaMás en DUETO:
-protagonizado juntos por el Avatar Hombre VIP Argentino (`modo_veterinario_palermo`) y el
-Avatar Mujer Veterinaria 360° (`avatar_veterinaria_360`), usando la MacBook Pro 16" Space Black
-y el iPhone 16 Pro Max Titanium con pantallas reales de `gestion.mascotamas.com`,
-diálogo cruzado en español rioplatense (es-AR) con lip-sync natural, música House (125 BPM)
-sincronizada a los cortes y transiciones, y subtítulos Poppins ExtraBold.
-
-Genera dos versiones en `1080x1920 @ 30fps`:
-1. `Spot Publicitario - MascotaMas Dueto Avatar Hombre y Mujer VIP (MacBook Pro e iPhone Reales + Musica House).mp4`
-   (Producción comercial completa con HUD interactivo al 82.8% de cobertura, cursor animado, subtítulos Poppins ExtraBold y SFX).
-2. `Spot Publicitario - MascotaMas Dueto Avatar Hombre y Mujer VIP (Version Clean Cinema 1080p).mp4`
-   (Edición cinematográfica pura 1080p con ambos avatares, voz rioplatense en dueto y música House sincronizada al beat).
+Ensambla y masteriza el Spot Publicitario Profesional de MascotaMás en DUETO (Versión Definitiva):
+- Tracking óptico bidireccional cuadro por cuadro (`process_clip_with_real_screens`) proyectando las
+  pantallas 100% reales de `gestion.mascotamas.com` dentro del bisel exacto de la MacBook Pro 16" y del
+  iPhone 16 Pro Max (con el frente de la pantalla del iPhone y su Dynamic Island SIEMPRE hacia cámara).
+- Audio de voz 100% limpio (`highpass=f=120,afftdn=nf=-25` + Speech Gate cosenoidal por palabra)
+  mezclado con UNA ÚNICA pista de música House a 125 BPM sin ninguna superposición ni "zapateo".
 """
 import os
 import sys
@@ -26,6 +20,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
+
+sys.path.insert(0, r"c:\IA\Edicion de videos\reels_work")
+from verify_video_bezel_tracking import process_clip_with_real_screens
 
 BASE_DIR = pathlib.Path(r"c:\IA\Edicion de videos")
 WORK_DIR = BASE_DIR / "reels_work"
@@ -43,179 +40,184 @@ HOUSE_BGM_WAV = str(WORK_DIR / "v7_lyria_house_arriba.wav")
 W, H, FPS = 1080, 1920, 30
 BEAT_SEC = 0.48  # 125 BPM exacto (60 / 125 = 0.48s)
 
-# Duraciones clavadas al grid de 125 BPM (0.48s por beat):
-# Clip 1: 0.00s -> 9.12s (19 beats, dur=9.12s) | src: 0.00s -> 9.12s (speech ends 8.46s, margin=0.66s)
-# Clip 2: 9.12s -> 18.72s (20 beats, dur=9.60s) | src: 0.00s -> 9.60s (speech ends 9.12s, margin=0.48s)
-# Clip 3: 18.72s -> 27.84s (19 beats, dur=9.12s) | src: 0.00s -> 9.12s (speech ends 8.38s, margin=0.74s)
-TOTAL_DUR = 27.84
+# Duración total clavada a 57 beats @ 125 BPM = 27.36s (821 frames @ 30fps):
+# - clip1:  0.00s ->  9.12s (19 beats, dur=9.12s) | src: 0.00s -> 9.12s
+# - clip2:  9.12s -> 18.72s (20 beats, dur=9.60s) | src: 0.00s -> 9.60s
+# - clip3a: 18.72s -> 21.12s ( 5 beats, dur=2.40s) | src: 0.00s -> 2.40s ("¡Pasate hoy mismo a MascotaMás!")
+# - clip3b: 21.12s -> 27.36s (13 beats, dur=6.24s) | src: 3.44s -> 9.68s ("Te hacemos la migración en el día y 100% gratis. ¡Escribinos ahora!")
+TOTAL_DUR = 27.36
 TOTAL_FRAMES = int(round(TOTAL_DUR * FPS))
 
 SEGMENTS_SPEC = [
     {
         "name": "clip1",
+        "mode": "clip1",
         "path": str(SPOT_DIR / "spot_dueto_clip1_espalda_a_giro_10s.mp4"),
         "src_start": 0.00,
         "src_end": 9.12,
         "dst_start": 0.00,
         "dst_end": 9.12,
+        "zoom": 1.0,
     },
     {
         "name": "clip2",
+        "mode": "clip2",
         "path": str(SPOT_DIR / "spot_dueto_clip2_dueto_funciones_macbook_10s.mp4"),
         "src_start": 0.00,
         "src_end": 9.60,
         "dst_start": 9.12,
         "dst_end": 18.72,
+        "zoom": 1.0,
     },
     {
-        "name": "clip3",
+        "name": "clip3a",
+        "mode": "clip3",
         "path": str(SPOT_DIR / "spot_dueto_clip3_frente_dueto_cta_10s.mp4"),
         "src_start": 0.00,
-        "src_end": 9.12,
+        "src_end": 2.40,
         "dst_start": 18.72,
-        "dst_end": 27.84,
+        "dst_end": 21.12,
+        "zoom": 1.0,
+    },
+    {
+        "name": "clip3b",
+        "mode": "clip3",
+        "path": str(SPOT_DIR / "spot_dueto_clip3_frente_dueto_cta_10s.mp4"),
+        "src_start": 3.44,
+        "src_end": 9.68,
+        "dst_start": 21.12,
+        "dst_end": 27.36,
+        "zoom": 1.035,  # Punch-in sutil al beat cuando toma la palabra el Dr. Palermo
     },
 ]
 
-# Bloques de Subtítulos sincronizados a los timestamps reales de Whisper (con speaker tag)
+# Bloques de Subtítulos sincronizados a los timestamps reales de Whisper
 SUBTITLE_BLOCKS = [
-    # Clip 1 (offset 0.00s): Hombre (1.70s-5.16s) + Mujer (5.66s-8.46s)
+    # Clip 1 (offset 0.00s): Hombre (1.48s-5.10s) + Mujer (5.88s-8.88s)
     {
-        "start": 1.64,
-        "end": 3.55,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "start": 1.44,
+        "end": 3.40,
         "words": [
-            {"text": "¿SEGUÍS", "start": 1.70, "end": 2.42, "hl": False},
-            {"text": "MANEJANDO", "start": 2.42, "end": 2.82, "hl": True},
-            {"text": "TU", "start": 2.82, "end": 2.94, "hl": False},
-            {"text": "VETERINARIA", "start": 2.94, "end": 3.52, "hl": True},
+            {"text": "¿SEGUÍS", "start": 1.48, "end": 2.28, "hl": False},
+            {"text": "MANEJANDO", "start": 2.28, "end": 2.68, "hl": True},
+            {"text": "TU", "start": 2.68, "end": 2.82, "hl": False},
+            {"text": "VETERINARIA", "start": 2.82, "end": 3.38, "hl": True},
         ],
     },
     {
-        "start": 3.55,
-        "end": 5.32,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "start": 3.40,
+        "end": 5.24,
         "words": [
-            {"text": "CON", "start": 3.55, "end": 3.66, "hl": False},
-            {"text": "CUADERNOS", "start": 3.66, "end": 4.18, "hl": True},
-            {"text": "Y", "start": 4.18, "end": 4.28, "hl": False},
-            {"text": "MENSAJES", "start": 4.28, "end": 4.64, "hl": True},
-            {"text": "SUELTOS?", "start": 4.64, "end": 5.26, "hl": True},
+            {"text": "CON", "start": 3.40, "end": 3.56, "hl": False},
+            {"text": "CUADERNOS", "start": 3.56, "end": 4.10, "hl": True},
+            {"text": "Y", "start": 4.10, "end": 4.22, "hl": False},
+            {"text": "MENSAJES", "start": 4.22, "end": 4.58, "hl": True},
+            {"text": "SUELTOS?", "start": 4.58, "end": 5.18, "hl": True},
         ],
     },
     {
-        "start": 5.60,
-        "end": 8.66,
-        "speaker": "DRA. PALERMO (MUJER VIP)",
+        "start": 5.82,
+        "end": 8.96,
         "words": [
-            {"text": "MIRÁ", "start": 5.66, "end": 5.96, "hl": True},
-            {"text": "CÓMO", "start": 5.96, "end": 6.08, "hl": False},
-            {"text": "ORGANIZAMOS", "start": 6.08, "end": 6.64, "hl": True},
-            {"text": "TODO", "start": 6.64, "end": 6.94, "hl": False},
-            {"text": "NUESTRO", "start": 6.94, "end": 7.20, "hl": False},
-            {"text": "EQUIPO", "start": 7.20, "end": 7.58, "hl": True},
-            {"text": "EN", "start": 7.58, "end": 7.84, "hl": False},
-            {"text": "MASCOTAMÁS.", "start": 7.84, "end": 8.60, "hl": True},
+            {"text": "MIRÁ", "start": 5.88, "end": 6.28, "hl": True},
+            {"text": "CÓMO", "start": 6.28, "end": 6.42, "hl": False},
+            {"text": "ORGANIZAMOS", "start": 6.42, "end": 6.96, "hl": True},
+            {"text": "TODO", "start": 6.96, "end": 7.28, "hl": False},
+            {"text": "NUESTRO", "start": 7.28, "end": 7.54, "hl": False},
+            {"text": "EQUIPO", "start": 7.54, "end": 7.94, "hl": True},
+            {"text": "EN", "start": 7.94, "end": 8.24, "hl": False},
+            {"text": "MASCOTAMÁS.", "start": 8.24, "end": 8.92, "hl": True},
         ],
     },
-    # Clip 2 (offset +9.12s): Hombre (9.12s-13.82s) + Mujer (14.04s-18.24s)
+    # Clip 2 (offset +9.12s): Hombre (9.12s-13.74s) + Mujer (14.14s-18.60s)
     {
         "start": 9.12,
-        "end": 12.24,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "end": 12.26,
         "words": [
-            {"text": "TENÉS", "start": 9.12, "end": 9.82, "hl": False},
-            {"text": "AGENDAS", "start": 9.82, "end": 10.14, "hl": True},
-            {"text": "PARA", "start": 10.14, "end": 10.38, "hl": False},
-            {"text": "CLÍNICA,", "start": 10.38, "end": 10.90, "hl": True},
-            {"text": "PELUQUERÍA", "start": 11.02, "end": 11.52, "hl": True},
-            {"text": "Y", "start": 11.52, "end": 11.60, "hl": False},
-            {"text": "GUARDERÍA", "start": 11.60, "end": 12.18, "hl": True},
+            {"text": "TENÉS", "start": 9.12, "end": 9.72, "hl": False},
+            {"text": "AGENDAS", "start": 9.72, "end": 10.06, "hl": True},
+            {"text": "PARA", "start": 10.06, "end": 10.30, "hl": False},
+            {"text": "CLÍNICA,", "start": 10.30, "end": 10.84, "hl": True},
+            {"text": "PELUQUERÍA", "start": 11.10, "end": 11.58, "hl": True},
+            {"text": "Y", "start": 11.58, "end": 11.74, "hl": False},
+            {"text": "GUARDERÍA", "start": 11.74, "end": 12.24, "hl": True},
         ],
     },
     {
-        "start": 12.24,
-        "end": 13.94,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "start": 12.26,
+        "end": 13.86,
         "words": [
-            {"text": "CON", "start": 12.40, "end": 12.62, "hl": False},
-            {"text": "SEÑA", "start": 12.62, "end": 12.98, "hl": True},
-            {"text": "POR", "start": 12.98, "end": 13.12, "hl": False},
-            {"text": "MERCADO", "start": 13.12, "end": 13.52, "hl": True},
-            {"text": "PAGO.", "start": 13.52, "end": 13.90, "hl": True},
+            {"text": "CON", "start": 12.26, "end": 12.48, "hl": False},
+            {"text": "SEÑA", "start": 12.48, "end": 12.84, "hl": True},
+            {"text": "POR", "start": 12.84, "end": 13.00, "hl": False},
+            {"text": "MERCADO", "start": 13.00, "end": 13.34, "hl": True},
+            {"text": "PAGO.", "start": 13.34, "end": 13.80, "hl": True},
         ],
     },
     {
-        "start": 14.00,
-        "end": 15.72,
-        "speaker": "DRA. PALERMO (MUJER VIP)",
+        "start": 14.10,
+        "end": 15.92,
         "words": [
-            {"text": "HISTORIAS", "start": 14.04, "end": 14.64, "hl": True},
-            {"text": "CLÍNICAS", "start": 14.64, "end": 15.00, "hl": True},
-            {"text": "EN", "start": 15.00, "end": 15.20, "hl": False},
-            {"text": "PDF,", "start": 15.20, "end": 15.66, "hl": True},
+            {"text": "HISTORIAS", "start": 14.14, "end": 14.76, "hl": True},
+            {"text": "CLÍNICAS", "start": 14.76, "end": 15.18, "hl": True},
+            {"text": "EN", "start": 15.18, "end": 15.40, "hl": False},
+            {"text": "PDF,", "start": 15.40, "end": 15.88, "hl": True},
         ],
     },
     {
-        "start": 15.96,
-        "end": 18.46,
-        "speaker": "DRA. PALERMO (MUJER VIP)",
+        "start": 16.22,
+        "end": 18.66,
         "words": [
-            {"text": "SALA", "start": 16.06, "end": 16.18, "hl": True},
-            {"text": "DE", "start": 16.18, "end": 16.34, "hl": False},
-            {"text": "ESPERA", "start": 16.34, "end": 16.56, "hl": True},
-            {"text": "EN", "start": 16.56, "end": 16.70, "hl": False},
-            {"text": "VIVO", "start": 16.70, "end": 16.94, "hl": True},
-            {"text": "Y", "start": 16.94, "end": 17.22, "hl": False},
-            {"text": "RECORDATORIOS", "start": 17.22, "end": 17.84, "hl": True},
-            {"text": "POR", "start": 17.84, "end": 17.98, "hl": False},
-            {"text": "WHATSAPP.", "start": 17.98, "end": 18.40, "hl": True},
+            {"text": "SALA", "start": 16.28, "end": 16.46, "hl": True},
+            {"text": "DE", "start": 16.46, "end": 16.62, "hl": False},
+            {"text": "ESPERA", "start": 16.62, "end": 16.86, "hl": True},
+            {"text": "EN", "start": 16.86, "end": 17.02, "hl": False},
+            {"text": "VIVO", "start": 17.02, "end": 17.26, "hl": True},
+            {"text": "Y", "start": 17.26, "end": 17.52, "hl": False},
+            {"text": "RECORDATORIOS", "start": 17.52, "end": 18.18, "hl": True},
+            {"text": "POR", "start": 18.18, "end": 18.32, "hl": False},
+            {"text": "WHATSAPP.", "start": 18.32, "end": 18.64, "hl": True},
         ],
     },
-    # Clip 3 (offset +18.72s): Mujer (18.72s-21.70s) + Hombre (22.50s-27.10s)
+    # Clip 3a (offset +18.72s, src 0.00..2.40s) + Clip 3b (offset +21.12s - 3.44s = +17.68s)
     {
         "start": 18.72,
-        "end": 21.85,
-        "speaker": "DRA. PALERMO (MUJER VIP)",
+        "end": 21.12,
         "words": [
-            {"text": "¡PASATE", "start": 18.72, "end": 19.86, "hl": True},
-            {"text": "HOY", "start": 19.86, "end": 20.20, "hl": True},
-            {"text": "MISMO", "start": 20.20, "end": 20.58, "hl": False},
-            {"text": "A", "start": 20.58, "end": 20.92, "hl": False},
-            {"text": "MASCOTAMÁS!", "start": 20.92, "end": 21.80, "hl": True},
+            {"text": "¡PASATE", "start": 18.72, "end": 19.82, "hl": True},
+            {"text": "HOY", "start": 19.82, "end": 20.16, "hl": True},
+            {"text": "MISMO", "start": 20.16, "end": 20.48, "hl": False},
+            {"text": "A", "start": 20.48, "end": 20.62, "hl": False},
+            {"text": "MASCOTAMÁS!", "start": 20.62, "end": 21.12, "hl": True},
         ],
     },
     {
-        "start": 22.44,
-        "end": 24.62,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "start": 21.12,
+        "end": 23.76,
         "words": [
-            {"text": "TE", "start": 22.50, "end": 22.84, "hl": False},
-            {"text": "HACEMOS", "start": 22.84, "end": 23.08, "hl": False},
-            {"text": "LA", "start": 23.08, "end": 23.26, "hl": False},
-            {"text": "MIGRACIÓN", "start": 23.26, "end": 23.74, "hl": True},
-            {"text": "EN", "start": 23.74, "end": 24.02, "hl": False},
-            {"text": "EL", "start": 24.02, "end": 24.16, "hl": False},
-            {"text": "DÍA", "start": 24.16, "end": 24.56, "hl": True},
+            {"text": "TE", "start": 21.16, "end": 22.04, "hl": False},
+            {"text": "HACEMOS", "start": 22.04, "end": 22.28, "hl": False},
+            {"text": "LA", "start": 22.28, "end": 22.46, "hl": False},
+            {"text": "MIGRACIÓN", "start": 22.46, "end": 22.94, "hl": True},
+            {"text": "EN", "start": 22.94, "end": 23.28, "hl": False},
+            {"text": "EL", "start": 23.28, "end": 23.42, "hl": False},
+            {"text": "DÍA", "start": 23.42, "end": 23.72, "hl": True},
         ],
     },
     {
-        "start": 24.62,
-        "end": 27.32,
-        "speaker": "DR. PALERMO (HOMBRE VIP)",
+        "start": 23.76,
+        "end": 26.90,
         "words": [
-            {"text": "Y", "start": 24.68, "end": 24.98, "hl": False},
-            {"text": "100%", "start": 24.98, "end": 25.28, "hl": True},
-            {"text": "GRATIS.", "start": 25.28, "end": 26.14, "hl": True},
-            {"text": "¡ESCRIBINOS", "start": 26.32, "end": 26.80, "hl": True},
-            {"text": "AHORA!", "start": 26.80, "end": 27.26, "hl": True},
+            {"text": "Y", "start": 23.80, "end": 24.06, "hl": False},
+            {"text": "100%", "start": 24.06, "end": 24.88, "hl": True},
+            {"text": "GRATIS.", "start": 24.88, "end": 25.72, "hl": True},
+            {"text": "¡ESCRIBINOS", "start": 25.72, "end": 26.42, "hl": True},
+            {"text": "AHORA!", "start": 26.42, "end": 26.86, "hl": True},
         ],
     },
 ]
 
-# 6 Tarjetas Reales de MascotaMás sincronizadas al beat de 125 BPM (0.48s)
-# Cubren 0.48s -> 23.52s = 23.04s / 27.84s = 82.8% del video (dentro del rango 70%-85% de GEMINI.md)
-# y dejan libre los últimos 4.32s para lucir la MacBook Pro 16" física en el mostrador en el cierre.
+# 6 Tarjetas HUD (0.48s -> 22.56s = 22.08s / 27.36s = 80.7% de cobertura, entre 70% y 85%)
 HUD_CARDS_SPEC = [
     {
         "start": 0.48,
@@ -226,7 +228,7 @@ HUD_CARDS_SPEC = [
         "side_img": "00_Secuencias_Paso_a_Paso__01_Recorrido_Completo_App_10_Pantallas__01_Paso_1_Escritorio_y_Resumen_Operativo_del_Dia__02_iPhone_16_Pro_Max_Real.png",
         "click_t": 2.40,
         "click_rel": (0.35, 0.45),
-        "beam_target": (518, 725),
+        "beam_target": (540, 960),
     },
     {
         "start": 4.80,
@@ -237,7 +239,7 @@ HUD_CARDS_SPEC = [
         "side_img": "07_Tutores_y_Clientes__01_Pantalla_Completa__01_Directorio_de_Tutores_y_Contacto_WhatsApp__02_iPhone_16_Pro_Max_Real.png",
         "click_t": 6.72,
         "click_rel": (0.88, 0.32),
-        "beam_target": (518, 725),
+        "beam_target": (540, 960),
     },
     {
         "start": 9.12,
@@ -248,7 +250,7 @@ HUD_CARDS_SPEC = [
         "side_img": "00_Secuencias_Paso_a_Paso__03_Flujo_Turnos_Agenda_y_Sena__04_Paso_4_Reserva_Temporal_15_min_y_Envio_de_Link_MercadoPago__02_iPhone_16_Pro_Max_Real.png",
         "click_t": 11.52,
         "click_rel": (0.42, 0.36),
-        "beam_target": (518, 725),
+        "beam_target": (540, 960),
     },
     {
         "start": 13.92,
@@ -256,10 +258,12 @@ HUD_CARDS_SPEC = [
         "badge": "2) HISTORIAS CLÍNICAS DIGITALES Y LEGAJO EN PDF",
         "sub": "Evolución, Vacunas, Curva de Peso y Descarga PDF en 1 clic",
         "main_img": "06_Historias_Clinicas_y_Fichas__03_Legajo_Clinico_Digital_y_PDF__01_Modal_Historial_Completo_y_Descarga_PDF__04_Raw_Desktop.png",
-        "side_img": "06_Historias_Clinicas_y_Fichas__03_Legajo_Clinico_Digital_y_PDF__01_Modal_Historial_Completo_y_Descarga_PDF__02_iPhone_16_Pro_Max_Real.png",
+        "side_img": "06_Historias_Clinicas_y_Fichas__03_Legajo_Clinico_Digital_y_PDF__02_iPhone_16_Pro_Max_Real.png"
+        if (MANUAL_DIR / "06_Historias_Clinicas_y_Fichas__03_Legajo_Clinico_Digital_y_PDF__02_iPhone_16_Pro_Max_Real.png").exists()
+        else "06_Historias_Clinicas_y_Fichas__03_Legajo_Clinico_Digital_y_PDF__01_Modal_Historial_Completo_y_Descarga_PDF__02_iPhone_16_Pro_Max_Real.png",
         "click_t": 14.88,
         "click_rel": (0.69, 0.11),
-        "beam_target": (518, 725),
+        "beam_target": (540, 960),
     },
     {
         "start": 15.84,
@@ -270,37 +274,38 @@ HUD_CARDS_SPEC = [
         "side_img": "00_Secuencias_Paso_a_Paso__01_Recorrido_Completo_App_10_Pantallas__07_Paso_7_Recordatorios_Automaticos_de_Salud_y_Vacunas__02_iPhone_16_Pro_Max_Real.png",
         "click_t": 17.28,
         "click_rel": (0.85, 0.54),
-        "beam_target": (518, 725),
+        "beam_target": (540, 960),
     },
     {
         "start": 18.72,
-        "end": 23.52,
+        "end": 22.56,
         "badge": "PASATE HOY A MASCOTAMÁS · MIGRACIÓN GRATIS EN EL DÍA",
         "sub": "Migramos tus pacientes, clientes y turnos hoy mismo 100% sin cargo",
         "main_img": "00_Secuencias_Paso_a_Paso__01_Recorrido_Completo_App_10_Pantallas__01_Paso_1_Escritorio_y_Resumen_Operativo_del_Dia__03_Combo_MacBook_e_iPhone.png",
         "side_img": "00_Secuencias_Paso_a_Paso__03_Flujo_Turnos_Agenda_y_Sena__04_Paso_4_Reserva_Temporal_15_min_y_Envio_de_Link_MercadoPago__01_MacBook_Pro_Real.png",
-        "click_t": 21.12,
+        "click_t": 20.64,
         "click_rel": (0.52, 0.54),
         "beam_target": (545, 980),
     },
 ]
 
+_CLIP_PROCESSED_CACHE = {}
+
+
+def get_processed_clip_frames(path_str: str, mode: str):
+    key = (path_str, mode)
+    if key not in _CLIP_PROCESSED_CACHE:
+        print(f"  -> Aplicando tracking óptico de pantallas reales en {pathlib.Path(path_str).name} ({mode})...")
+        _CLIP_PROCESSED_CACHE[key] = process_clip_with_real_screens(path_str, mode)
+    return _CLIP_PROCESSED_CACHE[key]
+
 
 def load_segment_frames(spec):
-    cap = cv2.VideoCapture(spec["path"])
-    src_fps = cap.get(cv2.CAP_PROP_FPS) or 24.0
-    raw_frames = []
-    while True:
-        ok, frm = cap.read()
-        if not ok:
-            break
-        if frm.shape[1] != W or frm.shape[0] != H:
-            frm = cv2.resize(frm, (W, H), interpolation=cv2.INTER_LANCZOS4)
-        raw_frames.append(frm)
-    cap.release()
-
+    raw_frames = get_processed_clip_frames(spec["path"], spec["mode"])
+    src_fps = 24.0
     dur = spec["dst_end"] - spec["dst_start"]
     n_out = int(round(dur * FPS))
+    zoom = spec.get("zoom", 1.0)
     out_frames = []
     for i in range(n_out):
         t_rel = i / float(FPS)
@@ -310,10 +315,16 @@ def load_segment_frames(spec):
         idx1 = min(len(raw_frames) - 1, idx0 + 1)
         frac = f_float - idx0
         if frac < 0.01 or idx0 == idx1:
-            out_frames.append(raw_frames[idx0].copy())
+            frm = raw_frames[idx0].copy()
         else:
-            blended = cv2.addWeighted(raw_frames[idx0], 1.0 - frac, raw_frames[idx1], frac, 0.0)
-            out_frames.append(blended)
+            frm = cv2.addWeighted(raw_frames[idx0], 1.0 - frac, raw_frames[idx1], frac, 0.0)
+        if zoom > 1.001:
+            zw, zh = int(W * zoom), int(H * zoom)
+            z_frm = cv2.resize(frm, (zw, zh), interpolation=cv2.INTER_LANCZOS4)
+            x0 = (zw - W) // 2
+            y0 = int((zh - H) * 0.35)
+            frm = z_frm[y0 : y0 + H, x0 : x0 + W].copy()
+        out_frames.append(frm)
     return out_frames
 
 
@@ -500,15 +511,18 @@ def build_synced_audio_track(out_mixed_wav: str, include_sfx: bool = True):
     voice_track = np.zeros((n_samples, 2), dtype=np.float32)
 
     for seg in SEGMENTS_SPEC:
-        tmp_seg_wav = WORK_DIR / f"tmp_dueto_seg_{seg['name']}_48k.wav"
+        tmp_seg_wav = WORK_DIR / f"tmp_dueto_clean_seg_{seg['name']}_48k.wav"
         seg_dur = seg["src_end"] - seg["src_start"]
+        # Filtramos frecuencias bajas (<125 Hz) y ruido de fondo para eliminar 100% cualquier golpe o rumble del clip
         subprocess.run(
             [
                 FFMPEG_EXE, "-y",
                 "-ss", f"{seg['src_start']:.3f}",
                 "-t", f"{seg_dur:.3f}",
                 "-i", seg["path"],
-                "-vn", "-ac", "2", "-ar", str(sr),
+                "-vn",
+                "-af", "highpass=f=125,lowpass=f=7800,afftdn=nf=-25",
+                "-ac", "2", "-ar", str(sr),
                 str(tmp_seg_wav),
             ],
             check=True,
@@ -521,9 +535,9 @@ def build_synced_audio_track(out_mixed_wav: str, include_sfx: bool = True):
 
         peak = np.max(np.abs(seg_audio))
         if peak > 0.01:
-            seg_audio = seg_audio * (0.88 / peak)
+            seg_audio = seg_audio * (0.90 / peak)
 
-        fade_len = int(0.035 * sr)
+        fade_len = int(0.04 * sr)
         if len(seg_audio) > 2 * fade_len:
             fade_in = np.linspace(0.0, 1.0, fade_len, dtype=np.float32)[:, None]
             fade_out = np.linspace(1.0, 0.0, fade_len, dtype=np.float32)[:, None]
@@ -534,6 +548,20 @@ def build_synced_audio_track(out_mixed_wav: str, include_sfx: bool = True):
         dst_i1 = min(n_samples, dst_i0 + len(seg_audio))
         voice_track[dst_i0:dst_i1] = seg_audio[: dst_i1 - dst_i0]
 
+    # Gate de voz exacto basado en los bloques de subtítulos (0.0 absoluto en silencios entre frases)
+    speech_gate = np.zeros(n_samples, dtype=np.float32)
+    for blk in SUBTITLE_BLOCKS:
+        i0 = max(0, int((blk["start"] - 0.08) * sr))
+        i1 = min(n_samples, int((blk["end"] + 0.12) * sr))
+        speech_gate[i0:i1] = 1.0
+    # Suavizar bordes del gate con ventana cosenoidal de 65ms
+    gate_win = int(0.065 * sr)
+    kernel = np.hanning(gate_win)
+    kernel /= np.sum(kernel)
+    speech_gate = np.convolve(speech_gate, kernel, mode="same").astype(np.float32)
+    voice_track *= speech_gate[:, None]
+
+    # Música House 125 BPM: usar una sola tirada continua (o loop exacto de 32 beats = 15.36s para no desfasar nunca el beat)
     bgm_audio, bgm_sr = sf.read(HOUSE_BGM_WAV, dtype="float32")
     if bgm_sr != sr:
         tmp_bgm_48k = WORK_DIR / "tmp_house_48k.wav"
@@ -546,52 +574,40 @@ def build_synced_audio_track(out_mixed_wav: str, include_sfx: bool = True):
         bgm_audio, _ = sf.read(str(tmp_bgm_48k), dtype="float32")
     if bgm_audio.ndim == 1:
         bgm_audio = np.column_stack([bgm_audio, bgm_audio])
-    if len(bgm_audio) < n_samples:
-        reps = int(math.ceil(n_samples / float(len(bgm_audio))))
-        bgm_audio = np.tile(bgm_audio, (reps, 1))
-    bgm_audio = bgm_audio[:n_samples]
+
+    # Cortar el loop de BGM exactamente a un múltiplo de 16 beats (16 * 0.48s = 7.68s) para que el compás 4/4 jamás zapatee
+    loop_samples = int(round(32 * BEAT_SEC * sr))  # 15.36s exactos (8 compases 4/4 @ 125 BPM)
+    if len(bgm_audio) >= loop_samples:
+        base_loop = bgm_audio[:loop_samples]
+    else:
+        half_loop = int(round(16 * BEAT_SEC * sr))
+        base_loop = bgm_audio[: min(len(bgm_audio), half_loop)]
+    reps = int(math.ceil(n_samples / float(len(base_loop)))) + 1
+    bgm_audio = np.tile(base_loop, (reps, 1))[:n_samples]
 
     bgm_peak = np.max(np.abs(bgm_audio))
     if bgm_peak > 0.01:
-        bgm_audio = bgm_audio * (0.75 / bgm_peak)
+        bgm_audio = bgm_audio * (0.72 / bgm_peak)
 
-    def moving_avg_fast(arr_1d, w_len):
-        pad_l = w_len // 2
-        pad_r = w_len - 1 - pad_l
-        padded = np.pad(arr_1d.astype(np.float64), (pad_l, pad_r), mode="edge")
-        cs = np.cumsum(np.insert(padded, 0, 0.0))
-        return ((cs[w_len:] - cs[:-w_len]) / float(w_len)).astype(np.float32)
+    # Sidechain suave sobre la música cuando hay voz
+    smooth_win = int(0.32 * sr)
+    k_sc = np.ones(smooth_win, dtype=np.float32) / float(smooth_win)
+    speaking_smooth = np.convolve(speech_gate, k_sc, mode="same").astype(np.float32)
+    bgm_gain = (0.42 * (1.0 - speaking_smooth) + 0.17 * speaking_smooth)[:, None]
 
-    win = int(0.08 * sr)
-    voice_env = np.sqrt(np.maximum(0.0, moving_avg_fast(np.mean(voice_track ** 2, axis=1), win)))
-    speaking_mask = (voice_env > 0.025).astype(np.float32)
-    smooth_win = int(0.28 * sr)
-    speaking_smooth = moving_avg_fast(speaking_mask, smooth_win)
-    bgm_gain = (0.44 * (1.0 - speaking_smooth) + 0.19 * speaking_smooth)[:, None]
-
-    mixed = voice_track * 1.05 + bgm_audio * bgm_gain
+    mixed = voice_track * 1.08 + bgm_audio * bgm_gain
 
     if include_sfx:
-        for tr_t in [0.48, 4.80, 9.12, 13.92, 15.84, 18.72]:
-            i0 = max(0, int((tr_t - 0.08) * sr))
-            dur_s = int(0.22 * sr)
-            if i0 + dur_s < n_samples:
-                t_arr = np.linspace(0.0, 1.0, dur_s, dtype=np.float32)
-                env = np.maximum(0.0, np.sin(t_arr * math.pi)) ** 1.5
-                sweep = np.sin(2.0 * math.pi * (160.0 + 420.0 * t_arr) * t_arr) * env * 0.14
-                mixed[i0 : i0 + dur_s, 0] += sweep
-                mixed[i0 : i0 + dur_s, 1] += sweep
-
-        for clk_t in [2.40, 6.72, 11.52, 14.88, 17.28, 21.12]:
+        for clk_t in [2.40, 6.72, 11.52, 14.88, 17.28, 20.64]:
             i0 = max(0, int(clk_t * sr))
-            dur_s = int(0.045 * sr)
+            dur_s = int(0.04 * sr)
             if i0 + dur_s < n_samples:
                 t_arr = np.linspace(0.0, 1.0, dur_s, dtype=np.float32)
-                pop = np.sin(2.0 * math.pi * 1150.0 * t_arr) * np.exp(-t_arr * 8.0) * 0.18
+                pop = np.sin(2.0 * math.pi * 1150.0 * t_arr) * np.exp(-t_arr * 8.0) * 0.14
                 mixed[i0 : i0 + dur_s, 0] += pop
                 mixed[i0 : i0 + dur_s, 1] += pop
 
-    fout = int(0.45 * sr)
+    fout = int(0.48 * sr)
     mixed[-fout:] *= np.linspace(1.0, 0.0, fout, dtype=np.float32)[:, None]
 
     mixed = np.clip(mixed, -0.98, 0.98)
@@ -610,11 +626,11 @@ def build_synced_audio_track(out_mixed_wav: str, include_sfx: bool = True):
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    print(f"  -> [AUDIO MASTERIZADO -14 LUFS + HOUSE 125 BPM] {out_mixed_wav}")
+    print(f"  -> [AUDIO MASTERIZADO -14 LUFS SIN SUPERPOSICIÓN MUSICAL] {out_mixed_wav}")
 
 
 def main():
-    print("=== ENSAMBLANDO SPOT PUBLICITARIO MASCOTAMÁS EN DUETO (AVATAR HOMBRE VIP + AVATAR MUJER) 1080x1920 @ 30fps ===")
+    print("=== ENSAMBLANDO SPOT PUBLICITARIO MASCOTAMÁS EN DUETO (PANTALLAS REALES TRACKED + AUDIO PURO) ===")
 
     all_base_frames = []
     for seg in SEGMENTS_SPEC:
@@ -659,16 +675,16 @@ def main():
 
         for tr_t in transition_times:
             dt = abs(t_sec - tr_t)
-            if dt < 0.18:
-                u = 1.0 - (dt / 0.18)
-                zoom = 1.0 + 0.035 * u
+            if dt < 0.16:
+                u = 1.0 - (dt / 0.16)
+                zoom = 1.0 + 0.03 * u
                 zw, zh = int(W * zoom), int(H * zoom)
                 z_frm = cv2.resize(base_bgr, (zw, zh), interpolation=cv2.INTER_LINEAR)
                 x0 = (zw - W) // 2
                 y0 = (zh - H) // 2
                 base_bgr = z_frm[y0 : y0 + H, x0 : x0 + W]
                 glow = np.full_like(base_bgr, (245, 220, 255))
-                base_bgr = cv2.addWeighted(base_bgr, 1.0 - 0.18 * u, glow, 0.18 * u, 0.0)
+                base_bgr = cv2.addWeighted(base_bgr, 1.0 - 0.15 * u, glow, 0.15 * u, 0.0)
 
         vw_clean.write(base_bgr)
 
@@ -721,29 +737,34 @@ def main():
 
     shutil.copy2(final_full_editados, BASE_DIR / "reel_final.mp4")
 
-    cap_v = cv2.VideoCapture(str(final_full_editados))
-    sample_times = [0.8, 2.8, 5.0, 7.2, 9.8, 11.8, 13.4, 15.0, 17.2, 19.6, 22.8, 26.2]
-    thumbs = []
-    for st in sample_times:
-        f_idx = min(TOTAL_FRAMES - 1, max(0, int(st * FPS)))
-        cap_v.set(cv2.CAP_PROP_POS_FRAMES, f_idx)
-        ok, frm = cap_v.read()
-        if ok:
-            th = cv2.resize(frm, (360, 640), interpolation=cv2.INTER_AREA)
-            cv2.rectangle(th, (10, 595), (145, 632), (15, 23, 42), -1)
-            cv2.putText(th, f"t={st:.1f}s", (18, 621), cv2.FONT_HERSHEY_SIMPLEX, 0.68, (92, 199, 242), 2)
-            thumbs.append(th)
-    cap_v.release()
-
-    row1 = np.hstack(thumbs[:4])
-    row2 = np.hstack(thumbs[4:8])
-    row3 = np.hstack(thumbs[8:12])
-    grid = np.vstack([row1, row2, row3])
-    grid_path = WORK_DIR / "verification_grid_spot_dueto_hombre_mujer_mascotamas.jpg"
-    cv2.imwrite(str(grid_path), grid, [int(cv2.IMWRITE_JPEG_QUALITY), 92])
-    shutil.copy2(grid_path, BASE_DIR / "verification_grid.jpg")
-    shutil.copy2(grid_path, ARTIFACTS_DIR / grid_path.name)
-    print(f"  -> [VERIFICATION GRID GUARDADA] {grid_path}")
+    # Generar grillas de verificación tanto para Master Comercial como para Clean Cinema 1080p
+    sample_times = [0.8, 2.8, 5.0, 7.2, 9.8, 11.8, 13.4, 15.0, 17.2, 19.6, 22.8, 26.0]
+    for mp4_check, grid_name in [
+        (final_full_editados, "verification_grid_spot_dueto_hombre_mujer_mascotamas.jpg"),
+        (final_clean_editados, "verification_grid_spot_dueto_clean_cinema_1080p.jpg"),
+    ]:
+        cap_v = cv2.VideoCapture(str(mp4_check))
+        thumbs = []
+        for st in sample_times:
+            f_idx = min(TOTAL_FRAMES - 1, max(0, int(st * FPS)))
+            cap_v.set(cv2.CAP_PROP_POS_FRAMES, f_idx)
+            ok, frm = cap_v.read()
+            if ok:
+                th = cv2.resize(frm, (360, 640), interpolation=cv2.INTER_AREA)
+                cv2.rectangle(th, (10, 595), (145, 632), (15, 23, 42), -1)
+                cv2.putText(th, f"t={st:.1f}s", (18, 621), cv2.FONT_HERSHEY_SIMPLEX, 0.68, (92, 199, 242), 2)
+                thumbs.append(th)
+        cap_v.release()
+        row1 = np.hstack(thumbs[:4])
+        row2 = np.hstack(thumbs[4:8])
+        row3 = np.hstack(thumbs[8:12])
+        grid = np.vstack([row1, row2, row3])
+        grid_path = WORK_DIR / grid_name
+        cv2.imwrite(str(grid_path), grid, [int(cv2.IMWRITE_JPEG_QUALITY), 92])
+        shutil.copy2(grid_path, ARTIFACTS_DIR / grid_path.name)
+        if "mascotamas.jpg" in grid_name:
+            shutil.copy2(grid_path, BASE_DIR / "verification_grid.jpg")
+        print(f"  -> [VERIFICATION GRID GUARDADA] {grid_path}")
 
 
 if __name__ == "__main__":

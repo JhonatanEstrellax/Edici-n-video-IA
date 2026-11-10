@@ -455,6 +455,12 @@
       "request": "Dos nuevas versiones creativas (v8A 100% Sin Avatar mostrando pantallas reales del sistema desde celular y MacBook Pro; y v8B con el Avatar mostrando las pantallas reales desde su celular y MacBook Pro) utilizando las mejores capturas y maquetas reales de Manual De Usuario Vete y Marca + Musica House 125 BPM sincronizada",
       "parameter": "motion_graphics.creative_system_modes = \"v8A_full_screen_no_avatar_1040x616 + v8B_avatar_showing_macbook_and_iphone_real_mockups\"",
       "status": "Activo"
+    },
+    {
+      "date": "2026-11-10",
+      "request": "Mostrar siempre la pantalla frontal del iPhone (nunca del lado de las camaras), ajustar pantallas reales de MascotaMas exactamente al bisel de todos los dispositivos y eliminar musica interna de los clips IA para que no zapatee ni se superponga con la pista House",
+      "parameter": "devices.strict_real_screens_and_clean_voice_only = true",
+      "status": "Activo"
     }
   ],
   "tutorial_desktop": {
@@ -465,5 +471,8 @@
   "avatar": {
     "continuous_full_body_motion_no_face_mask": true,
     "exact_word_by_word_pchip_anchors_no_drift": true
+  },
+  "devices": {
+    "strict_real_screens_and_clean_voice_only": true
   }
 }
