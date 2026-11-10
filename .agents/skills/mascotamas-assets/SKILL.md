@@ -87,8 +87,32 @@ Ubicación: `c:\IA\Edicion de videos\assets\avatar_veterinaria_360\`
 
 ## 4. Catálogo del Pack Avatar Veterinario Hombre VIP Argentino (`Gemini 3 Pro Image`)
 
-Ubicación: `c:\IA\Edicion de videos\assets\avatar_veterinario_hombre_vip\`
+Ubicación raíz: `c:\IA\Edicion de videos\assets\avatar_veterinario_hombre_vip\`
+Copia en Kit de Marca: `c:\DEV\Mascotamas\Manual_de_Marca_y_Kit_MascotaMas_2026\05_Pack_Avatar_Hombre_VIP_11_Poses_3_Variantes\`
 
+### A. Grids Maestros `4×3` de las 11 Poses + Hero VIP en las 3 Variantes (`2200×3208` px)
+| Variante | Grid Maestro PNG / JPG | Subcarpeta con las 12 Poses (`01` a `12`) | Google Drive ID |
+| :--- | :--- | :--- | :--- |
+| **1. Modo Groomer Canino (`GROOMING VIP`)** | `grid_11_poses_hombre_vip_modo_groomer.png` | `modo_groomer/` (`modo_groomer_01_lateral_izq_90.png` .. `12_hero_brazos_cruzados.png`) | `1irNcT6o_FTZnJx4qqJSqIaQC3qr4s7I2` |
+| **2. Modo Casual Urbano (`Buenos Aires VIP`)** | `grid_11_poses_hombre_vip_modo_casual_urbano.png` | `modo_casual_urbano/` (`modo_casual_urbano_01_lateral_izq_90.png` .. `12_hero_brazos_cruzados.png`) | `19AJDP58b_lU2aymZ356X3EjFwGc7q3E1` |
+| **3. Modo Veterinario (`VETERINARIA PALERMO`)** | `grid_11_poses_hombre_vip_modo_veterinario_palermo.png` | `modo_veterinario_palermo/` (`modo_veterinario_palermo_01_lateral_izq_90.png` .. `12_hero_brazos_cruzados.png`) | `1VXntpF9js3Je9VSz6KeWvsYWRAXpIn21` |
+| **Mega-Grid Comparativo (3 Variantes, 36 Tomas)** | `grid_comparativo_3_variantes_11_poses_hombre_vip.jpg` | Raíz `assets/avatar_veterinario_hombre_vip/` | `1lcMGik_TdinYKq4bVO5fLY457pfUvspN` |
+
+### B. Las 12 Poses por Variante (`01` a `12`, disponibles en `modo_groomer/`, `modo_casual_urbano/` y `modo_veterinario_palermo/`)
+1. `*_01_lateral_izq_90.png` — **1. Lateral Izquierdo (`-90°`)**
+2. `*_02_tres_cuartos_izq_45.png` — **2. 3/4 Izquierda (`-45°`)**
+3. `*_03_frente_0.png` — **3. De Frente (`0°`)**
+4. `*_04_tres_cuartos_der_45.png` — **4. 3/4 Derecha (`+45°`)**
+5. `*_05_lateral_der_90.png` — **5. Lateral Derecho (`+90°`)**
+6. `*_06_espalda_180.png` — **6. De Espalda (`180°`)**
+7. `*_07_espalda_puntitas.png` — **7. De Espalda en Puntitas de Pie**
+8. `*_08_espalda_agachado.png` — **8. De Espalda Agachado**
+9. `*_09_frente_agachado.png` — **9. De Frente Agachado**
+10. `*_10_cuclillas_frente.png` — **10. En Cuclillas de Frente**
+11. `*_11_cuclillas_espalda.png` — **11. En Cuclillas de Espalda (Giro sobre Hombro)**
+12. `*_12_hero_brazos_cruzados.png` — **12. Hero VIP (Brazos Cruzados)**
+
+### C. Toma Base Inicial (`MascotaMás VIP`)
 | # | Archivo | Ángulo / Pose | Uso Recomendado en Videos (`gemini-omni-1.2-flash`) |
 | :-: | :--- | :--- | :--- |
 | **Hero** | `avatar_vete_hombre_vip_hero_brazos_cruzados.png` | **VIP Hero Brazos Cruzados (`0°`)** | Portada de autoridad / Fundador / Director Médico VIP mirando a cámara. |
