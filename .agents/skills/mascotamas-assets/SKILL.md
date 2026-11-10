@@ -83,6 +83,23 @@ Ubicación: `c:\IA\Edicion de videos\assets\avatar_veterinaria_360\`
 - **`Avatar_Veterinaria_360_y_11_Poses_Completo_IA_Omni_30s_1080p.mp4` (`30.0s`, `1080x1920 @ 24fps`):** Salida directa encadenada de `30.0s` de `gemini-omni-1.2-flash` con el giro 360° y todas las poses dinámicas. (Google Drive ID: `1uID9S9QYF4NQXW_WKCZNg0YMkyx81lt9`).
 - **`Avatar_Veterinaria_360_IA_Omni_Giro_Continuo_15s_1080p.mp4` (`15.0s`, `1080x1920 @ 24fps`):** Giro 360° continuo puro de cuerpo entero. (Google Drive ID: `11F2RKARB1I4ifZG4CtCR_NQaFG3eMF4_`).
 
+---
+
+## 4. Catálogo del Pack Avatar Veterinario Hombre VIP Argentino (`Gemini 3 Pro Image`)
+
+Ubicación: `c:\IA\Edicion de videos\assets\avatar_veterinario_hombre_vip\`
+
+| # | Archivo | Ángulo / Pose | Uso Recomendado en Videos (`gemini-omni-1.2-flash`) |
+| :-: | :--- | :--- | :--- |
+| **Hero** | `avatar_vete_hombre_vip_hero_brazos_cruzados.png` | **VIP Hero Brazos Cruzados (`0°`)** | Portada de autoridad / Fundador / Director Médico VIP mirando a cámara. |
+| **1** | `avatar_vete_hombre_vip_1_frente.png` | **De Frente Cuerpo Entero (`0°`)** | Hook inicial, cuerpo entero y cierre con llamada a la acción. |
+| **2** | `avatar_vete_hombre_vip_2_tres_cuartos_izq.png` | **3/4 Izquierda (`-45°`)** | Escenas con maquetas a la derecha/abajo. |
+| **3** | `avatar_vete_hombre_vip_3_lateral_izq.png` | **Lateral Izquierdo (`-90°`)** | Tomas de perfil izquierdo en clínica. |
+| **4** | `avatar_vete_hombre_vip_4_tres_cuartos_der.png` | **3/4 Derecha (`+45°`)** | Alternancia multicámara dinámica. |
+| **5** | `avatar_vete_hombre_vip_5_lateral_der.png` | **Lateral Derecho (`+90°`)** | Tomas de perfil derecho / interacción con sistema. |
+| **6** | `avatar_vete_hombre_vip_6_espalda.png` | **De Espalda (`180°`)** | Tomas de seguimiento entrando al consultorio. |
+| **Master** | `avatar_vete_hombre_vip_master_sheet.png` | **Lámina Comparativa Antes vs. Después + 360°** | Hoja de referencia visual completa. |
+
 ### Reglas de Locución, Lip-Sync y Ritmo Natural con el Avatar:
 1. **Voz Oficial Argentina (`es-AR`):** Usar `gemini-3.8-flash-tts` con `voice_7j8i5jtcagb0` (femenina rioplatense cálida, natural y enérgica).
 2. **Cero Frases Cortadas (`sin que se corten frases, pausado natural`):**
