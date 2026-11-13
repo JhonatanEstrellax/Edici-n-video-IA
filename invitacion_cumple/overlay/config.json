@@ -1,0 +1,90 @@
+{
+ "bpm": 112,
+ "beat0": 0.02,
+ "s1": {
+  "beatIn": 1,
+  "n1": 108,
+  "x": 539,
+  "y": 668,
+  "scale": 1.0,
+  "hop": 9,
+  "squash": 0.018,
+  "sway": 2.4,
+  "wave": 17
+ },
+ "s2": {
+  "tIn": 4.57,
+  "n1": 256,
+  "dx": 326,
+  "dy": -300,
+  "dir": [
+   0.721,
+   -0.693
+  ],
+  "scale": 0.93,
+  "rot": 26,
+  "rotIn": -10,
+  "hide": 300,
+  "breathe": 7,
+  "sway": 2.2,
+  "wave": 17,
+  "rim": 12.2,
+  "duck": 6.45,
+  "duckAmt": 150
+ },
+ "s3": {
+  "beatIn": 21,
+  "n1": 398,
+  "x": 880,
+  "y": 1272,
+  "scale": 1.0,
+  "hop": 24,
+  "squash": 0.04,
+  "tilt": 6,
+  "shift": 5,
+  "filter": "drop-shadow(0px 8px 8px rgba(120, 40, 150, 0.28))"
+ },
+ "s4": {
+  "beatIn": 27,
+  "n1": 543,
+  "x": 172,
+  "y": 1236,
+  "scale": 1.0,
+  "rot": -5,
+  "rock": 3.2,
+  "float": 10
+ },
+ "s5": {
+  "beatIn": 36,
+  "n1": 687,
+  "x": 215,
+  "scale": 1.0,
+  "hop": 18,
+  "squash": 0.04,
+  "tilt": 6,
+  "shift": 4,
+  "dropFrom": 640,
+  "filter": "drop-shadow(0px 8px 10px rgba(30, 10, 80, 0.38))",
+  "yOff": 1.5
+ },
+ "s6": {
+  "tIn": 23.86,
+  "n1": 824,
+  "dx": 326,
+  "dy": -300,
+  "dir": [
+   0.721,
+   -0.693
+  ],
+  "scale": 0.93,
+  "rot": 24,
+  "rotIn": -10,
+  "hide": 300,
+  "breathe": 7,
+  "sway": 2.2,
+  "wave": 17,
+  "rim": 10.8,
+  "duck": 26.0,
+  "duckAmt": 150
+ }
+}

@@ -21,3 +21,4 @@ Repositorio oficial del motor de edición y producción audiovisual con IA para 
 - `templates/motion_graphics.html` — Motor HTML5 + GSAP de tarjetas flotantes, titulares comerciales en `Poppins`, maquetas reales y mascota animada.
 - `scripts/` — Pipeline principal (`step1`..`step5`, `update_feedback.py`, `render_mg.js`).
 - `style.json` y `Manual_de_edicion.md` — Configuración numérica y manual vivo con historial de feedback.
+- `invitacion_cumple/` — Montaje de un personaje animado sobre una invitación de cumpleaños ya editada (recorte sin IA, animación GSAP al compás, enmascarado tras las fotos y los barridos). Ver `invitacion_cumple/README.md`.
