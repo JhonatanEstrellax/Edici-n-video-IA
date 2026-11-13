@@ -21,3 +21,10 @@ reels_work/*
 !reels_work/guion_corregido.json
 !reels_work/verification_grid_avatar_360_11_poses.jpg
 !assets/avatar_veterinaria_360/*.mp4
+
+# Invitacion de cumpleanos: intermedios y capas generadas
+invitacion_cumple/work/
+invitacion_cumple/out/
+invitacion_cumple/overlay/assets/
+# imagenes de referencia del personaje y sus recortes (privadas / con derechos de autor)
+invitacion_cumple/personaje/

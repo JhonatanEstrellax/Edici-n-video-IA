@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Overlay personaje - Invitacion de cumpleanos</title>
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+  .scene, .mask { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+  .scene { visibility: hidden; }
+  .node { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+  .node img { position: absolute; display: block; max-width: none; }
+  .shadow { position: absolute; border-radius: 50%; background: rgba(86, 34, 140, 0.42); filter: blur(7px); transform-origin: 50% 50%; }
+  .dash { position: absolute; left: -5px; top: -17px; width: 10px; height: 34px; border-radius: 5px; background: #fff; transform-origin: 50% 50%; }
+  .spark { position: absolute; left: -11px; top: -11px; width: 22px; height: 22px; background: #fff;
+           clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); transform-origin: 50% 50%; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="../../templates/gsap.min.js"></script>
+<script>
+/* Los datos (medidas del video y de las capas) los inyecta el renderizador:
+   window.DATA = { meta, wipes, circles, cfg } */
+(function () {
+  const FPS = 30, W = 1080, H = 1920;
+  const D = window.DATA, M = D.meta, CFG = D.cfg;
+  const BEAT0 = CFG.beat0, P = 60 / CFG.bpm;
+  const beat = k => BEAT0 + k * P;
+  const clamp01 = v => Math.max(0, Math.min(1, v));
+  const ease = n => gsap.parseEase(n);
+  const E = { backOut: ease('back.out(2.1)'), backSoft: ease('back.out(1.5)'), out3: ease('power3.out'), out2: ease('power2.out'),
+              in2: ease('power2.in'), bounce: ease('bounce.out'), sine: ease('sine.inOut') };
+  const stage = document.getElementById('stage');
+  const el = (cls, parent, tag) => { const e = document.createElement(tag || 'div'); e.className = cls; parent.appendChild(e); return e; };
+  const img = (parent, src, ox, oy) => { const i = el('', parent, 'img'); i.src = 'assets/' + src; i.style.left = (-ox) + 'px'; i.style.top = (-oy) + 'px'; return i; };
+
+  /* ---------- barrido de transicion: recorta la escena igual que el video ---------- */
+  function wipeClip(n) {
+    const w = D.wipes.frames[String(n)];
+    if (!w) return null;                         // sin barrido en este cuadro
+    if (w.full) return 'hidden';
+    if (w.a === undefined) return null;
+    const x0 = w.b + 1.0, x1 = w.a * H + w.b + 1.0;   // +1 px: el frente tapa al personaje
+    return `polygon(${x0}px 0px, ${W + 2}px 0px, ${W + 2}px ${H}px, ${x1}px ${H}px)`;
+  }
+
+  /* ---------- marco circular de la foto (seguimiento cuadro a cuadro) ---------- */
+  function circleAt(key, n) {
+    const rows = D.circles[key].filter(r => r[1] !== null);
+    const lo = rows[0][0], hi = rows[rows.length - 1][0];
+    const nn = Math.max(lo, Math.min(hi, n));
+    let sx = 0, sy = 0, sr = 0, c = 0;
+    for (const r of rows) if (Math.abs(r[0] - nn) <= 2) { sx += r[1]; sy += r[2]; sr += r[3]; c++; }
+    return { x: sx / c, y: sy / c, r: sr / c };
+  }
+
+  /* ---------- borde superior de la tarjeta de direccion (flota lentamente) ---------- */
+  function cardTopAt(n) {
+    const rows = D.card.filter(r => r[1] !== null && r[0] >= 573);
+    const nn = Math.max(rows[0][0], Math.min(rows[rows.length - 1][0], n));
+    let sy = 0, c = 0;
+    for (const r of rows) if (Math.abs(r[0] - nn) <= 3) { sy += r[1]; c++; }
+    return sy / c;
+  }
+
+  /* ---------- efectos reutilizables ---------- */
+  function makeBurst(parent, count, withSparks) {
+    const root = el('node', parent); const dashes = [];
+    for (let i = 0; i < count; i++) dashes.push(el('dash', el('node', root)));
+    const sparks = []; if (withSparks) for (let i = 0; i < 4; i++) sparks.push(el('spark', el('node', root)));
+    return { root, dashes, sparks };
+  }
+  function drawBurst(b, x, y, tau, r0, r1, dur) {
+    const p = clamp01(tau / dur);
+    if (tau < 0 || p >= 1) { b.root.style.visibility = 'hidden'; return; }
+    b.root.style.visibility = 'inherit';
+    b.root.style.transform = `translate(${x}px, ${y}px)`;
+    const e = E.out3(p), r = r0 + (r1 - r0) * e, len = 1 - E.in2(p);
+    b.dashes.forEach((d, i) => {
+      const a = (i / b.dashes.length) * 360 + 14;
+      d.parentNode.style.transform = `rotate(${a}deg) translate(0px, ${-r}px)`;
+      d.style.transform = `scale(${0.75 + 0.25 * len}, ${Math.max(0.02, len)})`;
+      d.style.opacity = 0.95;
+    });
+    b.sparks.forEach((s, i) => {
+      const a = (i / b.sparks.length) * 360 + 50, rr = r * 1.28;
+      s.parentNode.style.transform = `rotate(${a}deg) translate(0px, ${-rr}px)`;
+      s.style.transform = `scale(${1.5 * Math.sin(Math.PI * Math.min(1, p * 1.15))}) rotate(${p * 90}deg)`;
+    });
+  }
+  // rebote gelatina tras aparecer
+  const jelly = tau => tau <= 0 ? 0 : 0.085 * Math.exp(-7.5 * tau) * Math.sin(24 * tau);
+  // fase del compas [0,1): 0 justo en el golpe
+  const beatPhase = t => { const v = (t - BEAT0) / P; return v - Math.floor(v); };
+
+  /* ---------- construccion de escenas ---------- */
+  const scenes = [];
+
+  // --- personaje de pie saludando (capa mano + capa cuerpo) ---
+  function buildSaludo(parent, tag) {
+    const m = M['saludo_' + tag], s = m.scale, g = M.saludo;
+    const root = el('node', parent), pop = el('node', root), flip = el('node', pop), sway = el('node', flip);
+    return { root, pop, flip, sway, s, g, m };
+  }
+  function saludoImgs(a, tag, originKey) {
+    const o = a.g[originKey], ox = o[0] * a.s, oy = o[1] * a.s;
+    const handNode = el('node', a.sway);
+    const px = a.g.pivot[0] * a.s - ox, py = a.g.pivot[1] * a.s - oy;       // muneca relativa al origen
+    handNode.style.transform = `translate(${px}px, ${py}px)`;
+    const handRot = el('node', handNode);
+    img(handRot, `saludo_hand_${tag}.png`, a.g.pivot[0] * a.s, a.g.pivot[1] * a.s);
+    img(a.sway, `saludo_base_${tag}.png`, ox, oy);
+    a.handRot = handRot;
+  }
+
+  // ===== ESCENA 1: saluda delante del arco iris =====
+  (function () {
+    const c = CFG.s1, sc = el('scene', stage);
+    const burst = makeBurst(sc, 12, true);
+    const a = buildSaludo(sc, 's1'); saludoImgs(a, 's1', 'anchor');
+    a.sway.style.filter = 'drop-shadow(0px 9px 9px rgba(120, 40, 160, 0.30))';
+    const tIn = beat(c.beatIn);
+    scenes.push({ el: sc, n0: Math.ceil(tIn * FPS), n1: c.n1, draw(n, t) {
+      const tau = t - tIn, p = clamp01(tau / 0.42), sIn = E.backOut(p), j = jelly(tau - 0.30);
+      const ph = beatPhase(t), hop = 4 * ph * (1 - ph), idle = clamp01((tau - 0.35) / 0.4);
+      const y = -c.hop * hop * idle, q = c.squash * (2 * hop - 1) * idle;
+      const rot = c.sway * Math.sin(Math.PI * (t - BEAT0) / P) * idle + (1 - E.out3(p)) * -14;
+      a.root.style.transform = `translate(${c.x}px, ${c.y + y}px)`;
+      a.pop.style.transform = `scale(${sIn * c.scale})`;
+      a.sway.style.transform = `rotate(${rot}deg) scale(${1 - q + j}, ${1 + q - j})`;
+      a.handRot.style.transform = `rotate(${c.wave * Math.sin(2 * Math.PI * tau / P) * clamp01((tau - 0.15) / 0.3)}deg)`;
+      drawBurst(burst, c.x - 8, c.y - 285 * c.scale, tau - 0.02, 150, 285, 0.40);
+    } });
+  })();
+
+  // ===== ESCENAS 2 y 6: se asoma por detras de la foto y saluda =====
+  function buildPeek(key, c, n1) {
+    const sc = el('scene', stage), mask = el('mask', sc);
+    const a = buildSaludo(mask, 'peek'); saludoImgs(a, 'peek', 'head');
+    a.flip.style.transform = 'scaleX(-1)';
+    a.sway.style.filter = 'drop-shadow(0px 8px 9px rgba(40, 20, 90, 0.30))';
+    const tIn = c.tIn, ux = c.dir[0], uy = c.dir[1];
+    scenes.push({ el: sc, n0: Math.ceil(tIn * FPS), n1, draw(n, t) {
+      const C = circleAt(key, n), R = C.r + c.rim;
+      const g = `radial-gradient(circle ${R + 0.6}px at ${C.x}px ${C.y}px, transparent ${R - 0.6}px, #000 ${R + 0.6}px)`;
+      mask.style.webkitMaskImage = g; mask.style.maskImage = g;
+      const tau = t - tIn, p = clamp01(tau / 0.55), idle = clamp01((tau - 0.5) / 0.5);
+      // sale deslizandose desde detras del marco; luego respira al compas
+      let off = (1 - E.backSoft(p)) * -c.hide;
+      off += c.breathe * Math.sin(Math.PI * (t - BEAT0) / P) * idle;
+      // segundo "cucu" opcional: se esconde un poco y vuelve a salir
+      if (c.duck) { const d = (t - c.duck) / 0.75; if (d > 0 && d < 1) off -= c.duckAmt * Math.sin(Math.PI * d) ** 2; }
+      const rot = c.rot + c.sway * Math.sin(Math.PI * (t - BEAT0) / P + 0.6) * idle + (1 - E.out3(p)) * c.rotIn;
+      a.root.style.transform = `translate(${C.x + c.dx + ux * off}px, ${C.y + c.dy + uy * off}px) rotate(${rot}deg)`;
+      a.pop.style.transform = `scale(${c.scale})`;
+      const j = jelly(tau - 0.40) * 0.6;
+      a.sway.style.transform = `scale(${1 + j}, ${1 - j})`;
+      a.handRot.style.transform = `rotate(${c.wave * Math.sin(2 * Math.PI * (tau - 0.25) / P) * clamp01((tau - 0.3) / 0.3)}deg)`;
+    } });
+  }
+  buildPeek('S2', CFG.s2, CFG.s2.n1);
+
+  // --- personaje bailando ---
+  function buildDancer(sc, tag, c, shadowW) {
+    const m = M['fiesta_' + tag], s = m.scale, g = M.fiesta;
+    const shadowNode = el('node', sc), shadow = el('shadow', shadowNode);
+    shadow.style.width = shadowW + 'px'; shadow.style.height = (shadowW * 0.17) + 'px';
+    shadow.style.left = (-shadowW / 2) + 'px'; shadow.style.top = (-shadowW * 0.085) + 'px';
+    const burst = makeBurst(sc, 12, true);
+    const root = el('node', sc), pop = el('node', root), sway = el('node', pop);
+    img(sway, `fiesta_${tag}.png`, g.anchor[0] * s, g.anchor[1] * s);
+    sway.style.filter = c.filter;
+    return { root, pop, sway, shadowNode, shadow, burst };
+  }
+  function drawDance(a, c, t, tau, idle, extraY, sIn, baseY) {
+    const ph = beatPhase(t), hop = 4 * ph * (1 - ph), by = baseY === undefined ? c.y : baseY;
+    const th = Math.PI * (t - BEAT0) / P, tilt = Math.sin(th) / Math.sqrt(Math.sin(th) ** 2 + 0.22) * 1.1;
+    const y = -c.hop * hop * idle + extraY, q = c.squash * (2 * hop - 1) * idle;
+    a.root.style.transform = `translate(${c.x + c.shift * tilt * idle}px, ${by + y}px)`;
+    a.pop.style.transform = `scale(${sIn * c.scale})`;
+    return { rot: c.tilt * tilt * idle, q, y };
+  }
+
+  // ===== ESCENA 3: baila junto a la torta =====
+  (function () {
+    const c = CFG.s3, sc = el('scene', stage);
+    const a = buildDancer(sc, 'cake', c, 190);
+    const tIn = beat(c.beatIn);
+    scenes.push({ el: sc, n0: Math.ceil(tIn * FPS), n1: c.n1, draw(n, t) {
+      const tau = t - tIn, p = clamp01(tau / 0.42), sIn = E.backOut(p), j = jelly(tau - 0.30), idle = clamp01((tau - 0.38) / 0.25);
+      const d = drawDance(a, c, t, tau, idle, 0, sIn);
+      a.sway.style.transform = `rotate(${d.rot + (1 - E.out3(p)) * 16}deg) scale(${1 - d.q + j}, ${1 + d.q - j})`;
+      const lift = clamp01(-d.y / c.hop);
+      a.shadowNode.style.transform = `translate(${c.x + 6}px, ${c.y - 4}px) scale(${sIn * (1 - 0.28 * lift)})`;
+      a.shadow.style.opacity = 0.95 - 0.35 * lift;
+      drawBurst(a.burst, c.x, c.y - 300, tau - 0.02, 170, 330, 0.42);
+    } });
+  })();
+
+  // ===== ESCENA 4: sticker con el gatito junto al calendario =====
+  (function () {
+    const c = CFG.s4, sc = el('scene', stage), m = M.gato_sticker;
+    const burst = makeBurst(sc, 12, true);
+    const root = el('node', sc), pop = el('node', root), sway = el('node', pop);
+    img(sway, 'gato_sticker.png', m.w / 2, m.h - m.pad);
+    sway.style.filter = 'drop-shadow(0px 10px 10px rgba(150, 50, 60, 0.30))';
+    const tIn = beat(c.beatIn);
+    scenes.push({ el: sc, n0: Math.ceil(tIn * FPS), n1: c.n1, draw(n, t) {
+      const tau = t - tIn, p = clamp01(tau / 0.45), sIn = E.backOut(p), j = jelly(tau - 0.32), idle = clamp01((tau - 0.4) / 0.4);
+      const fl = Math.sin(Math.PI * (t - BEAT0) / P);
+      root.style.transform = `translate(${c.x}px, ${c.y - c.float * (0.5 + 0.5 * Math.sin(2 * Math.PI * (t - BEAT0) / (2 * P) - 1.2)) * idle}px)`;
+      pop.style.transform = `scale(${sIn * c.scale})`;
+      sway.style.transform = `rotate(${c.rot + c.rock * fl * idle + (1 - E.out3(p)) * -22}deg) scale(${1 + j}, ${1 - j})`;
+      drawBurst(burst, c.x, c.y - 200 * c.scale, tau - 0.02, 150, 290, 0.42);
+    } });
+  })();
+
+  // ===== ESCENA 5: cae sobre la tarjeta y baila bajo la bola disco =====
+  (function () {
+    const c = CFG.s5, sc = el('scene', stage);
+    const a = buildDancer(sc, 'disco', c, 150);
+    const tIn = beat(c.beatIn);
+    scenes.push({ el: sc, n0: Math.ceil(tIn * FPS), n1: c.n1, draw(n, t) {
+      const tau = t - tIn, fall = 0.30, p = clamp01(tau / fall), land = tau - fall;
+      const drop = (1 - E.in2(p)) * -c.dropFrom;                         // caida acelerada
+      const squashLand = land > 0 ? 0.20 * Math.exp(-9 * land) * Math.cos(21 * land) : 0;
+      const idle = clamp01((land - 0.24) / 0.25), cy = cardTopAt(n) + c.yOff;
+      const d = drawDance(a, c, t, tau, idle, drop, 1, cy);
+      const stretch = (1 - p) * 0.10;
+      a.sway.style.transform = `rotate(${d.rot}deg) scale(${1 - d.q + squashLand - stretch}, ${1 + d.q - squashLand + stretch})`;
+      const lift = clamp01(-d.y / 120);
+      a.shadowNode.style.transform = `translate(${c.x + 4}px, ${cy - 1}px) scale(${1 - 0.5 * lift})`;
+      a.shadow.style.opacity = (0.9 - 0.6 * lift) * clamp01(tau / 0.12);
+      drawBurst(a.burst, c.x, cy - 30, land, 60, 190, 0.36);
+    } });
+  })();
+
+  buildPeek('S6', CFG.s6, CFG.s6.n1);
+
+  /* ---------- reloj maestro ---------- */
+  window.seekFrame = function (n) {
+    const t = n / FPS; let any = false;
+    for (const s of scenes) {
+      const on = n >= s.n0 && n <= s.n1, clip = on ? wipeClip(n) : null;
+      if (!on || clip === 'hidden') { s.el.style.visibility = 'hidden'; continue; }
+      s.el.style.visibility = 'visible'; s.el.style.clipPath = clip || 'none';
+      s.draw(n, t); any = true;
+    }
+    return any;
+  };
+  window.ready = Promise.all(Array.from(document.images).map(i => i.decode ? i.decode().catch(() => {}) : Promise.resolve()));
+})();
+</script>
+</body>
+</html>
